@@ -1,0 +1,6 @@
+{
+  "appTitle": "mova",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
