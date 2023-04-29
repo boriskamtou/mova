@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "273807654254",
+    "project_id": "mova-9fd52",
+    "storage_bucket": "mova-9fd52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273807654254:android:a08c2a8f068bb7f1db957f",
+        "android_client_info": {
+          "package_name": "com.app.mova"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273807654254-iv44nhsnsvq2sqmeg2ajrvg1e7gpv4gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIlJ-aZBwQbRs_tWHmZ5dEqkgespUMS98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273807654254-iv44nhsnsvq2sqmeg2ajrvg1e7gpv4gm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "273807654254-iso75m7rmfi3g24g46sa2mcbqraufm6q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.mova"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273807654254:android:d345b2267c6ecacedb957f",
+        "android_client_info": {
+          "package_name": "com.example.mova"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273807654254-iv44nhsnsvq2sqmeg2ajrvg1e7gpv4gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIlJ-aZBwQbRs_tWHmZ5dEqkgespUMS98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273807654254-iv44nhsnsvq2sqmeg2ajrvg1e7gpv4gm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "273807654254-iso75m7rmfi3g24g46sa2mcbqraufm6q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.mova"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

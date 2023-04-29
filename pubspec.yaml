@@ -19,6 +19,14 @@ dependencies:
   google_fonts: ^4.0.3
   logger: ^1.1.0
   flutter_animate: ^4.1.0
+  dio: ^5.1.1
+  rename: ^2.1.1
+  audioplayers: ^4.0.1
+  firebase_core: ^2.10.0
+  animated_bottom_navigation_bar: ^1.1.0
+  flutter_hooks: ^0.18.5+1
+  auto_size_text: ^3.0.0
+  hooks_riverpod: ^2.3.6
 
 dev_dependencies:
   flutter_test:
@@ -35,3 +43,5 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/icons/
+    - assets/sounds/sound-intro.mp3
