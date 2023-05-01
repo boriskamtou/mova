@@ -1,36 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mova/src/features/movies/home/presentation/home_screen.dart';
-import 'package:mova/src/features/onboarding/presentation/onboarding_screen.dart';
-import 'package:mova/src/features/splash/presentation/splash_screen.dart';
+import 'package:auto_route/auto_route.dart';
 
-enum AppRoute {
-  splashScreen,
-  intro,
-  homeScreen,
+part 'app_router.gr.dart';
+
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(page: HomeRoute.page),
+      ];
 }
-
-final appRouterProvider = Provider<GoRouter>(
-  (ref) {
-    return GoRouter(
-      initialLocation: '/home',
-      routes: [
-        GoRoute(
-          path: '/',
-          name: AppRoute.splashScreen.name,
-          builder: (context, state) => const SplashScreen(),
-        ),
-        GoRoute(
-          path: '/intro',
-          name: AppRoute.intro.name,
-          builder: (context, state) => const OnboardingScreen(),
-        ),
-        GoRoute(
-          path: '/home',
-          name: AppRoute.homeScreen.name,
-          builder: (context, state) => const HomeScreen(),
-        ),
-      ],
-    );
-  },
-);

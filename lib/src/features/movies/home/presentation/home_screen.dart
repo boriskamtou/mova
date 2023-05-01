@@ -1,10 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/common_import.dart';
 import 'home_tab.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulHookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -79,7 +81,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 isActive ? _iconSolidList[index] : _iconOutlineList[index],
                 color: color,
               ),
-              const SizedBox(height: 4),
+              gapH4,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: AutoSizeText(

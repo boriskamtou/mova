@@ -24,10 +24,12 @@ class LoggerProvider extends ProviderObserver {
 }
 
 Future<void> main() async {
+  // Setup firebase initialization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     ProviderScope(
       observers: [

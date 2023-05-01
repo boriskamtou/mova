@@ -1,9 +1,20 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/theme/application/app_theme_notifier.dart';
 import 'package:mova/src/routing/app_router.dart';
+
+import 'features/core/shared/dio_provider.dart';
+import 'features/core/shared/sembast_provider.dart';
+
+final initializationProvider = FutureProvider<Unit>((ref) async {
+  await ref.read(sembastProvider).init();
+  ref.read(dioProvider).options = BaseOptions();
+  return unit;
+});
 
 class MyApp extends ConsumerWidget {
   const MyApp({
@@ -12,10 +23,10 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(appRouterProvider);
     final appTheme = ref.watch(appThemeProvider);
+    final appRouter = AppRouter();
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: appRouter.config(),
       restorationScopeId: 'app',
       title: "Mova",
       debugShowCheckedModeBanner: false,
