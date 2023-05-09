@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mova/src/features/core/movies/infrastructure/movies/movie_extension.dart';
+import 'package:mova/src/features/core/infrastructure/extension/movie_extension.dart';
 
 import '../../domain/entities/movie_response.dart';
 import 'movie_dto.dart';

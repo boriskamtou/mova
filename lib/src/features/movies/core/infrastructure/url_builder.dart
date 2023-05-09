@@ -7,7 +7,7 @@ class UrlBuilder {
     String? baseUrl,
   }) : _baseUrl = baseUrl ?? "https://api.themoviedb.org/3";
 
-  String buildPopularMovies(String language, int page) {
+  String buildPopularMovies(int page, [String language = 'en']) {
     return '$_baseUrl/movie/popular?api_key=bcb184a317335ad93da00f543ab44f04&language=$language&page=$page';
   }
 
