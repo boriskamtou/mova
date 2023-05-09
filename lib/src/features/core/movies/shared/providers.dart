@@ -1,9 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/core/application/popular_movies_notifier.dart';
-import 'package:mova/src/features/core/infrastructure/api/url_builder.dart';
-import 'package:mova/src/features/core/infrastructure/movies/movies.dart';
-import 'package:mova/src/features/core/shared/dio_provider.dart';
-import 'package:mova/src/features/core/shared/sembast_provider.dart';
+import 'package:mova/src/features/core/movies/shared/dio_provider.dart';
+import 'package:mova/src/features/core/movies/shared/sembast_provider.dart';
+
+import '../application/popular_movies_notifier.dart';
+import '../infrastructure/movies/repositories/local/movies_local_storage_service.dart';
+import '../infrastructure/movies/repositories/movies_repository.dart';
+import '../infrastructure/movies/repositories/remote/movies_remote_service.dart';
+import '../infrastructure/url_builder.dart';
 
 final movieUrlBuildProvider = Provider<UrlBuilder>((ref) {
   return UrlBuilder();
@@ -28,6 +31,6 @@ final movieRepositoryProvider = Provider<MoviesRepository>((ref) {
 });
 
 final popularMoviesProvider =
-    StateNotifierProvider<PopularMoviesNotifier, PopularMoviesState>((ref) {
-  return PopularMoviesNotifier(ref.watch(movieRepositoryProvider));
+    StateNotifierProvider<PopularMoviesNotifier, AsyncValue>((ref) {
+  return PopularMoviesNotifier();
 });

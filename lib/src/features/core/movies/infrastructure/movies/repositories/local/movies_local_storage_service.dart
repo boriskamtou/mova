@@ -1,6 +1,7 @@
-import 'package:mova/src/features/core/infrastructure/movie_response_dto.dart';
-import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
+import 'package:mova/src/features/core/movies/infrastructure/sembast_database.dart';
 import 'package:sembast/sembast.dart';
+
+import '../../../dtos/movie_response_dto.dart';
 
 class MoviesLocalStorageService {
   final SembastDatabase _sembastDatabase;

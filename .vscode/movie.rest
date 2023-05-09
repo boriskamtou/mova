@@ -1,0 +1,8 @@
+@baseUrl = https://api.themoviedb.org/3
+
+@api_key = bcb184a317335ad93da00f543ab44f04
+
+@page = 1
+
+
+GET {{baseUrl}}/movie/popular/?api_key={{api_key}}&page={{page}}

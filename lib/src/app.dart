@@ -8,8 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/theme/application/app_theme_notifier.dart';
 import 'package:mova/src/routing/app_router.dart';
 
-import 'features/core/shared/dio_provider.dart';
-import 'features/core/shared/sembast_provider.dart';
+import 'features/core/movies/shared/dio_provider.dart';
+import 'features/core/movies/shared/sembast_provider.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).init();

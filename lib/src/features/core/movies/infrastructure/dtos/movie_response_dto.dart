@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mova/src/features/core/infrastructure/movie_extension.dart';
+import 'package:mova/src/features/core/movies/infrastructure/movies/movie_extension.dart';
 
+import '../../domain/entities/movie_response.dart';
 import 'movie_dto.dart';
-import '../domain/movie_response.dart';
 
 part 'movie_response_dto.freezed.dart';
 part 'movie_response_dto.g.dart';

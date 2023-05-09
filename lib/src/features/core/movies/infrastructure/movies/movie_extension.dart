@@ -1,5 +1,5 @@
-import '../domain/movie.dart';
-import 'movie_dto.dart';
+import '../../domain/entities/movie.dart';
+import '../dtos/movie_dto.dart';
 
 extension DTOListToDomainList on List<MovieDTO> {
   List<Movie> toDomain() {
