@@ -1,17 +1,20 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../core/shared/providers.dart';
 
 @RoutePage()
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   static AudioPlayer player = AudioPlayer();
 
   Future<void> playIntroSound() async {
@@ -23,6 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     playIntroSound();
+    Future.microtask(
+      () => ref.read(popularMoviesProvider.notifier).fetchPopularMovies(),
+    );
   }
 
   @override

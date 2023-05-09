@@ -33,7 +33,8 @@ dependencies:
   rxdart: ^0.27.7
   path: ^1.8.2
   dartz: ^0.10.1
-  auto_route: ^6.4.0
+  auto_route: ^6.0.1
+  collection: ^1.17.0
 
 dev_dependencies:
   flutter_test:

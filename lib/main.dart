@@ -35,7 +35,7 @@ Future<void> main() async {
       observers: [
         LoggerProvider(),
       ],
-      child: const MyApp(),
+      child: const AppWidget(),
     ),
   );
 }

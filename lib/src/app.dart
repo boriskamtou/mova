@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +17,38 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
   return unit;
 });
 
-class MyApp extends ConsumerWidget {
-  const MyApp({
+class RouteObserver extends AutoRouterObserver {
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    debugPrint('/${route.settings.name}');
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    debugPrint('/${route.settings.name}');
+  }
+}
+
+class AppWidget extends ConsumerWidget {
+  const AppWidget({
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      initializationProvider,
+      (previous, next) {},
+    );
     final appTheme = ref.watch(appThemeProvider);
     final appRouter = AppRouter();
     return MaterialApp.router(
-      routerConfig: appRouter.config(),
+      routerConfig: appRouter.config(
+        navigatorObservers: () => [
+          RouteObserver(),
+        ],
+      ),
       restorationScopeId: 'app',
       title: "Mova",
       debugShowCheckedModeBanner: false,
