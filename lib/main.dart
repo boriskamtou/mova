@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 import 'firebase_options.dart';
-import 'src/app.dart';
+import 'src/app_widget.dart';
 
 class LoggerProvider extends ProviderObserver {
   var log = Logger();
