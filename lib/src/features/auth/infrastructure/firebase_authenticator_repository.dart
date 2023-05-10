@@ -6,14 +6,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../domain/failures/auth_failure.dart';
 import 'user_credentials_storage/user_credentials_storage.dart';
 
-class FirebaseAuthenticator {
+class FirebaseAuthenticatorRepository {
   final FirebaseAuth _auth;
   final UserCredentialsStorage _credentialsStorage;
-  // final SharedPrefsStorage _prefsStorage;
 
-  // final bool _isRememberMe = false;
-
-  FirebaseAuthenticator(
+  FirebaseAuthenticatorRepository(
     this._auth,
     this._credentialsStorage,
   );
@@ -28,8 +25,12 @@ class FirebaseAuthenticator {
         password: password,
       );
       if (userCredentials.user != null) {
-        _credentialsStorage.saveCredentials(
-            'email', userCredentials.user?.email);
+        _credentialsStorage.upsertUserInfo(
+          userName: userCredentials.user!.displayName,
+          userEmail: userCredentials.user!.email,
+          photoUrl: userCredentials.user!.photoURL,
+          phoneNumber: userCredentials.user!.phoneNumber,
+        );
       }
       return right(userCredentials);
     } on PlatformException catch (e) {
@@ -79,14 +80,16 @@ class FirebaseAuthenticator {
 
       final userCredentials =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      /*     _credentialsStorage.saveCredentials(
-          StorageConstants.userEmail, userCredentials.user?.email);
-      _credentialsStorage.saveCredentials(
-          StorageConstants.userName, userCredentials.user?.displayName);
-      _credentialsStorage.saveCredentials(
-          StorageConstants.userPhotoUrl, userCredentials.user?.photoURL);
-      _credentialsStorage.saveCredentials(
-          StorageConstants.userPhoneNumber, userCredentials.user?.phoneNumber); */
+
+      if (userCredentials.user != null) {
+        _credentialsStorage.upsertUserInfo(
+          userName: userCredentials.user!.displayName,
+          userEmail: userCredentials.user!.email,
+          photoUrl: userCredentials.user!.photoURL,
+          phoneNumber: userCredentials.user!.phoneNumber,
+        );
+      }
+
       return right(userCredentials);
     } on PlatformException catch (e) {
       return left(
@@ -125,24 +128,10 @@ class FirebaseAuthenticator {
   Future<Either<AuthFailure, Unit>> signOut() async {
     try {
       await _auth.signOut();
-      /*  _credentialsStorage.clearCredentials(); */
+      _credentialsStorage.deleteUserInfo();
       return right(unit);
     } on PlatformException catch (e) {
       return left(AuthFailure.failure(e.message!));
     }
   }
-
-  // bool get getIsRememberMe =>
-  //     _prefsStorage.getBool(StorageConstants.rememberMe) ?? false;
-  // bool get getHasSeenOnboarding =>
-  //     _prefsStorage.getBool(StorageConstants.hasSeenOnboarding) ?? false;
-
-  // void toggleRememberMe(bool value) {
-  //   _isRememberMe = value;
-  //   _prefsStorage.saveBool(StorageConstants.rememberMe, _isRememberMe);
-  // }
-
-  // void toggleHasSeenOnboarding() {
-  //   _prefsStorage.saveBool(StorageConstants.hasSeenOnboarding, true);
-  // }
 }

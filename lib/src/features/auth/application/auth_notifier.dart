@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../domain/failures/auth_failure.dart';
-import '../infrastructure/firebase_authenticator.dart';
+import '../infrastructure/firebase_authenticator_repository.dart';
 
 part 'auth_notifier.freezed.dart';
 
@@ -17,7 +17,7 @@ class AuthState with _$AuthState {
 }
 
 class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
-  final FirebaseAuthenticator _signUpAuthenticator;
+  final FirebaseAuthenticatorRepository _signUpAuthenticator;
 
   FirebaseAuthenticatorNotifier(this._signUpAuthenticator)
       : super(const AuthState.intiial());

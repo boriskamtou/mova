@@ -1,25 +1,35 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'credentials_storage.dart';
-
-class UserCredentialsStorage implements CredentialsStorage {
-  final FlutterSecureStorage _storage;
+class UserCredentialsStorage {
+  static const _photoUrl = 'photoUrl';
+  static const _userEmail = 'userEmail';
+  static const _userName = 'userName';
+  static const _userPhoneNumber = 'phoneNumber';
 
   UserCredentialsStorage(this._storage);
 
-  @override
-  Future<void> clearCredentials() async {
-    await _storage.deleteAll();
-  }
+  final FlutterSecureStorage _storage;
 
-  @override
-  Future<String?> getCredentials(String key) async {
-    final credentials = await _storage.read(key: key);
-    return credentials;
-  }
+  Future<void> upsertUserInfo(
+          {required String? userName,
+          required String? userEmail,
+          String? photoUrl,
+          String? phoneNumber}) =>
+      Future.wait([
+        _storage.write(key: _userEmail, value: userEmail),
+        _storage.write(key: _userName, value: userName),
+        if (photoUrl != null) _storage.write(key: _photoUrl, value: _photoUrl),
+        if (phoneNumber != null)
+          _storage.write(key: _userPhoneNumber, value: phoneNumber)
+      ]);
 
-  @override
-  Future<void> saveCredentials(String key, String? value) async {
-    await _storage.write(key: key, value: value);
-  }
+  Future<void> deleteUserInfo() => Future.wait([
+        _storage.delete(key: _photoUrl),
+        _storage.delete(key: _userEmail),
+        _storage.delete(key: _userName)
+      ]);
+
+  Future<String?> getUserToken() => _storage.read(key: _photoUrl);
+  Future<String?> getUserEmail() => _storage.read(key: _userEmail);
+  Future<String?> getUserName() => _storage.read(key: _userName);
 }
