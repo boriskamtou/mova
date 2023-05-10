@@ -4,18 +4,31 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
 class SembastDatabase {
-  late Database _instance;
+  static final SembastDatabase _singleton = SembastDatabase._();
 
-  Database get instance => _instance;
+  static SembastDatabase get instance => _singleton;
 
-  bool hasBeenInitialize = false;
+  //database instance
+  Database? _database;
 
-  Future<void> init() async {
-    if (hasBeenInitialize) return;
-    hasBeenInitialize = true;
-    final dbDirectory = await getApplicationDocumentsDirectory();
-    dbDirectory.create(recursive: true); // Create database if does not exist
-    final dbPath = join(dbDirectory.path, 'db.sembast');
-    _instance = await databaseFactoryIo.openDatabase(dbPath); // open the db
+  //private constructor
+  SembastDatabase._();
+
+  Future<Database?> get database async {
+    _database ??= await _openDatabase();
+
+    return _database;
+  }
+
+  Future<Database> _openDatabase() async {
+    //get application directory
+    final directory = await getApplicationDocumentsDirectory();
+
+    //construct path
+    final dbPath = join(directory.path, "movies.db");
+
+    //open database
+    final db = await databaseFactoryIo.openDatabase(dbPath);
+    return db;
   }
 }

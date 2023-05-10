@@ -35,7 +35,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           'assets/images/logo.png',
           height: 70,
         ).animate().scale(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 300),
             ),
       ),
     );

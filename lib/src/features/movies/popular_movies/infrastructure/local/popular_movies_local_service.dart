@@ -8,6 +8,8 @@ import '../../../core/infrastructure/dtos/movie_dto.dart';
 class PopularMoviesLocalService {
   final SembastDatabase _sembastDatabase;
 
+  Future<Database?> get _db async => await _sembastDatabase.database;
+
   final _store = intMapStoreFactory.store('popularMovies');
 
   PopularMoviesLocalService(this._sembastDatabase);
@@ -21,7 +23,7 @@ class PopularMoviesLocalService {
               (index, _) => index + Contants.itemPerPage * localPage),
         )
         .put(
-          _sembastDatabase.instance,
+          await _db.then((db) => db!),
           dtos.map((e) => e.toJson()).toList(),
         );
   }
@@ -30,7 +32,7 @@ class PopularMoviesLocalService {
     final localPage = page - 1;
 
     final records = await _store.find(
-      _sembastDatabase.instance,
+      await _db.then((db) => db!),
       finder: Finder(
         limit: Contants.itemPerPage,
         offset: Contants.itemPerPage * localPage,
