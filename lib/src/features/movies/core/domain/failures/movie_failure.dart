@@ -5,5 +5,5 @@ part 'movie_failure.freezed.dart';
 @freezed
 class MovieFailure with _$MovieFailure {
   const MovieFailure._();
-  const factory MovieFailure.api(int? errorCode) = _Api;
+  const factory MovieFailure.api(int? errorCode, [String? message]) = _Api;
 }

@@ -31,13 +31,17 @@ class PopularMovieRemoteService {
         final movieResponseData = MovieResponseDTO.fromJson(response.data);
 
         if (movieResponseData.totalResults == previousTotalResults) {
-          return const RemoteResponse.notModified(maxPage: Contants.maxPage);
+          return const RemoteResponse.notModified(
+            maxPage: Contants.maxPage,
+          );
         } else {
           _totalResultsCache.saveTotalMoviesResults(
               movieResponseData.totalResults,
               LocalStorageConstants.popularMoviesTotalResults);
-          return RemoteResponse.withNewData(movieResponseData,
-              maxPage: Contants.maxPage);
+          return RemoteResponse.withNewData(
+            movieResponseData,
+            maxPage: Contants.maxPage,
+          );
         }
       } else {
         throw MovieException(
