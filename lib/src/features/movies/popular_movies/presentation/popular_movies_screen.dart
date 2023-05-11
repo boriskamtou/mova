@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/presentation/paginated_movie_listview.dart';
+import '../../core/presentation/paginated_movie_gridview.dart';
 import '../shared/providers.dart';
 
 @RoutePage()
@@ -30,7 +30,7 @@ class _PopularMoviesScreenState extends ConsumerState<PopularMoviesScreen> {
       appBar: AppBar(
         title: const Text('Popular Movies'),
       ),
-      body: const PaginatedMoviesListView(),
+      body: const PaginatedMoviesGridView(),
     );
   }
 }
