@@ -30,7 +30,13 @@ class _PopularMoviesScreenState extends ConsumerState<PopularMoviesScreen> {
       appBar: AppBar(
         title: const Text('Popular Movies'),
       ),
-      body: const PaginatedMoviesGridView(),
+      body: PaginatedMoviesGridView(
+        paginatedMoviesNotifier: popularMoviesStateNotifierProvider,
+        getNextPage: (ref) => ref
+            .read(popularMoviesStateNotifierProvider.notifier)
+            .getNextPopularMoviePage(),
+        noDataMessage: '',
+      ),
     );
   }
 }

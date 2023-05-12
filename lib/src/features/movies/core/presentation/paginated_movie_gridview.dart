@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/movies/popular_movies/shared/providers.dart';
+import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
 
 import '../../../theme/presentation/app_colors.dart';
-import '../../popular_movies/application/popular_movies_notifier.dart';
 import 'loading_movie_item.dart';
 import 'movie_item.dart';
 
 class PaginatedMoviesGridView extends ConsumerStatefulWidget {
+  final AutoDisposeStateNotifierProvider<PaginatedMoviesNotifier,
+      PaginatedMoviesState> paginatedMoviesNotifier;
+
+  final void Function(WidgetRef ref) getNextPage;
+
+  final String noDataMessage;
   const PaginatedMoviesGridView({
     super.key,
+    required this.paginatedMoviesNotifier,
+    required this.getNextPage,
+    required this.noDataMessage,
   });
 
   @override
@@ -22,13 +30,19 @@ class _PaginatedMoviesGridViewState
   bool canLoadNextPage = false;
   @override
   Widget build(BuildContext context) {
-    ref.listen<PopularMoviesState>(
-      popularMoviesStateNotifierProvider,
+    ref.listen<PaginatedMoviesState>(
+      widget.paginatedMoviesNotifier,
       (prev, next) {
         next.map(
           initial: (_) => canLoadNextPage = true,
           loading: (_) => canLoadNextPage = false,
-          loaded: (_) => canLoadNextPage = _.isNextPageAvailable,
+          loaded: (_) {
+            if (!_.movies.isFresh) {
+              // TODO: Display error message to the user
+              debugPrint('Not connected');
+            }
+            return canLoadNextPage = _.isNextPageAvailable;
+          },
           failure: (_) {
             canLoadNextPage = false;
             ScaffoldMessenger.of(context).showSnackBar(
@@ -43,11 +57,7 @@ class _PaginatedMoviesGridViewState
                     ),
                     title: Text(_.failure.message!),
                     trailing: IconButton(
-                      onPressed: () {
-                        ref
-                            .read(popularMoviesStateNotifierProvider.notifier)
-                            .getNextPopularMoviePage();
-                      },
+                      onPressed: () => widget.getNextPage,
                       icon: const Icon(
                         Icons.refresh_outlined,
                         color: AppColors.white,
@@ -64,7 +74,7 @@ class _PaginatedMoviesGridViewState
 
     return Consumer(
       builder: (context, ref, child) {
-        final state = ref.watch(popularMoviesStateNotifierProvider);
+        final state = ref.watch(widget.paginatedMoviesNotifier);
         return NotificationListener<ScrollNotification>(
           onNotification: (notification) {
             final metrics = notification.metrics;
@@ -74,9 +84,7 @@ class _PaginatedMoviesGridViewState
             if (canLoadNextPage && metrics.pixels >= limit) {
               debugPrint("Load pagination");
               canLoadNextPage = false;
-              ref
-                  .read(popularMoviesStateNotifierProvider.notifier)
-                  .getNextPopularMoviePage();
+              widget.getNextPage;
             }
 
             return false;
@@ -89,7 +97,7 @@ class _PaginatedMoviesGridViewState
 }
 
 class _PaginatedGridView extends StatelessWidget {
-  final PopularMoviesState state;
+  final PaginatedMoviesState state;
 
   const _PaginatedGridView({Key? key, required this.state}) : super(key: key);
 

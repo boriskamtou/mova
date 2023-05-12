@@ -23,6 +23,7 @@ class Movie with _$Movie {
   }) = _Movie;
 
   String get fullImageUrl => 'https://image.tmdb.org/t/p/w200/$posterPath';
+  String get fullBackDropUrl => 'https://image.tmdb.org/t/p/w400/$backdropPath';
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 }

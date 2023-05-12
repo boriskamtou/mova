@@ -1,20 +1,20 @@
 import 'package:collection/collection.dart';
-import 'package:mova/src/constants/contants.dart';
-import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
 import 'package:sembast/sembast.dart';
 
-import '../../../core/infrastructure/dtos/movie_dto.dart';
+import '../../../../constants/contants.dart';
+import '../../../core/infrastructure/sembast_database.dart';
+import '../../core/infrastructure/dtos/movie_dto.dart';
 
-class PopularMoviesLocalService {
+class TopRatedMoviesLocalService {
   final SembastDatabase _sembastDatabase;
 
   Future<Database?> get _db async => await _sembastDatabase.database;
 
-  final _store = intMapStoreFactory.store('popularMovies');
+  final _store = intMapStoreFactory.store('topRatedMovies');
 
-  PopularMoviesLocalService(this._sembastDatabase);
+  TopRatedMoviesLocalService(this._sembastDatabase);
 
-  Future<void> upsertPopularMoviePage(List<MovieDTO> dtos, int page) async {
+  Future<void> upsertTopRatedMoviePage(List<MovieDTO> dtos, int page) async {
     final localPage = page - 1;
 
     await _store
@@ -28,7 +28,7 @@ class PopularMoviesLocalService {
         );
   }
 
-  Future<List<MovieDTO>> getPopularMoviePage(int page) async {
+  Future<List<MovieDTO>> getTopRatedMoviePage(int page) async {
     final localPage = page - 1;
 
     final records = await _store.find(
@@ -41,7 +41,7 @@ class PopularMoviesLocalService {
     return records.map((e) => MovieDTO.fromJson(e.value)).toList();
   }
 
-  Future<int> getPopularMoviesLocalMaxPages() async {
+  Future<int> getTopRatedMoviesLocalMaxPages() async {
     final records = await _store.count(await _db.then((db) => db!));
 
     return (records / Contants.maxPage).ceil();

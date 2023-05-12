@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
+import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
 
 class MovieItem extends StatelessWidget {
@@ -15,7 +17,7 @@ class MovieItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: Navigate to the detail page
+        context.navigateTo(MovieDetailRoute(movie: movie));
       },
       child: Stack(
         fit: isGrid ? StackFit.expand : StackFit.loose,

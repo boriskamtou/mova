@@ -5,37 +5,37 @@ import 'app_colors.dart';
 
 class AppTheme {
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.urbanist(
+    bodyLarge: GoogleFonts.urbanist(
       color: AppColors.black,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     ),
-    bodyText2: GoogleFonts.urbanist(
+    bodyMedium: GoogleFonts.urbanist(
       color: AppColors.grey,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     ),
-    headline1: GoogleFonts.urbanist(
+    displayLarge: GoogleFonts.urbanist(
       color: AppColors.black,
       fontSize: 32,
       fontWeight: FontWeight.w700,
     ),
-    headline2: GoogleFonts.urbanist(
+    displayMedium: GoogleFonts.urbanist(
       color: AppColors.black,
       fontSize: 21,
       fontWeight: FontWeight.w700,
     ),
-    headline3: GoogleFonts.urbanist(
+    displaySmall: GoogleFonts.urbanist(
       color: AppColors.black,
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
-    headline4: GoogleFonts.urbanist(
+    headlineMedium: GoogleFonts.urbanist(
       color: AppColors.darkGrey,
       fontWeight: FontWeight.w600,
       fontSize: 14,
     ),
-    headline6: GoogleFonts.urbanist(
+    titleLarge: GoogleFonts.urbanist(
       color: AppColors.black,
       fontSize: 18,
       fontWeight: FontWeight.w600,
@@ -43,37 +43,37 @@ class AppTheme {
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    bodyText1: GoogleFonts.urbanist(
+    bodyLarge: GoogleFonts.urbanist(
       color: AppColors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     ),
-    bodyText2: GoogleFonts.urbanist(
+    bodyMedium: GoogleFonts.urbanist(
       color: AppColors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     ),
-    headline1: GoogleFonts.urbanist(
+    displayLarge: GoogleFonts.urbanist(
       color: AppColors.white,
       fontSize: 32,
       fontWeight: FontWeight.w700,
     ),
-    headline2: GoogleFonts.urbanist(
+    displayMedium: GoogleFonts.urbanist(
       color: AppColors.white,
       fontSize: 21,
       fontWeight: FontWeight.w700,
     ),
-    headline3: GoogleFonts.urbanist(
+    displaySmall: GoogleFonts.urbanist(
       color: AppColors.white,
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
-    headline4: GoogleFonts.urbanist(
+    headlineMedium: GoogleFonts.urbanist(
       color: AppColors.white,
       fontWeight: FontWeight.w600,
       fontSize: 14,
     ),
-    headline6: GoogleFonts.urbanist(
+    titleLarge: GoogleFonts.urbanist(
       color: AppColors.white,
       fontSize: 18,
       fontWeight: FontWeight.w600,

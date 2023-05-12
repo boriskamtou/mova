@@ -39,6 +39,9 @@ dependencies:
   firebase_auth: ^4.5.0
   google_sign_in: ^6.1.0
   cached_network_image: ^3.2.3
+  another_flushbar: ^1.12.29
+  readmore: ^2.1.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

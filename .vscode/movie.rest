@@ -2,7 +2,18 @@
 
 @api_key = bcb184a317335ad93da00f543ab44f04
 
-@page = 3
+@movie_id = 640146
 
+@page = 1
+
+### GEt list of popular movies
 
 GET {{baseUrl}}/movie/popular/?api_key={{api_key}}&page={{page}}
+
+### GET list of top rated movies
+GET {{baseUrl}}/movie/top_rated/?api_key={{api_key}}&page={{page}}
+### Get movie detail
+GET {{baseUrl}}/movie/{{movie_id}}?api_key={{api_key}}
+
+### Get reviews
+GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'popular_movies_notifier.dart';
+part of 'paginated_movies_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PopularMoviesState {
+mixin _$PaginatedMoviesState {
   Fresh<List<Movie>> get movies => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -75,15 +75,15 @@ mixin _$PopularMoviesState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PopularMoviesStateCopyWith<PopularMoviesState> get copyWith =>
+  $PaginatedMoviesStateCopyWith<PaginatedMoviesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PopularMoviesStateCopyWith<$Res> {
-  factory $PopularMoviesStateCopyWith(
-          PopularMoviesState value, $Res Function(PopularMoviesState) then) =
-      _$PopularMoviesStateCopyWithImpl<$Res, PopularMoviesState>;
+abstract class $PaginatedMoviesStateCopyWith<$Res> {
+  factory $PaginatedMoviesStateCopyWith(PaginatedMoviesState value,
+          $Res Function(PaginatedMoviesState) then) =
+      _$PaginatedMoviesStateCopyWithImpl<$Res, PaginatedMoviesState>;
   @useResult
   $Res call({Fresh<List<Movie>> movies});
 
@@ -91,9 +91,10 @@ abstract class $PopularMoviesStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PopularMoviesStateCopyWithImpl<$Res, $Val extends PopularMoviesState>
-    implements $PopularMoviesStateCopyWith<$Res> {
-  _$PopularMoviesStateCopyWithImpl(this._value, this._then);
+class _$PaginatedMoviesStateCopyWithImpl<$Res,
+        $Val extends PaginatedMoviesState>
+    implements $PaginatedMoviesStateCopyWith<$Res> {
+  _$PaginatedMoviesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -124,7 +125,7 @@ class _$PopularMoviesStateCopyWithImpl<$Res, $Val extends PopularMoviesState>
 
 /// @nodoc
 abstract class _$$_IntialCopyWith<$Res>
-    implements $PopularMoviesStateCopyWith<$Res> {
+    implements $PaginatedMoviesStateCopyWith<$Res> {
   factory _$$_IntialCopyWith(_$_Intial value, $Res Function(_$_Intial) then) =
       __$$_IntialCopyWithImpl<$Res>;
   @override
@@ -137,7 +138,7 @@ abstract class _$$_IntialCopyWith<$Res>
 
 /// @nodoc
 class __$$_IntialCopyWithImpl<$Res>
-    extends _$PopularMoviesStateCopyWithImpl<$Res, _$_Intial>
+    extends _$PaginatedMoviesStateCopyWithImpl<$Res, _$_Intial>
     implements _$$_IntialCopyWith<$Res> {
   __$$_IntialCopyWithImpl(_$_Intial _value, $Res Function(_$_Intial) _then)
       : super(_value, _then);
@@ -166,7 +167,7 @@ class _$_Intial extends _Intial {
 
   @override
   String toString() {
-    return 'PopularMoviesState.initial(movies: $movies)';
+    return 'PaginatedMoviesState.initial(movies: $movies)';
   }
 
   @override
@@ -267,7 +268,7 @@ class _$_Intial extends _Intial {
   }
 }
 
-abstract class _Intial extends PopularMoviesState {
+abstract class _Intial extends PaginatedMoviesState {
   const factory _Intial(final Fresh<List<Movie>> movies) = _$_Intial;
   const _Intial._() : super._();
 
@@ -281,7 +282,7 @@ abstract class _Intial extends PopularMoviesState {
 
 /// @nodoc
 abstract class _$$_LoadingCopyWith<$Res>
-    implements $PopularMoviesStateCopyWith<$Res> {
+    implements $PaginatedMoviesStateCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
@@ -295,7 +296,7 @@ abstract class _$$_LoadingCopyWith<$Res>
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$PopularMoviesStateCopyWithImpl<$Res, _$_Loading>
+    extends _$PaginatedMoviesStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -331,7 +332,7 @@ class _$_Loading extends _Loading {
 
   @override
   String toString() {
-    return 'PopularMoviesState.loading(movies: $movies, itemPerPage: $itemPerPage)';
+    return 'PaginatedMoviesState.loading(movies: $movies, itemPerPage: $itemPerPage)';
   }
 
   @override
@@ -434,7 +435,7 @@ class _$_Loading extends _Loading {
   }
 }
 
-abstract class _Loading extends PopularMoviesState {
+abstract class _Loading extends PaginatedMoviesState {
   const factory _Loading(
       final Fresh<List<Movie>> movies, final int itemPerPage) = _$_Loading;
   const _Loading._() : super._();
@@ -450,7 +451,7 @@ abstract class _Loading extends PopularMoviesState {
 
 /// @nodoc
 abstract class _$$_LoadedCopyWith<$Res>
-    implements $PopularMoviesStateCopyWith<$Res> {
+    implements $PaginatedMoviesStateCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @override
@@ -463,7 +464,7 @@ abstract class _$$_LoadedCopyWith<$Res>
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$PopularMoviesStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$PaginatedMoviesStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -499,7 +500,7 @@ class _$_Loaded extends _Loaded {
 
   @override
   String toString() {
-    return 'PopularMoviesState.loaded(movies: $movies, isNextPageAvailable: $isNextPageAvailable)';
+    return 'PaginatedMoviesState.loaded(movies: $movies, isNextPageAvailable: $isNextPageAvailable)';
   }
 
   @override
@@ -602,7 +603,7 @@ class _$_Loaded extends _Loaded {
   }
 }
 
-abstract class _Loaded extends PopularMoviesState {
+abstract class _Loaded extends PaginatedMoviesState {
   const factory _Loaded(final Fresh<List<Movie>> movies,
       {required final bool isNextPageAvailable}) = _$_Loaded;
   const _Loaded._() : super._();
@@ -618,7 +619,7 @@ abstract class _Loaded extends PopularMoviesState {
 
 /// @nodoc
 abstract class _$$_FailureCopyWith<$Res>
-    implements $PopularMoviesStateCopyWith<$Res> {
+    implements $PaginatedMoviesStateCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
@@ -633,7 +634,7 @@ abstract class _$$_FailureCopyWith<$Res>
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$PopularMoviesStateCopyWithImpl<$Res, _$_Failure>
+    extends _$PaginatedMoviesStateCopyWithImpl<$Res, _$_Failure>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
@@ -677,7 +678,7 @@ class _$_Failure extends _Failure {
 
   @override
   String toString() {
-    return 'PopularMoviesState.failure(movies: $movies, failure: $failure)';
+    return 'PaginatedMoviesState.failure(movies: $movies, failure: $failure)';
   }
 
   @override
@@ -779,7 +780,7 @@ class _$_Failure extends _Failure {
   }
 }
 
-abstract class _Failure extends PopularMoviesState {
+abstract class _Failure extends PaginatedMoviesState {
   const factory _Failure(
       final Fresh<List<Movie>> movies, final MovieFailure failure) = _$_Failure;
   const _Failure._() : super._();

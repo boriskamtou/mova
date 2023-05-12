@@ -24,12 +24,14 @@ class PopularMoviesRepository {
 
       return right(
         await moviesResponse.when(
-          noConnexion: (maxPage) async {
+          noConnexion: () async {
             return Fresh.no(
               await _popularMoviesLocalService
                   .getPopularMoviePage(page)
                   .then((_) => _.toDomain()),
-              isNextPageAvailable: page < maxPage,
+              isNextPageAvailable: page <
+                  await _popularMoviesLocalService
+                      .getPopularMoviesLocalMaxPages(),
             );
           },
           notModified: (maxPage) async {
