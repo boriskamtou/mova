@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/presentation/paginated_movie_gridview.dart';
-import '../shared/providers.dart';
+import '../../core/shared/providers.dart';
 
 @RoutePage()
 class PopularMoviesScreen extends ConsumerStatefulWidget {
