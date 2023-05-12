@@ -10,7 +10,7 @@ class MovieVideoResponseDTO with _$MovieVideoResponseDTO {
   const MovieVideoResponseDTO._();
   const factory MovieVideoResponseDTO({
     @JsonKey(name: 'id') required int movieId,
-    @Default([]) List<MovieVideoDTO> videos,
+    @JsonKey(name: 'results') @Default([]) List<MovieVideoDTO> videos,
   }) = _MovieVideoResponseDTO;
 
   factory MovieVideoResponseDTO.fromJson(Map<String, dynamic> json) =>

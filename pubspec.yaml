@@ -42,6 +42,7 @@ dependencies:
   another_flushbar: ^1.12.29
   readmore: ^2.1.0
   flutter_rating_bar: ^4.0.1
+  youtube: ^1.0.1
 
 dev_dependencies:
   flutter_test:

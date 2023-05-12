@@ -1138,6 +1138,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  youtube:
+    dependency: "direct main"
+    description:
+      name: youtube
+      sha256: "3d82e77fe8918a891c3aaba68adc14d5f4bbc6c2e368cfa100a9d620f238f9b0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
 sdks:
   dart: ">=2.19.1 <3.0.0"
   flutter: ">=3.3.0"

@@ -2,22 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/theme/presentation/app_colors.dart';
 import 'package:readmore/readmore.dart';
+import 'package:youtube/youtube_thumbnail.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../application/video_notifier.dart';
 import '../domain/entities/movie.dart';
+import '../shared/providers.dart';
+import 'loading_video_widget.dart';
 
 @RoutePage()
-class MovieDetailScreen extends StatelessWidget {
+class MovieDetailScreen extends ConsumerStatefulWidget {
   final Movie movie;
 
   const MovieDetailScreen({Key? key, required this.movie}) : super(key: key);
 
   @override
+  ConsumerState<MovieDetailScreen> createState() => _MovieDetailScreenState();
+}
+
+class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    Future.microtask(() => ref
+        .read(movieVideoNotifierProvider.notifier)
+        .getVideoMovies(widget.movie.id));
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final videoState = ref.watch(movieVideoNotifierProvider);
     return Scaffold(
       body: CustomScrollView(
+        primary: true,
+        shrinkWrap: true,
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -27,14 +57,15 @@ class MovieDetailScreen extends StatelessWidget {
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(
-                imageUrl: movie.fullBackDropUrl,
+                imageUrl: widget.movie.fullBackDropUrl,
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
+          SliverFillRemaining(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 gapH20,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -45,7 +76,7 @@ class MovieDetailScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              movie.title,
+                              widget.movie.title,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
@@ -69,115 +100,19 @@ class MovieDetailScreen extends StatelessWidget {
                   ),
                 ),
                 gapH16,
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppSizes.p16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RatingBar.builder(
-                          initialRating: movie.voteAverage,
-                          minRating: 0,
-                          maxRating: 10,
-                          direction: Axis.horizontal,
-                          itemPadding: EdgeInsets.zero,
-                          allowHalfRating: true,
-                          itemCount: 1,
-                          itemSize: 20,
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          onRatingUpdate: (rating) {},
-                        ),
-                        gapW8,
-                        Text(
-                          movie.voteAverage.toString(),
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        gapW8,
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Theme.of(context).primaryColor,
-                          size: 16,
-                        ),
-                        gapW8,
-                        Text(
-                          DateTime.parse(movie.releaseDate).year.toString(),
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        gapW16,
-                        _MovieCardInfo(
-                          info: movie.originalLanguage,
-                        ),
-                        gapW16,
-                        _MovieCardInfo(
-                          info: '${movie.voteCount} votes',
-                        ),
-                        gapW16,
-                        _MovieCardInfo(
-                          info: movie.adult ? 'Adult' : 'Free for children',
-                        ),
-                      ],
-                    ),
-                  ),
+                _RowMovieInfos(
+                  movie: widget.movie,
                 ),
                 gapH16,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.play_circle),
-                          label: const Text('Play'),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: AppSizes.p8),
-                          ),
-                        ),
-                      ),
-                      gapW16,
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.download,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          label: Text(
-                            'Download',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: AppColors.transparent,
-                            side: BorderSide(
-                              width: 2,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: AppSizes.p8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                _PlayAndDownloadVideoButtons(
+                  onPlayPressed: () {},
+                  onDownloadPressed: () {},
                 ),
                 gapH10,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
                   child: ReadMoreText(
-                    movie.overview,
+                    widget.movie.overview,
                     trimLines: 3,
                     trimCollapsedText: 'View more',
                     trimExpandedText: ' View less',
@@ -185,10 +120,214 @@ class MovieDetailScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
+                gapH16,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
+                  child: TabBar(
+                    controller: _tabController,
+                    indicatorColor: Theme.of(context).primaryColor,
+                    tabs: const [
+                      Tab(text: "Trailers"),
+                      Tab(text: "Similars"),
+                      Tab(text: "Comments"),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    physics: const BouncingScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      LoadedVideos(videoState: videoState),
+                      const Text('Similars'),
+                      const Text('Comments'),
+                    ],
+                  ),
+                ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class LoadedVideos extends StatelessWidget {
+  final VideoState videoState;
+
+  const LoadedVideos({
+    super.key,
+    required this.videoState,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      scrollDirection: Axis.vertical,
+      physics: const BouncingScrollPhysics(),
+      itemCount: videoState.map(
+          loading: (_) => 10,
+          data: (data) => data.videos.length,
+          failure: (_) => 0),
+      separatorBuilder: (context, i) => gapH10,
+      itemBuilder: (context, i) => videoState.map(
+        loading: (_) => const LoadingVideoWidget(),
+        data: (data) => ListTile(
+          onTap: () {},
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: SizedBox(
+              height: 60,
+              width: 100,
+              child: CachedNetworkImage(
+                imageUrl:
+                    YoutubeThumbnail(youtubeId: data.videos[i].videoKey).hd(),
+                placeholder: (context, _) => SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          title: Text(
+            data.videos[i].videoName,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+        failure: (_) => Center(
+          child: Text(
+            _.message ?? 'No data found!',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PlayAndDownloadVideoButtons extends StatelessWidget {
+  final VoidCallback onPlayPressed;
+  final VoidCallback onDownloadPressed;
+  const _PlayAndDownloadVideoButtons(
+      {required this.onPlayPressed, required this.onDownloadPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
+      child: Row(
+        children: [
+          Expanded(
+            child: ElevatedButton.icon(
+              onPressed: onPlayPressed,
+              icon: const Icon(Icons.play_circle),
+              label: const Text('Play'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: AppSizes.p8),
+              ),
+            ),
+          ),
+          gapW16,
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: onDownloadPressed,
+              icon: Icon(
+                Icons.download,
+                color: Theme.of(context).primaryColor,
+              ),
+              label: Text(
+                'Download',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: AppColors.transparent,
+                side: BorderSide(
+                  width: 2,
+                  color: Theme.of(context).primaryColor,
+                ),
+                padding: const EdgeInsets.symmetric(vertical: AppSizes.p8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _RowMovieInfos extends StatelessWidget {
+  final Movie movie;
+  const _RowMovieInfos({
+    required this.movie,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RatingBar.builder(
+              initialRating: movie.voteAverage,
+              minRating: 0,
+              maxRating: 10,
+              direction: Axis.horizontal,
+              itemPadding: EdgeInsets.zero,
+              allowHalfRating: true,
+              itemCount: 1,
+              itemSize: 20,
+              itemBuilder: (context, _) => Icon(
+                Icons.star,
+                color: Theme.of(context).primaryColor,
+              ),
+              onRatingUpdate: (rating) {},
+            ),
+            gapW8,
+            Text(
+              movie.voteAverage.toString(),
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            gapW8,
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).primaryColor,
+              size: 16,
+            ),
+            gapW8,
+            Text(
+              DateTime.parse(movie.releaseDate).year.toString(),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            gapW16,
+            _MovieCardInfo(
+              info: movie.originalLanguage,
+            ),
+            gapW16,
+            _MovieCardInfo(
+              info: '${movie.voteCount} votes',
+            ),
+            gapW16,
+            _MovieCardInfo(
+              info: movie.adult ? 'Adult' : 'Free for children',
+            ),
+          ],
+        ),
       ),
     );
   }

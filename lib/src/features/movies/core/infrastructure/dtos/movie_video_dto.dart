@@ -13,7 +13,7 @@ class MovieVideoDTO with _$MovieVideoDTO {
     @JsonKey(name: 'iso_639_1') required String iso6,
     @JsonKey(name: 'iso_3166_1') required String iso3,
     @JsonKey(name: 'name') required String videoName,
-    required String videoKey,
+    @JsonKey(name: 'key') required String videoKey,
     required String site,
     @JsonKey(name: 'size') required int videoSize,
     @JsonKey(name: 'type') required String videoType,

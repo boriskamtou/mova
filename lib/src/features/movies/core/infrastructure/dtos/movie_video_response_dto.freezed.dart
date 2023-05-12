@@ -23,6 +23,7 @@ MovieVideoResponseDTO _$MovieVideoResponseDTOFromJson(
 mixin _$MovieVideoResponseDTO {
   @JsonKey(name: 'id')
   int get movieId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'results')
   List<MovieVideoDTO> get videos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,9 @@ abstract class $MovieVideoResponseDTOCopyWith<$Res> {
           $Res Function(MovieVideoResponseDTO) then) =
       _$MovieVideoResponseDTOCopyWithImpl<$Res, MovieVideoResponseDTO>;
   @useResult
-  $Res call({@JsonKey(name: 'id') int movieId, List<MovieVideoDTO> videos});
+  $Res call(
+      {@JsonKey(name: 'id') int movieId,
+      @JsonKey(name: 'results') List<MovieVideoDTO> videos});
 }
 
 /// @nodoc
@@ -78,7 +81,9 @@ abstract class _$$_MovieVideoResponseDTOCopyWith<$Res>
       __$$_MovieVideoResponseDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'id') int movieId, List<MovieVideoDTO> videos});
+  $Res call(
+      {@JsonKey(name: 'id') int movieId,
+      @JsonKey(name: 'results') List<MovieVideoDTO> videos});
 }
 
 /// @nodoc
@@ -113,7 +118,7 @@ class __$$_MovieVideoResponseDTOCopyWithImpl<$Res>
 class _$_MovieVideoResponseDTO extends _MovieVideoResponseDTO {
   const _$_MovieVideoResponseDTO(
       {@JsonKey(name: 'id') required this.movieId,
-      final List<MovieVideoDTO> videos = const []})
+      @JsonKey(name: 'results') final List<MovieVideoDTO> videos = const []})
       : _videos = videos,
         super._();
 
@@ -125,7 +130,7 @@ class _$_MovieVideoResponseDTO extends _MovieVideoResponseDTO {
   final int movieId;
   final List<MovieVideoDTO> _videos;
   @override
-  @JsonKey()
+  @JsonKey(name: 'results')
   List<MovieVideoDTO> get videos {
     if (_videos is EqualUnmodifiableListView) return _videos;
     // ignore: implicit_dynamic_type
@@ -168,8 +173,9 @@ class _$_MovieVideoResponseDTO extends _MovieVideoResponseDTO {
 
 abstract class _MovieVideoResponseDTO extends MovieVideoResponseDTO {
   const factory _MovieVideoResponseDTO(
-      {@JsonKey(name: 'id') required final int movieId,
-      final List<MovieVideoDTO> videos}) = _$_MovieVideoResponseDTO;
+          {@JsonKey(name: 'id') required final int movieId,
+          @JsonKey(name: 'results') final List<MovieVideoDTO> videos}) =
+      _$_MovieVideoResponseDTO;
   const _MovieVideoResponseDTO._() : super._();
 
   factory _MovieVideoResponseDTO.fromJson(Map<String, dynamic> json) =
@@ -179,6 +185,7 @@ abstract class _MovieVideoResponseDTO extends MovieVideoResponseDTO {
   @JsonKey(name: 'id')
   int get movieId;
   @override
+  @JsonKey(name: 'results')
   List<MovieVideoDTO> get videos;
   @override
   @JsonKey(ignore: true)

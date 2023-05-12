@@ -10,7 +10,7 @@ _$_MovieVideoResponseDTO _$$_MovieVideoResponseDTOFromJson(
         Map<String, dynamic> json) =>
     _$_MovieVideoResponseDTO(
       movieId: json['id'] as int,
-      videos: (json['videos'] as List<dynamic>?)
+      videos: (json['results'] as List<dynamic>?)
               ?.map((e) => MovieVideoDTO.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -20,5 +20,5 @@ Map<String, dynamic> _$$_MovieVideoResponseDTOToJson(
         _$_MovieVideoResponseDTO instance) =>
     <String, dynamic>{
       'id': instance.movieId,
-      'videos': instance.videos,
+      'results': instance.videos,
     };

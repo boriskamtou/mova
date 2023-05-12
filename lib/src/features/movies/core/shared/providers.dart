@@ -1,5 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
+import 'package:mova/src/features/movies/core/application/video_notifier.dart';
+import 'package:mova/src/features/movies/core/infrastructure/remote/movie_video_remote_service.dart';
+import 'package:mova/src/features/movies/core/infrastructure/repositories/video_repository.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_movies_local_service.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_remote_service.dart';
 
@@ -57,4 +60,21 @@ final topRatedRepositoryProvider = Provider<TopRatedMoviesRepository>((ref) {
     ref.watch(topRatedRemoteServiceProvider),
     ref.watch(topRatedLocalServiceProvider),
   );
+});
+
+final movieVideoRemoteServiceProvider =
+    Provider<MovieVideoRemoteService>((ref) {
+  return MovieVideoRemoteService(
+    ref.watch(dioProvider),
+    ref.watch(urlBuilderProvider),
+  );
+});
+
+final videoMovieRepositoryProvider = Provider<VideoRepository>((ref) {
+  return VideoRepository(ref.watch(movieVideoRemoteServiceProvider));
+});
+
+final movieVideoNotifierProvider =
+    StateNotifierProvider<VideoNotifier, VideoState>((ref) {
+  return VideoNotifier(ref.watch(videoMovieRepositoryProvider));
 });

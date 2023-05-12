@@ -27,6 +27,7 @@ mixin _$MovieVideoDTO {
   String get iso3 => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get videoName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'key')
   String get videoKey => throw _privateConstructorUsedError;
   String get site => throw _privateConstructorUsedError;
   @JsonKey(name: 'size')
@@ -55,7 +56,7 @@ abstract class $MovieVideoDTOCopyWith<$Res> {
       @JsonKey(name: 'iso_639_1') String iso6,
       @JsonKey(name: 'iso_3166_1') String iso3,
       @JsonKey(name: 'name') String videoName,
-      String videoKey,
+      @JsonKey(name: 'key') String videoKey,
       String site,
       @JsonKey(name: 'size') int videoSize,
       @JsonKey(name: 'type') String videoType,
@@ -145,7 +146,7 @@ abstract class _$$_MovieVideoDTOCopyWith<$Res>
       @JsonKey(name: 'iso_639_1') String iso6,
       @JsonKey(name: 'iso_3166_1') String iso3,
       @JsonKey(name: 'name') String videoName,
-      String videoKey,
+      @JsonKey(name: 'key') String videoKey,
       String site,
       @JsonKey(name: 'size') int videoSize,
       @JsonKey(name: 'type') String videoType,
@@ -228,7 +229,7 @@ class _$_MovieVideoDTO extends _MovieVideoDTO {
       @JsonKey(name: 'iso_639_1') required this.iso6,
       @JsonKey(name: 'iso_3166_1') required this.iso3,
       @JsonKey(name: 'name') required this.videoName,
-      required this.videoKey,
+      @JsonKey(name: 'key') required this.videoKey,
       required this.site,
       @JsonKey(name: 'size') required this.videoSize,
       @JsonKey(name: 'type') required this.videoType,
@@ -251,6 +252,7 @@ class _$_MovieVideoDTO extends _MovieVideoDTO {
   @JsonKey(name: 'name')
   final String videoName;
   @override
+  @JsonKey(name: 'key')
   final String videoKey;
   @override
   final String site;
@@ -320,7 +322,7 @@ abstract class _MovieVideoDTO extends MovieVideoDTO {
           @JsonKey(name: 'iso_639_1') required final String iso6,
           @JsonKey(name: 'iso_3166_1') required final String iso3,
           @JsonKey(name: 'name') required final String videoName,
-          required final String videoKey,
+          @JsonKey(name: 'key') required final String videoKey,
           required final String site,
           @JsonKey(name: 'size') required final int videoSize,
           @JsonKey(name: 'type') required final String videoType,
@@ -344,6 +346,7 @@ abstract class _MovieVideoDTO extends MovieVideoDTO {
   @JsonKey(name: 'name')
   String get videoName;
   @override
+  @JsonKey(name: 'key')
   String get videoKey;
   @override
   String get site;
