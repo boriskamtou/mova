@@ -84,7 +84,7 @@ class _PaginatedMoviesGridViewState
             if (canLoadNextPage && metrics.pixels >= limit) {
               debugPrint("Load pagination");
               canLoadNextPage = false;
-              widget.getNextPage;
+              widget.getNextPage(ref);
             }
 
             return false;

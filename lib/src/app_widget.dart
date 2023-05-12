@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,7 +12,10 @@ import 'features/core/shared/providers.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   // await ref.read(sembastProvider).init();
-  ref.read(dioProvider);
+  ref.read(dioProvider).options = BaseOptions(
+    connectTimeout: const Duration(seconds: 30),
+    sendTimeout: const Duration(seconds: 30),
+  );
   return unit;
 });
 
