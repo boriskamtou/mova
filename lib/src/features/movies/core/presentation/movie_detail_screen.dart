@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/theme/presentation/app_colors.dart';
+import 'package:mova/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
 import 'package:youtube/youtube_thumbnail.dart';
 
@@ -120,17 +121,38 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
-                gapH16,
+                gapH10,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
-                  child: TabBar(
-                    controller: _tabController,
-                    indicatorColor: Theme.of(context).primaryColor,
-                    tabs: const [
-                      Tab(text: "Trailers"),
-                      Tab(text: "Similars"),
-                      Tab(text: "Comments"),
-                    ],
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: .5,
+                          color: Theme.of(context).unselectedWidgetColor,
+                        ),
+                      ),
+                    ),
+                    child: TabBar(
+                      controller: _tabController,
+                      indicatorColor: Theme.of(context).primaryColor,
+                      indicatorPadding: const EdgeInsets.only(bottom: -1),
+                      unselectedLabelColor:
+                          Theme.of(context).unselectedWidgetColor,
+                      labelColor: Theme.of(context).primaryColor,
+                      labelStyle:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                wordSpacing: 1,
+                              ),
+                      indicatorWeight: 3,
+                      tabs: const [
+                        Tab(text: "Trailers"),
+                        Tab(text: "Similars"),
+                        Tab(text: "Comments"),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -174,7 +196,13 @@ class LoadedVideos extends StatelessWidget {
       itemBuilder: (context, i) => videoState.map(
         loading: (_) => const LoadingVideoWidget(),
         data: (data) => ListTile(
-          onTap: () {},
+          onTap: () {
+            if (data.videos[i].videoKey.isNotEmpty) {
+              context.navigateTo(
+                VideoPlayerRoute(videoKey: data.videos[i].videoKey),
+              );
+            }
+          },
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: SizedBox(
@@ -200,12 +228,16 @@ class LoadedVideos extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
-        failure: (_) => Center(
-          child: Text(
-            _.message ?? 'No data found!',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-        ),
+        failure: (_) {
+          debugPrint(_.message);
+          return Container(
+            height: 30,
+            width: 30,
+            decoration: const BoxDecoration(
+              color: Colors.amber,
+            ),
+          );
+        },
       ),
     );
   }

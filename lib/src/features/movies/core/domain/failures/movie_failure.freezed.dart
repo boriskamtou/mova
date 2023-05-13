@@ -16,21 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MovieFailure {
-  int? get errorCode => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? errorCode, String? message) api,
+    required TResult Function(String? message) api,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? errorCode, String? message)? api,
+    TResult? Function(String? message)? api,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? errorCode, String? message)? api,
+    TResult Function(String? message)? api,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +61,7 @@ abstract class $MovieFailureCopyWith<$Res> {
           MovieFailure value, $Res Function(MovieFailure) then) =
       _$MovieFailureCopyWithImpl<$Res, MovieFailure>;
   @useResult
-  $Res call({int? errorCode, String? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -78,14 +77,9 @@ class _$MovieFailureCopyWithImpl<$Res, $Val extends MovieFailure>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorCode = freezed,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      errorCode: freezed == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -100,7 +94,7 @@ abstract class _$$_ApiCopyWith<$Res> implements $MovieFailureCopyWith<$Res> {
       __$$_ApiCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? errorCode, String? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -113,14 +107,9 @@ class __$$_ApiCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorCode = freezed,
     Object? message = freezed,
   }) {
     return _then(_$_Api(
-      freezed == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int?,
       freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -132,16 +121,14 @@ class __$$_ApiCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Api extends _Api {
-  const _$_Api(this.errorCode, [this.message]) : super._();
+  const _$_Api([this.message]) : super._();
 
-  @override
-  final int? errorCode;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'MovieFailure.api(errorCode: $errorCode, message: $message)';
+    return 'MovieFailure.api(message: $message)';
   }
 
   @override
@@ -149,13 +136,11 @@ class _$_Api extends _Api {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Api &&
-            (identical(other.errorCode, errorCode) ||
-                other.errorCode == errorCode) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorCode, message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -166,27 +151,27 @@ class _$_Api extends _Api {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? errorCode, String? message) api,
+    required TResult Function(String? message) api,
   }) {
-    return api(errorCode, message);
+    return api(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? errorCode, String? message)? api,
+    TResult? Function(String? message)? api,
   }) {
-    return api?.call(errorCode, message);
+    return api?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? errorCode, String? message)? api,
+    TResult Function(String? message)? api,
     required TResult orElse(),
   }) {
     if (api != null) {
-      return api(errorCode, message);
+      return api(message);
     }
     return orElse();
   }
@@ -221,11 +206,9 @@ class _$_Api extends _Api {
 }
 
 abstract class _Api extends MovieFailure {
-  const factory _Api(final int? errorCode, [final String? message]) = _$_Api;
+  const factory _Api([final String? message]) = _$_Api;
   const _Api._() : super._();
 
-  @override
-  int? get errorCode;
   @override
   String? get message;
   @override

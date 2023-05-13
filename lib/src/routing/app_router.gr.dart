@@ -25,6 +25,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    VideoPlayerRoute.name: (routeData) {
+      final args = routeData.argsAs<VideoPlayerRouteArgs>(
+          orElse: () => const VideoPlayerRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: VideoPlayerScreen(
+          key: args.key,
+          videoKey: args.videoKey,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -81,6 +92,44 @@ class MovieDetailRouteArgs {
   @override
   String toString() {
     return 'MovieDetailRouteArgs{key: $key, movie: $movie}';
+  }
+}
+
+/// generated route for
+/// [VideoPlayerScreen]
+class VideoPlayerRoute extends PageRouteInfo<VideoPlayerRouteArgs> {
+  VideoPlayerRoute({
+    Key? key,
+    String? videoKey,
+    List<PageRouteInfo>? children,
+  }) : super(
+          VideoPlayerRoute.name,
+          args: VideoPlayerRouteArgs(
+            key: key,
+            videoKey: videoKey,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VideoPlayerRoute';
+
+  static const PageInfo<VideoPlayerRouteArgs> page =
+      PageInfo<VideoPlayerRouteArgs>(name);
+}
+
+class VideoPlayerRouteArgs {
+  const VideoPlayerRouteArgs({
+    this.key,
+    this.videoKey,
+  });
+
+  final Key? key;
+
+  final String? videoKey;
+
+  @override
+  String toString() {
+    return 'VideoPlayerRouteArgs{key: $key, videoKey: $videoKey}';
   }
 }
 

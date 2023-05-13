@@ -54,7 +54,7 @@ class PopularMoviesRepository {
       );
     } on MovieException catch (e) {
       return left(
-        MovieFailure.api(e.errorCode, e.errorMessage),
+        MovieFailure.api(e.errorMessage),
       );
     }
   }

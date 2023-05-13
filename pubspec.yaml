@@ -43,6 +43,7 @@ dependencies:
   readmore: ^2.1.0
   flutter_rating_bar: ^4.0.1
   youtube: ^1.0.1
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:

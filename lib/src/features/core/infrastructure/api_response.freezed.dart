@@ -19,19 +19,19 @@ mixin _$ApiResponse<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(int? errorCode, String? message) failure,
+    required TResult Function(Exception? exception) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(int? errorCode, String? message)? failure,
+    TResult? Function(Exception? exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(int? errorCode, String? message)? failure,
+    TResult Function(Exception? exception)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,7 +140,7 @@ class _$_Sucess<T> extends _Sucess<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(int? errorCode, String? message) failure,
+    required TResult Function(Exception? exception) failure,
   }) {
     return success(data);
   }
@@ -149,7 +149,7 @@ class _$_Sucess<T> extends _Sucess<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(int? errorCode, String? message)? failure,
+    TResult? Function(Exception? exception)? failure,
   }) {
     return success?.call(data);
   }
@@ -158,7 +158,7 @@ class _$_Sucess<T> extends _Sucess<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(int? errorCode, String? message)? failure,
+    TResult Function(Exception? exception)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -215,7 +215,7 @@ abstract class _$$_ErrorCopyWith<T, $Res> {
           _$_Error<T> value, $Res Function(_$_Error<T>) then) =
       __$$_ErrorCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({int? errorCode, String? message});
+  $Res call({Exception? exception});
 }
 
 /// @nodoc
@@ -228,18 +228,13 @@ class __$$_ErrorCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorCode = freezed,
-    Object? message = freezed,
+    Object? exception = freezed,
   }) {
     return _then(_$_Error<T>(
-      errorCode: freezed == errorCode
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+      exception: freezed == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as Exception?,
     ));
   }
 }
@@ -247,16 +242,14 @@ class __$$_ErrorCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_Error<T> extends _Error<T> {
-  const _$_Error({this.errorCode, this.message}) : super._();
+  const _$_Error({this.exception}) : super._();
 
   @override
-  final int? errorCode;
-  @override
-  final String? message;
+  final Exception? exception;
 
   @override
   String toString() {
-    return 'ApiResponse<$T>.failure(errorCode: $errorCode, message: $message)';
+    return 'ApiResponse<$T>.failure(exception: $exception)';
   }
 
   @override
@@ -264,13 +257,12 @@ class _$_Error<T> extends _Error<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error<T> &&
-            (identical(other.errorCode, errorCode) ||
-                other.errorCode == errorCode) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorCode, message);
+  int get hashCode => Object.hash(runtimeType, exception);
 
   @JsonKey(ignore: true)
   @override
@@ -282,29 +274,29 @@ class _$_Error<T> extends _Error<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T data) success,
-    required TResult Function(int? errorCode, String? message) failure,
+    required TResult Function(Exception? exception) failure,
   }) {
-    return failure(errorCode, message);
+    return failure(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T data)? success,
-    TResult? Function(int? errorCode, String? message)? failure,
+    TResult? Function(Exception? exception)? failure,
   }) {
-    return failure?.call(errorCode, message);
+    return failure?.call(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T data)? success,
-    TResult Function(int? errorCode, String? message)? failure,
+    TResult Function(Exception? exception)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(errorCode, message);
+      return failure(exception);
     }
     return orElse();
   }
@@ -342,12 +334,10 @@ class _$_Error<T> extends _Error<T> {
 }
 
 abstract class _Error<T> extends ApiResponse<T> {
-  const factory _Error({final int? errorCode, final String? message}) =
-      _$_Error<T>;
+  const factory _Error({final Exception? exception}) = _$_Error<T>;
   const _Error._() : super._();
 
-  int? get errorCode;
-  String? get message;
+  Exception? get exception;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<T, _$_Error<T>> get copyWith =>
       throw _privateConstructorUsedError;

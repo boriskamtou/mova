@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 import 'package:mova/src/features/core/infrastructure/api_response.dart';
-import 'package:mova/src/features/core/infrastructure/extension/dio_extension.dart';
 import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_video_response_dto.dart';
 import 'package:mova/src/features/movies/core/infrastructure/url_builder.dart';
 
 import '../../../../core/infrastructure/dio_exception.dart';
 
 class MovieVideoRemoteService {
+  var logger = Logger();
+
   final Dio _dio;
   final UrlBuilder _urlBuilder;
 
@@ -21,15 +23,10 @@ class MovieVideoRemoteService {
 
         return ApiResponse.success(data);
       } else {
-        return const ApiResponse.failure();
+        return ApiResponse.failure(exception: Exception(response.statusCode));
       }
     } on DioError catch (e) {
-      if (e.noConnexionError) {
-        return const ApiResponse.failure(message: 'No internet Connection');
-      }
-      return const ApiResponse.failure();
-    } on DioException catch (e) {
-      return ApiResponse.failure(message: e.message);
+      return ApiResponse.failure(exception: DioException.fromDioError(e));
     }
   }
 }

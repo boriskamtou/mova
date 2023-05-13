@@ -6,5 +6,5 @@ part 'api_response.freezed.dart';
 class ApiResponse<T> with _$ApiResponse<T> {
   const ApiResponse._();
   const factory ApiResponse.success(T data) = _Sucess;
-  const factory ApiResponse.failure({int? errorCode, String? message}) = _Error;
+  const factory ApiResponse.failure({Exception? exception}) = _Error;
 }

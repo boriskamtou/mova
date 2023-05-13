@@ -15,9 +15,7 @@ class VideoRepository {
 
     return response.when(
       success: (data) => right(data.videos.toDomain()),
-      failure: (errorCode, message) => left(
-        MovieFailure.api(errorCode, message),
-      ),
+      failure: (exception) => left(MovieFailure.api(exception.toString())),
     );
   }
 }

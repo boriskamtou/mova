@@ -33,6 +33,8 @@ class DioException implements Exception {
     switch (statusCode) {
       case 400:
         return 'Bad request';
+      case 401:
+        return 'You do not have authorization';
       case 404:
         return 'The requested resource was not found';
       case 500:

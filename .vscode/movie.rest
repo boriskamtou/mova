@@ -20,3 +20,7 @@ GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}
 
 ### Get videos related to a movies
 GET  {{baseUrl}}/movie/{{movie_id}}/videos?api_key={{api_key}}
+
+### Get video reviews
+GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}
+
