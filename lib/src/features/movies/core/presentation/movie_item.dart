@@ -6,11 +6,11 @@ import 'package:mova/src/utils/common_import.dart';
 
 class MovieItem extends StatelessWidget {
   final Movie movie;
-  final bool isGrid;
+  final bool isHome;
   const MovieItem({
     Key? key,
-    this.isGrid = false,
     required this.movie,
+    this.isHome = false,
   }) : super(key: key);
 
   @override
@@ -20,9 +20,11 @@ class MovieItem extends StatelessWidget {
         context.navigateTo(MovieDetailRoute(movie: movie));
       },
       child: Stack(
-        fit: isGrid ? StackFit.expand : StackFit.loose,
+        fit: StackFit.loose,
         children: [
           Container(
+            height: isHome ? 180 : null,
+            width: isHome ? 100 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(

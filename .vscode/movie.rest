@@ -2,7 +2,7 @@
 
 @api_key = bcb184a317335ad93da00f543ab44f04
 
-@movie_id = 640146
+@movie_id = 730629
 
 @page = 1
 
@@ -21,6 +21,6 @@ GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}
 ### Get videos related to a movies
 GET  {{baseUrl}}/movie/{{movie_id}}/videos?api_key={{api_key}}
 
-### Get video reviews
+### Get movie reviews
 GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}
 

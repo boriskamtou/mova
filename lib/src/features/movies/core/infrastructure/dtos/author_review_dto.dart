@@ -10,7 +10,7 @@ class AuthorReviewDTO with _$AuthorReviewDTO {
   const factory AuthorReviewDTO({
     @JsonKey(name: 'name') @Default('') String? name,
     @JsonKey(name: 'username') @Default('') String? userName,
-    @JsonKey(name: 'avartar_path') @Default('') String? avatarPath,
+    @JsonKey(name: 'avatar_path') @Default('') String? avatarPath,
     @JsonKey(name: 'rating') @Default(0.0) double? rating,
   }) = _AuthorReviewDTO;
 

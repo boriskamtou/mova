@@ -24,7 +24,7 @@ mixin _$AuthorReviewDTO {
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
   String? get userName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'avartar_path')
+  @JsonKey(name: 'avatar_path')
   String? get avatarPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
   double? get rating => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $AuthorReviewDTOCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'username') String? userName,
-      @JsonKey(name: 'avartar_path') String? avatarPath,
+      @JsonKey(name: 'avatar_path') String? avatarPath,
       @JsonKey(name: 'rating') double? rating});
 }
 
@@ -98,7 +98,7 @@ abstract class _$$_AuthorReviewDTOCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'username') String? userName,
-      @JsonKey(name: 'avartar_path') String? avatarPath,
+      @JsonKey(name: 'avatar_path') String? avatarPath,
       @JsonKey(name: 'rating') double? rating});
 }
 
@@ -145,7 +145,7 @@ class _$_AuthorReviewDTO extends _AuthorReviewDTO {
   const _$_AuthorReviewDTO(
       {@JsonKey(name: 'name') this.name = '',
       @JsonKey(name: 'username') this.userName = '',
-      @JsonKey(name: 'avartar_path') this.avatarPath = '',
+      @JsonKey(name: 'avatar_path') this.avatarPath = '',
       @JsonKey(name: 'rating') this.rating = 0.0})
       : super._();
 
@@ -159,7 +159,7 @@ class _$_AuthorReviewDTO extends _AuthorReviewDTO {
   @JsonKey(name: 'username')
   final String? userName;
   @override
-  @JsonKey(name: 'avartar_path')
+  @JsonKey(name: 'avatar_path')
   final String? avatarPath;
   @override
   @JsonKey(name: 'rating')
@@ -206,7 +206,7 @@ abstract class _AuthorReviewDTO extends AuthorReviewDTO {
   const factory _AuthorReviewDTO(
       {@JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'username') final String? userName,
-      @JsonKey(name: 'avartar_path') final String? avatarPath,
+      @JsonKey(name: 'avatar_path') final String? avatarPath,
       @JsonKey(name: 'rating') final double? rating}) = _$_AuthorReviewDTO;
   const _AuthorReviewDTO._() : super._();
 
@@ -220,7 +220,7 @@ abstract class _AuthorReviewDTO extends AuthorReviewDTO {
   @JsonKey(name: 'username')
   String? get userName;
   @override
-  @JsonKey(name: 'avartar_path')
+  @JsonKey(name: 'avatar_path')
   String? get avatarPath;
   @override
   @JsonKey(name: 'rating')

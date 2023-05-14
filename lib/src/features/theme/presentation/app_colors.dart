@@ -15,6 +15,8 @@ class AppColors {
   static const grey = Color(0xFF9E9E9E);
   static const hintDark = Color(0xFF1f222a);
 
+  static Color shimmerGreyColor = Colors.grey.shade400;
+
   static const disable = Color(0xFFD8D8D8);
   static const disableButton = Color(0xFFC1232F);
 

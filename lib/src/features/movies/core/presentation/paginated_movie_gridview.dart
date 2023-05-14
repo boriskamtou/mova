@@ -82,7 +82,6 @@ class _PaginatedMoviesGridViewState
                 metrics.maxScrollExtent - metrics.viewportDimension / 3;
 
             if (canLoadNextPage && metrics.pixels >= limit) {
-              debugPrint("Load pagination");
               canLoadNextPage = false;
               widget.getNextPage(ref);
             }

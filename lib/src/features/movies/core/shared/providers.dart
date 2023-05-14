@@ -1,7 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
+import 'package:mova/src/features/movies/core/application/reviews_notifier.dart';
 import 'package:mova/src/features/movies/core/application/video_notifier.dart';
 import 'package:mova/src/features/movies/core/infrastructure/remote/movie_video_remote_service.dart';
+import 'package:mova/src/features/movies/core/infrastructure/remote/review_remote_service.dart';
+import 'package:mova/src/features/movies/core/infrastructure/repositories/movie_review_repository.dart';
 import 'package:mova/src/features/movies/core/infrastructure/repositories/video_repository.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_movies_local_service.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_remote_service.dart';
@@ -36,6 +39,7 @@ final popularMoviesRepositoryProvider =
 
 final popularMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
     PopularMoviesNotifier, PaginatedMoviesState>((ref) {
+  ref.keepAlive();
   return PopularMoviesNotifier(ref.watch(popularMoviesRepositoryProvider));
 });
 
@@ -77,4 +81,22 @@ final videoMovieRepositoryProvider = Provider<VideoRepository>((ref) {
 final movieVideoNotifierProvider =
     StateNotifierProvider<VideoNotifier, VideoState>((ref) {
   return VideoNotifier(ref.watch(videoMovieRepositoryProvider));
+});
+
+final reviewRemoteServiceProvider = Provider<ReviewRemoteService>((ref) {
+  return ReviewRemoteService(
+    ref.watch(dioProvider),
+    ref.watch(urlBuilderProvider),
+  );
+});
+
+final movieReviewRepositoryProvider = Provider<MovieReviewRepository>((ref) {
+  return MovieReviewRepository(
+    ref.watch(reviewRemoteServiceProvider),
+  );
+});
+
+final reviewNotifierProvider =
+    StateNotifierProvider<ReviewsNotifier, ReviewState>((ref) {
+  return ReviewsNotifier(ref.watch(movieReviewRepositoryProvider));
 });

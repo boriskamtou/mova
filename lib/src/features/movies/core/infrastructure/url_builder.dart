@@ -21,4 +21,8 @@ class UrlBuilder {
   String buildMoviesVideos(int movieId) {
     return '$baseUrl/movie/$movieId/videos?api_key=$tmdbApiKey';
   }
+
+  String buildMoviesReviews(int movieId) {
+    return '$baseUrl/movie/$movieId/reviews?api_key=$tmdbApiKey';
+  }
 }

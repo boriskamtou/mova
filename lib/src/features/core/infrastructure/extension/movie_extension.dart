@@ -1,5 +1,7 @@
 import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
 import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_dto.dart';
+import 'package:mova/src/features/movies/core/infrastructure/dtos/review.dart';
+import 'package:mova/src/features/movies/core/infrastructure/dtos/review_dto.dart';
 
 import '../../../movies/core/domain/entities/movie_video.dart';
 import '../../../movies/core/infrastructure/dtos/movie_video_dto.dart';
@@ -25,5 +27,18 @@ extension DTOListVideoToDomain on List<MovieVideoDTO> {
 extension DomainListMoviesVideosToDTO on List<MovieVideo> {
   List<MovieVideoDTO> toDTO() {
     return map((video) => MovieVideoDTO.fromDomain(video)).toList();
+  }
+}
+
+//------------------ Reviews extension
+extension DTOListReviewsToDomain on List<ReviewDTO> {
+  List<Review> toDomain() {
+    return map((review) => review.toDomain()).toList();
+  }
+}
+
+extension DomainListReviewsToDTO on List<Review> {
+  List<ReviewDTO> toDTO() {
+    return map((review) => ReviewDTO.fromDomain(review)).toList();
   }
 }

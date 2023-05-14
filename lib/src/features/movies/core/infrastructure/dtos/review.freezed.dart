@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Review _$ReviewFromJson(Map<String, dynamic> json) {
+  return _Review.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Review {
   String get id => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Review {
   String get createdAt => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ReviewCopyWith<Review> get copyWith => throw _privateConstructorUsedError;
 }
@@ -155,7 +160,7 @@ class __$$_ReviewCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Review extends _Review {
   const _$_Review(
       {required this.id,
@@ -164,6 +169,9 @@ class _$_Review extends _Review {
       @JsonKey(name: 'created_at') required this.createdAt,
       this.url})
       : super._();
+
+  factory _$_Review.fromJson(Map<String, dynamic> json) =>
+      _$$_ReviewFromJson(json);
 
   @override
   final String id;
@@ -198,6 +206,7 @@ class _$_Review extends _Review {
             (identical(other.url, url) || other.url == url));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, authorReview, content, createdAt, url);
@@ -207,6 +216,13 @@ class _$_Review extends _Review {
   @pragma('vm:prefer-inline')
   _$$_ReviewCopyWith<_$_Review> get copyWith =>
       __$$_ReviewCopyWithImpl<_$_Review>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ReviewToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Review extends Review {
@@ -217,6 +233,8 @@ abstract class _Review extends Review {
       @JsonKey(name: 'created_at') required final String createdAt,
       final String? url}) = _$_Review;
   const _Review._() : super._();
+
+  factory _Review.fromJson(Map<String, dynamic> json) = _$_Review.fromJson;
 
   @override
   String get id;

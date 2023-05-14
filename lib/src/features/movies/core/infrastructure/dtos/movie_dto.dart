@@ -18,7 +18,7 @@ class MovieDTO with _$MovieDTO {
     required String overview,
     required double popularity,
     @JsonKey(name: 'poster_path') String? posterPath,
-    @JsonKey(name: 'release_date') String? releaseDate,
+    @JsonKey(name: 'release_date', includeIfNull: true) String? releaseDate,
     required String title,
     @Default(false) bool video,
     @JsonKey(name: 'vote_average') required double voteAverage,

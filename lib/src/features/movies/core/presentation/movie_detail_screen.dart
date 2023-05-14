@@ -3,16 +3,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/movies/core/presentation/widgets/loaded_videos.dart';
 import 'package:mova/src/features/theme/presentation/app_colors.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
-import 'package:youtube/youtube_thumbnail.dart';
 
 import '../../../../constants/app_sizes.dart';
-import '../application/video_notifier.dart';
 import '../domain/entities/movie.dart';
 import '../shared/providers.dart';
-import 'loading_video_widget.dart';
+import 'widgets/loaded_review.dart';
 
 @RoutePage()
 class MovieDetailScreen extends ConsumerStatefulWidget {
@@ -31,9 +30,16 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    Future.microtask(() => ref
-        .read(movieVideoNotifierProvider.notifier)
-        .getVideoMovies(widget.movie.id));
+    Future.microtask(() {
+      return Future.wait([
+        ref
+            .read(movieVideoNotifierProvider.notifier)
+            .getVideoMovies(widget.movie.id),
+        ref
+            .read(reviewNotifierProvider.notifier)
+            .getMovieReviews(widget.movie.id),
+      ]);
+    });
   }
 
   @override
@@ -45,6 +51,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
   @override
   Widget build(BuildContext context) {
     final videoState = ref.watch(movieVideoNotifierProvider);
+    final reviewsState = ref.watch(reviewNotifierProvider);
     return Scaffold(
       body: CustomScrollView(
         primary: true,
@@ -87,13 +94,14 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                   ),
                             ),
                           ),
+                          gapW10,
                           _MovieActionButton(
                             onPressed: () {},
                             imageUrl: 'assets/icons/bookmark.png',
                           ),
                           _MovieActionButton(
                             onPressed: () {},
-                            imageUrl: 'assets/icons/bookmark.png',
+                            imageUrl: 'assets/icons/send.png',
                           ),
                         ],
                       ),
@@ -106,7 +114,18 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                 ),
                 gapH16,
                 _PlayAndDownloadVideoButtons(
-                  onPlayPressed: () {},
+                  onPlayPressed: () {
+                    context.navigateTo(
+                      VideoPlayerRoute(
+                        videoKey: videoState.maybeMap(
+                          orElse: () {
+                            return null;
+                          },
+                          data: (_) => _.videos[0].videoKey,
+                        ),
+                      ),
+                    );
+                  },
                   onDownloadPressed: () {},
                 ),
                 gapH10,
@@ -162,7 +181,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                     children: [
                       LoadedVideos(videoState: videoState),
                       const Text('Similars'),
-                      const Text('Comments'),
+                      LoadedReview(reviewState: reviewsState),
                     ],
                   ),
                 ),
@@ -170,74 +189,6 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class LoadedVideos extends StatelessWidget {
-  final VideoState videoState;
-
-  const LoadedVideos({
-    super.key,
-    required this.videoState,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      scrollDirection: Axis.vertical,
-      physics: const BouncingScrollPhysics(),
-      itemCount: videoState.map(
-          loading: (_) => 10,
-          data: (data) => data.videos.length,
-          failure: (_) => 0),
-      separatorBuilder: (context, i) => gapH10,
-      itemBuilder: (context, i) => videoState.map(
-        loading: (_) => const LoadingVideoWidget(),
-        data: (data) => ListTile(
-          onTap: () {
-            if (data.videos[i].videoKey.isNotEmpty) {
-              context.navigateTo(
-                VideoPlayerRoute(videoKey: data.videos[i].videoKey),
-              );
-            }
-          },
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: SizedBox(
-              height: 60,
-              width: 100,
-              child: CachedNetworkImage(
-                imageUrl:
-                    YoutubeThumbnail(youtubeId: data.videos[i].videoKey).hd(),
-                placeholder: (context, _) => SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    width: 60,
-                    height: 60,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          title: Text(
-            data.videos[i].videoName,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ),
-        failure: (_) {
-          debugPrint(_.message);
-          return Container(
-            height: 30,
-            width: 30,
-            decoration: const BoxDecoration(
-              color: Colors.amber,
-            ),
-          );
-        },
       ),
     );
   }

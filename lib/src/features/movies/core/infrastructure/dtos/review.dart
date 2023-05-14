@@ -3,6 +3,8 @@ import 'package:mova/src/features/movies/core/infrastructure/dtos/author_review.
 
 part 'review.freezed.dart';
 
+part 'review.g.dart';
+
 @freezed
 class Review with _$Review {
   const Review._();
@@ -13,4 +15,6 @@ class Review with _$Review {
     @JsonKey(name: 'created_at') required String createdAt,
     String? url,
   }) = _Review;
+
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 }

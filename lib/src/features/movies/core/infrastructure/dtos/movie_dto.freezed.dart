@@ -34,7 +34,7 @@ mixin _$MovieDTO {
   double get popularity => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
   String? get posterPath => throw _privateConstructorUsedError;
-  @JsonKey(name: 'release_date')
+  @JsonKey(name: 'release_date', includeIfNull: true)
   String? get releaseDate => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get video => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $MovieDTOCopyWith<$Res> {
       String overview,
       double popularity,
       @JsonKey(name: 'poster_path') String? posterPath,
-      @JsonKey(name: 'release_date') String? releaseDate,
+      @JsonKey(name: 'release_date', includeIfNull: true) String? releaseDate,
       String title,
       bool video,
       @JsonKey(name: 'vote_average') double voteAverage,
@@ -177,7 +177,7 @@ abstract class _$$_MovieDTOCopyWith<$Res> implements $MovieDTOCopyWith<$Res> {
       String overview,
       double popularity,
       @JsonKey(name: 'poster_path') String? posterPath,
-      @JsonKey(name: 'release_date') String? releaseDate,
+      @JsonKey(name: 'release_date', includeIfNull: true) String? releaseDate,
       String title,
       bool video,
       @JsonKey(name: 'vote_average') double voteAverage,
@@ -284,7 +284,7 @@ class _$_MovieDTO extends _MovieDTO {
       required this.overview,
       required this.popularity,
       @JsonKey(name: 'poster_path') this.posterPath,
-      @JsonKey(name: 'release_date') this.releaseDate,
+      @JsonKey(name: 'release_date', includeIfNull: true) this.releaseDate,
       required this.title,
       this.video = false,
       @JsonKey(name: 'vote_average') required this.voteAverage,
@@ -326,7 +326,7 @@ class _$_MovieDTO extends _MovieDTO {
   @JsonKey(name: 'poster_path')
   final String? posterPath;
   @override
-  @JsonKey(name: 'release_date')
+  @JsonKey(name: 'release_date', includeIfNull: true)
   final String? releaseDate;
   @override
   final String title;
@@ -424,7 +424,7 @@ abstract class _MovieDTO extends MovieDTO {
       required final double popularity,
       @JsonKey(name: 'poster_path')
           final String? posterPath,
-      @JsonKey(name: 'release_date')
+      @JsonKey(name: 'release_date', includeIfNull: true)
           final String? releaseDate,
       required final String title,
       final bool video,
@@ -460,7 +460,7 @@ abstract class _MovieDTO extends MovieDTO {
   @JsonKey(name: 'poster_path')
   String? get posterPath;
   @override
-  @JsonKey(name: 'release_date')
+  @JsonKey(name: 'release_date', includeIfNull: true)
   String? get releaseDate;
   @override
   String get title;
