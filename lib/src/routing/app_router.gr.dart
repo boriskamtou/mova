@@ -54,6 +54,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashScreen(),
       );
     },
+    TopRatedMoviesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TopRatedMoviesScreen(),
+      );
+    },
   };
 }
 
@@ -171,6 +177,20 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TopRatedMoviesScreen]
+class TopRatedMoviesRoute extends PageRouteInfo<void> {
+  const TopRatedMoviesRoute({List<PageRouteInfo>? children})
+      : super(
+          TopRatedMoviesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TopRatedMoviesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

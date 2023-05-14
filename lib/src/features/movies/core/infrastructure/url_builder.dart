@@ -14,7 +14,7 @@ class UrlBuilder {
     return '$baseUrl/movie/top_rated?api_key=$tmdbApiKey&language=$language&page=$page';
   }
 
-  String buildUpCommingMovies(String language, int page) {
+  String buildUpCommingMovies(int page, [String language = 'en']) {
     return '$baseUrl/movie/upcoming?api_key=$tmdbApiKey&language=$language&page=$page';
   }
 

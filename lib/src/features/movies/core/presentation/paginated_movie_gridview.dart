@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
+import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 
 import '../../../theme/presentation/app_colors.dart';
 import 'loading_movie_item.dart';
@@ -135,16 +136,18 @@ class _PaginatedGridView extends StatelessWidget {
             return const LoadingMovieItem();
           }
         },
-        loaded: (_) => MovieItem(
-          movie: _.movies.entity[i],
-        ),
+        loaded: (_) {
+          return MovieItem(
+            movie: _.movies.entity[i],
+          );
+        },
         failure: (_) {
           if (i < _.movies.entity.length) {
             return MovieItem(
               movie: _.movies.entity[i],
             );
           } else {
-            return Container();
+            return NoData(message: _.failure.message ?? '');
           }
         },
       ),

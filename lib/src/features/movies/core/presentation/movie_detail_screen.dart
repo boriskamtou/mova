@@ -259,6 +259,8 @@ class _RowMovieInfos extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      primary: false,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSizes.p16),
         child: Row(

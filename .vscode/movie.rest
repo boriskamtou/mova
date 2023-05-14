@@ -4,7 +4,7 @@
 
 @movie_id = 730629
 
-@page = 1
+@page = 2
 
 ### GEt list of popular movies
 
@@ -24,3 +24,5 @@ GET  {{baseUrl}}/movie/{{movie_id}}/videos?api_key={{api_key}}
 ### Get movie reviews
 GET  {{baseUrl}}/movie/{{movie_id}}/reviews?api_key={{api_key}}
 
+### Get [top rated] movies
+GET {{baseUrl}}/movie/top_rated/?api_key={{api_key}}&page={{page}}

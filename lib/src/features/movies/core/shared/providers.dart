@@ -6,6 +6,7 @@ import 'package:mova/src/features/movies/core/infrastructure/remote/movie_video_
 import 'package:mova/src/features/movies/core/infrastructure/remote/review_remote_service.dart';
 import 'package:mova/src/features/movies/core/infrastructure/repositories/movie_review_repository.dart';
 import 'package:mova/src/features/movies/core/infrastructure/repositories/video_repository.dart';
+import 'package:mova/src/features/movies/top_rated_movies/application/top_rated_movies_notifier.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_movies_local_service.dart';
 import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_remote_service.dart';
 
@@ -39,7 +40,6 @@ final popularMoviesRepositoryProvider =
 
 final popularMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
     PopularMoviesNotifier, PaginatedMoviesState>((ref) {
-  ref.keepAlive();
   return PopularMoviesNotifier(ref.watch(popularMoviesRepositoryProvider));
 });
 
@@ -48,6 +48,7 @@ final paginatedMovieNotifier =
   return PaginatedMoviesNotifier();
 });
 
+// ### Top Rated Movies
 final topRatedLocalServiceProvider =
     Provider<TopRatedMoviesLocalService>((ref) {
   return TopRatedMoviesLocalService(ref.watch(sembastProvider));
@@ -56,7 +57,9 @@ final topRatedLocalServiceProvider =
 final topRatedRemoteServiceProvider =
     Provider<TopRatedMoviesRemoteService>((ref) {
   return TopRatedMoviesRemoteService(
-      ref.watch(dioProvider), ref.watch(totalMoviesCacheProvider));
+    ref.watch(dioProvider),
+    ref.watch(totalMoviesCacheProvider),
+  );
 });
 
 final topRatedRepositoryProvider = Provider<TopRatedMoviesRepository>((ref) {
@@ -66,6 +69,12 @@ final topRatedRepositoryProvider = Provider<TopRatedMoviesRepository>((ref) {
   );
 });
 
+final topRatedMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
+    TopRatedMoviesNotifier, PaginatedMoviesState>((ref) {
+  return TopRatedMoviesNotifier(ref.watch(topRatedRepositoryProvider));
+});
+
+// ### Movies Videos
 final movieVideoRemoteServiceProvider =
     Provider<MovieVideoRemoteService>((ref) {
   return MovieVideoRemoteService(
@@ -83,6 +92,7 @@ final movieVideoNotifierProvider =
   return VideoNotifier(ref.watch(videoMovieRepositoryProvider));
 });
 
+// ### Movies Reviews
 final reviewRemoteServiceProvider = Provider<ReviewRemoteService>((ref) {
   return ReviewRemoteService(
     ref.watch(dioProvider),

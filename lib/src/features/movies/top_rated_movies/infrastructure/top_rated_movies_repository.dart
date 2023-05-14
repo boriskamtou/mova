@@ -21,7 +21,7 @@ class TopRatedMoviesRepository {
       int page) async {
     try {
       final remoteResponse =
-          await _topRatedMoviesRemoteService.getPopularMoviesPage(page);
+          await _topRatedMoviesRemoteService.getTopRatedMoviesPage(page);
 
       return right(
         await remoteResponse.when(
@@ -44,8 +44,10 @@ class TopRatedMoviesRepository {
           },
           withNewData: (data, maxPage) async {
             await _localService.upsertTopRatedMoviePage(data.movies, page);
-            return Fresh.yes(data.movies.toDomain(),
-                isNextPageAvailable: page < maxPage);
+            return Fresh.yes(
+              data.movies.toDomain(),
+              isNextPageAvailable: page < maxPage,
+            );
           },
         ),
       );

@@ -28,6 +28,9 @@ class _HomeTabState extends ConsumerState<HomeTab> {
         ref
             .read(popularMoviesStateNotifierProvider.notifier)
             .getNextPopularMoviePage(),
+        ref
+            .read(topRatedMoviesStateNotifierProvider.notifier)
+            .getNextTopRatedMoviesPage(),
       ]);
     });
   }
@@ -35,6 +38,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
   @override
   Widget build(BuildContext context) {
     final popularMoviesState = ref.watch(popularMoviesStateNotifierProvider);
+    final topRatedMoviesState = ref.watch(topRatedMoviesStateNotifierProvider);
 
     return SingleChildScrollView(
       primary: true,
@@ -68,7 +72,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               message: _.failure.message!,
             ),
           ),
-          const SizedBox(height: 18),
+          gapH18,
           RowTitle(
             title: 'Top 10 Popular Movies',
             onSeeAllTap: () {
@@ -80,7 +84,6 @@ class _HomeTabState extends ConsumerState<HomeTab> {
             initial: (_) => Container(),
             loading: (_) => const LoadingListOfTopMovies(),
             loaded: (data) {
-              debugPrint('Data has been load');
               return ListOfTopMovies(
                 movies: data.movies.entity,
                 messageIfEmptyList: 'No Popular Movies found!',
@@ -93,9 +96,29 @@ class _HomeTabState extends ConsumerState<HomeTab> {
           gapH18,
           RowTitle(
             title: 'Top 10 Rated Movies',
-            onSeeAllTap: () {},
+            onSeeAllTap: () {
+              context.navigateTo(const TopRatedMoviesRoute());
+            },
           ),
           gapH18,
+          topRatedMoviesState.map(
+            initial: (_) => Container(),
+            loading: (_) => const LoadingListOfTopMovies(),
+            loaded: (data) {
+              return ListOfTopMovies(
+                movies: data.movies.entity,
+                messageIfEmptyList: 'No Popular Movies found!',
+              );
+            },
+            failure: (_) => NoData(
+              message: _.failure.message!,
+            ),
+          ),
+          const SizedBox(height: 18),
+          RowTitle(
+            title: 'Trending Movies',
+            onSeeAllTap: () {},
+          ),
           SizedBox(
             height: 180,
             width: double.infinity,
@@ -116,12 +139,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               failure: (_, __) => Container(),
             ),
           ),
-          const SizedBox(height: 18),
-          RowTitle(
-            title: 'Trending Movies',
-            onSeeAllTap: () {},
-          ),
-          const SizedBox(height: 18),
+          gapH18,
         ],
       ),
     );

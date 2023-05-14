@@ -6,7 +6,7 @@ class TopRatedMoviesNotifier extends PaginatedMoviesNotifier {
   final TopRatedMoviesRepository _repository;
   TopRatedMoviesNotifier(this._repository);
 
-  Future<void> getNextPopularMoviePage() async {
+  Future<void> getNextTopRatedMoviesPage() async {
     super.getNextPaginatedMoviePage(
         (page) => _repository.getTopRatedMoviesPage(page));
   }

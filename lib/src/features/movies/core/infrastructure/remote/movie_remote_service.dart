@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mova/src/features/core/infrastructure/extension/dio_extension.dart';
 
 import '../../../../../constants/contants.dart';
@@ -25,6 +26,8 @@ abstract class MovieRemoteService {
     try {
       final response = await _dio.get(url);
 
+      debugPrint("Previous total cached: $previousTotalResults");
+
       if (response.statusCode == 200) {
         final movieResponseData = MovieResponseDTO.fromJson(response.data);
 
@@ -33,8 +36,10 @@ abstract class MovieRemoteService {
             maxPage: Contants.maxPage,
           );
         } else {
-          _totalResultsCache.saveTotalMoviesResults(
-              movieResponseData.totalResults, totalResultsLocalStorageKey);
+          await _totalResultsCache.saveTotalMoviesResults(
+            movieResponseData.totalResults,
+            totalResultsLocalStorageKey,
+          );
           return RemoteResponse.withNewData(
             movieResponseData,
             maxPage: Contants.maxPage,

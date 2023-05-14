@@ -13,7 +13,7 @@ class TopRatedMoviesRemoteService extends MovieRemoteService {
     TotalResultsCache totalResultsCache,
   ) : super(dio, totalResultsCache);
 
-  Future<RemoteResponse<MovieResponseDTO>> getPopularMoviesPage(
+  Future<RemoteResponse<MovieResponseDTO>> getTopRatedMoviesPage(
     int page,
   ) async {
     final url = UrlBuilder().builTopRatedMovies(page);
