@@ -34,7 +34,7 @@ class PopularMoviesRepository {
                       .getPopularMoviesLocalMaxPages(),
             );
           },
-          notModified: (maxPage) async {
+          notModified: (data, maxPage) async {
             return Fresh.yes(
               await _popularMoviesLocalService
                   .getPopularMoviePage(page)

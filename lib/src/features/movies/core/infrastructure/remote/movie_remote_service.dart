@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mova/src/features/core/infrastructure/extension/dio_extension.dart';
 
 import '../../../../../constants/contants.dart';
@@ -18,7 +17,9 @@ abstract class MovieRemoteService {
   );
 
   Future<RemoteResponse<MovieResponseDTO>> getMoviesPage(
-      String url, String totalResultsLocalStorageKey) async {
+    String url,
+    String totalResultsLocalStorageKey,
+  ) async {
     final previousTotalResults = await _totalResultsCache
             .getLocalTotalMoviesResults(totalResultsLocalStorageKey) ??
         1;
@@ -26,13 +27,12 @@ abstract class MovieRemoteService {
     try {
       final response = await _dio.get(url);
 
-      debugPrint("Previous total cached: $previousTotalResults");
-
       if (response.statusCode == 200) {
         final movieResponseData = MovieResponseDTO.fromJson(response.data);
 
         if (movieResponseData.totalResults == previousTotalResults) {
-          return const RemoteResponse.notModified(
+          return RemoteResponse.notModified(
+            movieResponseData,
             maxPage: Contants.maxPage,
           );
         } else {

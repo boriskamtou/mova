@@ -17,7 +17,7 @@ class MovieReviewRepository {
       return right(
         await response.when(
           noConnexion: () async => [],
-          notModified: (_) => [],
+          notModified: (data, _) => [],
           withNewData: (data, _) async => data.reviews.toDomain(),
         ),
       );

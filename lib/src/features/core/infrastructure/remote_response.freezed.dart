@@ -19,21 +19,21 @@ mixin _$RemoteResponse<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnexion,
-    required TResult Function(int maxPage) notModified,
+    required TResult Function(T data, int maxPage) notModified,
     required TResult Function(T data, int maxPage) withNewData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnexion,
-    TResult? Function(int maxPage)? notModified,
+    TResult? Function(T data, int maxPage)? notModified,
     TResult? Function(T data, int maxPage)? withNewData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnexion,
-    TResult Function(int maxPage)? notModified,
+    TResult Function(T data, int maxPage)? notModified,
     TResult Function(T data, int maxPage)? withNewData,
     required TResult orElse(),
   }) =>
@@ -119,7 +119,7 @@ class _$_NoConnexion<T> extends _NoConnexion<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnexion,
-    required TResult Function(int maxPage) notModified,
+    required TResult Function(T data, int maxPage) notModified,
     required TResult Function(T data, int maxPage) withNewData,
   }) {
     return noConnexion();
@@ -129,7 +129,7 @@ class _$_NoConnexion<T> extends _NoConnexion<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnexion,
-    TResult? Function(int maxPage)? notModified,
+    TResult? Function(T data, int maxPage)? notModified,
     TResult? Function(T data, int maxPage)? withNewData,
   }) {
     return noConnexion?.call();
@@ -139,7 +139,7 @@ class _$_NoConnexion<T> extends _NoConnexion<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnexion,
-    TResult Function(int maxPage)? notModified,
+    TResult Function(T data, int maxPage)? notModified,
     TResult Function(T data, int maxPage)? withNewData,
     required TResult orElse(),
   }) {
@@ -195,7 +195,7 @@ abstract class _$$_NotModifiedCopyWith<T, $Res> {
           _$_NotModified<T> value, $Res Function(_$_NotModified<T>) then) =
       __$$_NotModifiedCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({int maxPage});
+  $Res call({T data, int maxPage});
 }
 
 /// @nodoc
@@ -209,9 +209,14 @@ class __$$_NotModifiedCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? data = freezed,
     Object? maxPage = null,
   }) {
     return _then(_$_NotModified<T>(
+      freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as T,
       maxPage: null == maxPage
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
@@ -223,14 +228,16 @@ class __$$_NotModifiedCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_NotModified<T> extends _NotModified<T> {
-  const _$_NotModified({required this.maxPage}) : super._();
+  const _$_NotModified(this.data, {required this.maxPage}) : super._();
 
+  @override
+  final T data;
   @override
   final int maxPage;
 
   @override
   String toString() {
-    return 'RemoteResponse<$T>.notModified(maxPage: $maxPage)';
+    return 'RemoteResponse<$T>.notModified(data: $data, maxPage: $maxPage)';
   }
 
   @override
@@ -238,11 +245,13 @@ class _$_NotModified<T> extends _NotModified<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotModified<T> &&
+            const DeepCollectionEquality().equals(other.data, data) &&
             (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, maxPage);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(data), maxPage);
 
   @JsonKey(ignore: true)
   @override
@@ -254,32 +263,32 @@ class _$_NotModified<T> extends _NotModified<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnexion,
-    required TResult Function(int maxPage) notModified,
+    required TResult Function(T data, int maxPage) notModified,
     required TResult Function(T data, int maxPage) withNewData,
   }) {
-    return notModified(maxPage);
+    return notModified(data, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnexion,
-    TResult? Function(int maxPage)? notModified,
+    TResult? Function(T data, int maxPage)? notModified,
     TResult? Function(T data, int maxPage)? withNewData,
   }) {
-    return notModified?.call(maxPage);
+    return notModified?.call(data, maxPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnexion,
-    TResult Function(int maxPage)? notModified,
+    TResult Function(T data, int maxPage)? notModified,
     TResult Function(T data, int maxPage)? withNewData,
     required TResult orElse(),
   }) {
     if (notModified != null) {
-      return notModified(maxPage);
+      return notModified(data, maxPage);
     }
     return orElse();
   }
@@ -320,9 +329,11 @@ class _$_NotModified<T> extends _NotModified<T> {
 }
 
 abstract class _NotModified<T> extends RemoteResponse<T> {
-  const factory _NotModified({required final int maxPage}) = _$_NotModified<T>;
+  const factory _NotModified(final T data, {required final int maxPage}) =
+      _$_NotModified<T>;
   const _NotModified._() : super._();
 
+  T get data;
   int get maxPage;
   @JsonKey(ignore: true)
   _$$_NotModifiedCopyWith<T, _$_NotModified<T>> get copyWith =>
@@ -403,7 +414,7 @@ class _$_WithNewData<T> extends _WithNewData<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noConnexion,
-    required TResult Function(int maxPage) notModified,
+    required TResult Function(T data, int maxPage) notModified,
     required TResult Function(T data, int maxPage) withNewData,
   }) {
     return withNewData(data, maxPage);
@@ -413,7 +424,7 @@ class _$_WithNewData<T> extends _WithNewData<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? noConnexion,
-    TResult? Function(int maxPage)? notModified,
+    TResult? Function(T data, int maxPage)? notModified,
     TResult? Function(T data, int maxPage)? withNewData,
   }) {
     return withNewData?.call(data, maxPage);
@@ -423,7 +434,7 @@ class _$_WithNewData<T> extends _WithNewData<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noConnexion,
-    TResult Function(int maxPage)? notModified,
+    TResult Function(T data, int maxPage)? notModified,
     TResult Function(T data, int maxPage)? withNewData,
     required TResult orElse(),
   }) {

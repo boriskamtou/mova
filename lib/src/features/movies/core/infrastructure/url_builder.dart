@@ -6,23 +6,18 @@ class UrlBuilder {
 
   UrlBuilder();
 
-  String buildPopularMovies(int page, [String language = 'en']) {
-    return '$baseUrl/movie/popular?api_key=$tmdbApiKey&language=$language&page=$page';
-  }
+  String buildPopularMovies(int page, [String language = 'en']) =>
+      '$baseUrl/movie/popular?api_key=$tmdbApiKey&language=$language&page=$page';
 
-  String builTopRatedMovies(int page, [String language = 'en']) {
-    return '$baseUrl/movie/top_rated?api_key=$tmdbApiKey&language=$language&page=$page';
-  }
+  String builTopRatedMovies(int page, [String language = 'en']) =>
+      '$baseUrl/movie/top_rated?api_key=$tmdbApiKey&language=$language&page=$page';
 
-  String buildUpCommingMovies(int page, [String language = 'en']) {
-    return '$baseUrl/movie/upcoming?api_key=$tmdbApiKey&language=$language&page=$page';
-  }
+  String buildUpCommingMovies(int page, [String language = 'en']) =>
+      '$baseUrl/movie/upcoming?api_key=$tmdbApiKey&language=$language&page=$page';
 
-  String buildMoviesVideos(int movieId) {
-    return '$baseUrl/movie/$movieId/videos?api_key=$tmdbApiKey';
-  }
+  String buildMoviesVideos(int movieId) =>
+      '$baseUrl/movie/$movieId/videos?api_key=$tmdbApiKey';
 
-  String buildMoviesReviews(int movieId) {
-    return '$baseUrl/movie/$movieId/reviews?api_key=$tmdbApiKey';
-  }
+  String buildMoviesReviews(int movieId) =>
+      '$baseUrl/movie/$movieId/reviews?api_key=$tmdbApiKey';
 }

@@ -34,11 +34,11 @@ class DioException implements Exception {
       case 400:
         return 'Bad request';
       case 401:
-        return 'You do not have authorization';
+        return 'Authentication failed: You do not have permissions to access the service.';
       case 404:
-        return 'The requested resource was not found';
+        return 'Invalid id: The pre-requisite id is invalid or not found.';
       case 500:
-        return 'Internal server error';
+        return 'Internal error: Something went wrong, contact Mova.';
       default:
         return 'Oops something went wrong';
     }

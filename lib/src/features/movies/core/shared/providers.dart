@@ -6,16 +6,12 @@ import 'package:mova/src/features/movies/core/infrastructure/remote/movie_video_
 import 'package:mova/src/features/movies/core/infrastructure/remote/review_remote_service.dart';
 import 'package:mova/src/features/movies/core/infrastructure/repositories/movie_review_repository.dart';
 import 'package:mova/src/features/movies/core/infrastructure/repositories/video_repository.dart';
-import 'package:mova/src/features/movies/top_rated_movies/application/top_rated_movies_notifier.dart';
-import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_movies_local_service.dart';
-import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_remote_service.dart';
 
 import '../../../core/shared/providers.dart';
 import '../../popular_movies/application/popular_movies_notifier.dart';
 import '../../popular_movies/infrastructure/local/popular_movies_local_service.dart';
 import '../../popular_movies/infrastructure/remote/popular_movie_remote_service.dart';
 import '../../popular_movies/infrastructure/repositories/popular_movies_repository.dart';
-import '../../top_rated_movies/infrastructure/top_rated_movies_repository.dart';
 
 final popularMoviesRemoteServiceProvider =
     Provider<PopularMovieRemoteService>((ref) {
@@ -49,30 +45,6 @@ final paginatedMovieNotifier =
 });
 
 // ### Top Rated Movies
-final topRatedLocalServiceProvider =
-    Provider<TopRatedMoviesLocalService>((ref) {
-  return TopRatedMoviesLocalService(ref.watch(sembastProvider));
-});
-
-final topRatedRemoteServiceProvider =
-    Provider<TopRatedMoviesRemoteService>((ref) {
-  return TopRatedMoviesRemoteService(
-    ref.watch(dioProvider),
-    ref.watch(totalMoviesCacheProvider),
-  );
-});
-
-final topRatedRepositoryProvider = Provider<TopRatedMoviesRepository>((ref) {
-  return TopRatedMoviesRepository(
-    ref.watch(topRatedRemoteServiceProvider),
-    ref.watch(topRatedLocalServiceProvider),
-  );
-});
-
-final topRatedMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
-    TopRatedMoviesNotifier, PaginatedMoviesState>((ref) {
-  return TopRatedMoviesNotifier(ref.watch(topRatedRepositoryProvider));
-});
 
 // ### Movies Videos
 final movieVideoRemoteServiceProvider =

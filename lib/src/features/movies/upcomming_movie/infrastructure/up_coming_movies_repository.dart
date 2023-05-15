@@ -1,27 +1,26 @@
 import 'package:dartz/dartz.dart';
-import 'package:mova/src/features/core/infrastructure/exceptions/movie_exception.dart';
 import 'package:mova/src/features/core/infrastructure/extension/movie_extension.dart';
-import 'package:mova/src/features/movies/core/domain/entities/fresh.dart';
-import 'package:mova/src/features/movies/core/domain/failures/movie_failure.dart';
-import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_movies_local_service.dart';
-import 'package:mova/src/features/movies/top_rated_movies/infrastructure/top_rated_remote_service.dart';
+import 'package:mova/src/features/movies/upcomming_movie/infrastructure/up_coming_movies_local_service.dart';
+import 'package:mova/src/features/movies/upcomming_movie/infrastructure/upcoming_movies_remote_service.dart';
 
+import '../../../core/infrastructure/exceptions/movie_exception.dart';
+import '../../core/domain/entities/fresh.dart';
 import '../../core/domain/entities/movie.dart';
+import '../../core/domain/failures/movie_failure.dart';
 
-class TopRatedMoviesRepository {
-  final TopRatedMoviesRemoteService _topRatedMoviesRemoteService;
-  final TopRatedMoviesLocalService _localService;
+class UpComingMoviesRepository {
+  final UpcomingMoviesRemoteService _remoteService;
+  final UpComingMoviesLocalService _localService;
 
-  TopRatedMoviesRepository(
-    this._topRatedMoviesRemoteService,
+  UpComingMoviesRepository(
+    this._remoteService,
     this._localService,
   );
 
-  Future<Either<MovieFailure, Fresh<List<Movie>>>> getTopRatedMoviesPage(
+  Future<Either<MovieFailure, Fresh<List<Movie>>>> getUpcomingMoviesPage(
       int page) async {
     try {
-      final remoteResponse =
-          await _topRatedMoviesRemoteService.getTopRatedMoviesPage(page);
+      final remoteResponse = await _remoteService.getUpComingMovies(page);
 
       return right(
         await remoteResponse.when(

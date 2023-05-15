@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/movies/core/shared/providers.dart';
 
 import '../../core/presentation/paginated_movie_gridview.dart';
+import '../shared/providers.dart';
 
 @RoutePage()
 class TopRatedMoviesScreen extends ConsumerStatefulWidget {

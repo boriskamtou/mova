@@ -124,9 +124,7 @@ class _PaginatedGridView extends StatelessWidget {
         failure: (_) => _.movies.entity.length + 1,
       ),
       itemBuilder: (context, i) => state.map(
-        initial: (_) => const Center(
-          child: Text('intial'),
-        ),
+        initial: (_) => Container(),
         loading: (_) {
           if (i < _.movies.entity.length) {
             return MovieItem(

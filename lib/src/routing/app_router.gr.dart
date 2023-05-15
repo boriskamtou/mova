@@ -48,16 +48,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const PopularMoviesScreen(),
       );
     },
+    TopRatedMoviesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TopRatedMoviesScreen(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashScreen(),
       );
     },
-    TopRatedMoviesRoute.name: (routeData) {
+    UpcomingMoviesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const TopRatedMoviesScreen(),
+        child: const UpcomingMoviesScreen(),
       );
     },
   };
@@ -168,6 +174,20 @@ class PopularMoviesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TopRatedMoviesScreen]
+class TopRatedMoviesRoute extends PageRouteInfo<void> {
+  const TopRatedMoviesRoute({List<PageRouteInfo>? children})
+      : super(
+          TopRatedMoviesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TopRatedMoviesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
@@ -182,15 +202,15 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TopRatedMoviesScreen]
-class TopRatedMoviesRoute extends PageRouteInfo<void> {
-  const TopRatedMoviesRoute({List<PageRouteInfo>? children})
+/// [UpcomingMoviesScreen]
+class UpcomingMoviesRoute extends PageRouteInfo<void> {
+  const UpcomingMoviesRoute({List<PageRouteInfo>? children})
       : super(
-          TopRatedMoviesRoute.name,
+          UpcomingMoviesRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'TopRatedMoviesRoute';
+  static const String name = 'UpcomingMoviesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
