@@ -26,5 +26,6 @@ final upComingMoviesRepositoryProvider =
 
 final upComingMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
     UpComingMoviesNotifier, PaginatedMoviesState>((ref) {
+  ref.keepAlive();
   return UpComingMoviesNotifier(ref.watch(upComingMoviesRepositoryProvider));
 });

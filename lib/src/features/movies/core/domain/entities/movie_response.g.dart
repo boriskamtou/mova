@@ -19,7 +19,7 @@ _$_MovieResponse _$$_MovieResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_MovieResponseToJson(_$_MovieResponse instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'results': instance.movies,
+      'results': instance.movies.map((e) => e.toJson()).toList(),
       'total_pages': instance.totalPages,
       'total_results': instance.totalResults,
     };

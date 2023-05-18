@@ -7,16 +7,29 @@ import 'package:mova/src/utils/common_import.dart';
 class MovieItem extends StatelessWidget {
   final Movie movie;
   final bool isHome;
+  final bool isAlreadyInDetail;
+  final ScrollController? scrollController;
   const MovieItem({
     Key? key,
     required this.movie,
     this.isHome = false,
+    this.isAlreadyInDetail = false,
+    this.scrollController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if (isAlreadyInDetail) {
+          // TODO: Gérer le scroll de la page de détail
+          debugPrint('On movie tap: $isAlreadyInDetail');
+          if (scrollController != null && scrollController!.hasClients) {
+            scrollController!.animateTo(0.0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut);
+          }
+        }
         context.navigateTo(MovieDetailRoute(movie: movie));
       },
       child: Stack(
@@ -27,10 +40,13 @@ class MovieItem extends StatelessWidget {
             width: isHome ? 100 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: CachedNetworkImageProvider(movie.fullImageUrl),
-              ),
+              image: (movie.posterPath != null || movie.posterPath!.isEmpty)
+                  ? DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(movie.fullImageUrl),
+                    )
+                  : const DecorationImage(
+                      image: AssetImage('assets/images/logo.png')),
             ),
           ),
           Positioned(
@@ -38,19 +54,21 @@ class MovieItem extends StatelessWidget {
             top: 10,
             child: Container(
               height: 20,
-              width: 30,
+              width: 35,
               padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 color: AppColors.primary,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Center(
-                child: Text(
-                  movie.voteAverage.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 10,
+              child: FittedBox(
+                child: Center(
+                  child: Text(
+                    movie.voteAverage.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 10,
+                    ),
                   ),
                 ),
               ),

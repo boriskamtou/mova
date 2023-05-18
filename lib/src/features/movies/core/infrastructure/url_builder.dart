@@ -20,4 +20,11 @@ class UrlBuilder {
 
   String buildMoviesReviews(int movieId) =>
       '$baseUrl/movie/$movieId/reviews?api_key=$tmdbApiKey';
+
+  String buildMoviesDetail(int movieId) =>
+      '$baseUrl/movie/$movieId?api_key=$tmdbApiKey';
+
+  String buildSimilarMoviesReviews(int movieId, int page,
+          [String language = 'en']) =>
+      '$baseUrl/movie/$movieId/similar?api_key=$tmdbApiKey&language=$language&page=$page';
 }

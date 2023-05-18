@@ -19,7 +19,7 @@ _$_ReviewResponse _$$_ReviewResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ReviewResponseToJson(_$_ReviewResponse instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'reviews': instance.reviews,
+      'reviews': instance.reviews.map((e) => e.toJson()).toList(),
       'totalPages': instance.totalPages,
       'totalResults': instance.totalResults,
     };

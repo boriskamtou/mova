@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/common_import.dart';
+import 'discovery_tab.dart';
 import 'home_tab.dart';
 
 @RoutePage()
@@ -43,9 +44,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeTab(),
-    Text(
-      'Index 1: Explore',
-    ),
+    DiscoveryTab(),
     Text(
       'Index 2: My List',
     ),

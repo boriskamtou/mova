@@ -26,7 +26,7 @@ class LoadedReview extends StatelessWidget {
               )
             : ListView.separated(
                 scrollDirection: Axis.vertical,
-                physics: const BouncingScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: reviews.length,
                 separatorBuilder: (context, i) => gapH10,
                 itemBuilder: (context, i) => ListTile(

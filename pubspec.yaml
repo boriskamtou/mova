@@ -45,6 +45,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   youtube: ^1.0.1
   youtube_player_flutter: ^8.1.2
+  equatable: ^2.0.5
+  share_plus: ^7.0.0
 
 dev_dependencies:
   flutter_test:

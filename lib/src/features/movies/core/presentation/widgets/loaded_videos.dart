@@ -35,7 +35,7 @@ class LoadedVideos extends StatelessWidget {
               )
             : ListView.separated(
                 scrollDirection: Axis.vertical,
-                physics: const BouncingScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: videoState.map(
                     loading: (_) => 10,
                     data: (data) => data.videos.length,

@@ -20,5 +20,5 @@ Map<String, dynamic> _$$_MovieVideoResponseDTOToJson(
         _$_MovieVideoResponseDTO instance) =>
     <String, dynamic>{
       'id': instance.movieId,
-      'results': instance.videos,
+      'results': instance.videos.map((e) => e.toJson()).toList(),
     };

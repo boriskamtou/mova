@@ -17,7 +17,7 @@ _$_Review _$$_ReviewFromJson(Map<String, dynamic> json) => _$_Review(
 
 Map<String, dynamic> _$$_ReviewToJson(_$_Review instance) => <String, dynamic>{
       'id': instance.id,
-      'author_details': instance.authorReview,
+      'author_details': instance.authorReview.toJson(),
       'content': instance.content,
       'created_at': instance.createdAt,
       'url': instance.url,

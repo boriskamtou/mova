@@ -20,7 +20,7 @@ Map<String, dynamic> _$$_ReviewResponseDTOToJson(
         _$_ReviewResponseDTO instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'results': instance.reviews,
+      'results': instance.reviews.map((e) => e.toJson()).toList(),
       'total_pages': instance.totalPages,
       'total_results': instance.totalResults,
     };

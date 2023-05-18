@@ -14,11 +14,18 @@ class PaginatedMoviesGridView extends ConsumerStatefulWidget {
   final void Function(WidgetRef ref) getNextPage;
 
   final String noDataMessage;
+
+  final bool isAlreadyInDetail;
+
+  final ScrollController? scrollController;
+
   const PaginatedMoviesGridView({
     super.key,
     required this.paginatedMoviesNotifier,
     required this.getNextPage,
     required this.noDataMessage,
+    this.scrollController,
+    this.isAlreadyInDetail = false,
   });
 
   @override
@@ -89,18 +96,34 @@ class _PaginatedMoviesGridViewState
 
             return false;
           },
-          child: _PaginatedGridView(state: state),
+          child: _PaginatedGridView(
+            state: state,
+            isAlreadyInDetailScreen: widget.isAlreadyInDetail,
+            scrollController: widget.scrollController,
+          ),
         );
       },
     );
   }
 }
 
-class _PaginatedGridView extends StatelessWidget {
+class _PaginatedGridView extends StatefulWidget {
   final PaginatedMoviesState state;
+  final bool isAlreadyInDetailScreen;
+  final ScrollController? scrollController;
 
-  const _PaginatedGridView({Key? key, required this.state}) : super(key: key);
+  const _PaginatedGridView(
+      {Key? key,
+      required this.state,
+      this.isAlreadyInDetailScreen = false,
+      this.scrollController})
+      : super(key: key);
 
+  @override
+  State<_PaginatedGridView> createState() => _PaginatedGridViewState();
+}
+
+class _PaginatedGridViewState extends State<_PaginatedGridView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -117,17 +140,19 @@ class _PaginatedGridView extends StatelessWidget {
         mainAxisSpacing: 10,
         childAspectRatio: .75,
       ),
-      itemCount: state.map(
+      itemCount: widget.state.map(
         initial: (_) => 0,
         loading: (_) => _.movies.entity.length + _.itemPerPage,
         loaded: (_) => _.movies.entity.length,
         failure: (_) => _.movies.entity.length + 1,
       ),
-      itemBuilder: (context, i) => state.map(
+      itemBuilder: (context, i) => widget.state.map(
         initial: (_) => Container(),
         loading: (_) {
           if (i < _.movies.entity.length) {
             return MovieItem(
+              scrollController: widget.scrollController,
+              isAlreadyInDetail: widget.isAlreadyInDetailScreen,
               movie: _.movies.entity[i],
             );
           } else {
@@ -136,12 +161,16 @@ class _PaginatedGridView extends StatelessWidget {
         },
         loaded: (_) {
           return MovieItem(
+            scrollController: widget.scrollController,
+            isAlreadyInDetail: widget.isAlreadyInDetailScreen,
             movie: _.movies.entity[i],
           );
         },
         failure: (_) {
           if (i < _.movies.entity.length) {
             return MovieItem(
+              scrollController: widget.scrollController,
+              isAlreadyInDetail: widget.isAlreadyInDetailScreen,
               movie: _.movies.entity[i],
             );
           } else {

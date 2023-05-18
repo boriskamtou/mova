@@ -18,7 +18,7 @@ _$_ReviewDTO _$$_ReviewDTOFromJson(Map<String, dynamic> json) => _$_ReviewDTO(
 Map<String, dynamic> _$$_ReviewDTOToJson(_$_ReviewDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'author_details': instance.authorReviewDTO,
+      'author_details': instance.authorReviewDTO.toJson(),
       'content': instance.content,
       'created_at': instance.createdAt,
       'url': instance.url,

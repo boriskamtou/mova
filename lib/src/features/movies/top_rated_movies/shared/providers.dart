@@ -29,5 +29,6 @@ final topRatedRepositoryProvider = Provider<TopRatedMoviesRepository>((ref) {
 
 final topRatedMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
     TopRatedMoviesNotifier, PaginatedMoviesState>((ref) {
+  ref.keepAlive();
   return TopRatedMoviesNotifier(ref.watch(topRatedRepositoryProvider));
 });
