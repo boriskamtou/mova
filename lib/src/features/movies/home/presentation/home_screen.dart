@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../utils/common_import.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
+import 'my_list_tab.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulHookConsumerWidget {
@@ -45,9 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeTab(),
     DiscoveryTab(),
-    Text(
-      'Index 2: My List',
-    ),
+    MyListTab(),
     Text(
       'Index 3: Download',
     ),
