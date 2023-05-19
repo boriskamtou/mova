@@ -14,7 +14,7 @@ class Movie with _$Movie {
     required String originalLanguage,
     required String overview,
     required double popularity,
-    @Default('') String? posterPath,
+    @Default('') String posterPath,
     required String releaseDate,
     required String title,
     required bool video,

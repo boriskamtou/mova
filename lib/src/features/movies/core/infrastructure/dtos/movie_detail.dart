@@ -9,7 +9,7 @@ class MovieDetail with _$MovieDetail {
   const factory MovieDetail({
     required int id,
     required bool adult,
-    String? backdropPath,
+    @Default('') String backdropPath,
     required List<Genre> genresDto,
     String? homePage,
     required String imdbId,
@@ -17,7 +17,7 @@ class MovieDetail with _$MovieDetail {
     required String originalTitle,
     required String overview,
     required double popularity,
-    String? posterPath,
+    @Default('') String posterPath,
     String? releaseDate,
     required double revenue,
     required String status,

@@ -40,10 +40,75 @@ class MovieItem extends StatelessWidget {
             width: isHome ? 100 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: (movie.posterPath != null || movie.posterPath!.isEmpty)
+              image: (movie.posterPath == '' || movie.posterPath.isNotEmpty)
                   ? DecorationImage(
                       fit: BoxFit.cover,
                       image: CachedNetworkImageProvider(movie.fullImageUrl),
+                    )
+                  : const DecorationImage(
+                      image: AssetImage('assets/images/logo.png')),
+            ),
+          ),
+          Positioned(
+            left: 10,
+            top: 10,
+            child: Container(
+              height: 20,
+              width: 35,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: FittedBox(
+                child: Center(
+                  child: Text(
+                    movie.voteAverage.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MovieDetailItem extends StatelessWidget {
+  final Movie movie;
+  final bool isHome;
+  final bool isAlreadyInDetail;
+  const MovieDetailItem({
+    Key? key,
+    required this.movie,
+    this.isHome = false,
+    this.isAlreadyInDetail = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        context.navigateTo(MovieDetailRoute(movie: movie));
+      },
+      child: Stack(
+        fit: StackFit.loose,
+        children: [
+          Container(
+            height: isHome ? 180 : null,
+            width: isHome ? 100 : null,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: (movie.posterPath == '' || movie.posterPath.isNotEmpty)
+                  ? DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(movie.fullBackDropUrl),
                     )
                   : const DecorationImage(
                       image: AssetImage('assets/images/logo.png')),

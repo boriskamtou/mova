@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/similar_movies/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -69,6 +71,14 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
     final videoState = ref.watch(movieVideoNotifierProvider);
     final reviewsState = ref.watch(reviewNotifierProvider);
     final movieDetailState = ref.watch(movieDetailNotifierProvider);
+    ref.listen(bookmarkNotifierProvider, (prev, next) {
+      next.maybeWhen(
+        orElse: () {},
+        saveLoading: () => EasyLoading.show(),
+        saveComplete: (movie) =>
+            EasyLoading.showSuccess('${movie.title} has been add to your list'),
+      );
+    });
     return Scaffold(
       body: Builder(
         builder: (BuildContext context) => NestedScrollView(
@@ -172,7 +182,11 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                 ),
                                 gapW10,
                                 MovieActionButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await ref
+                                        .read(bookmarkNotifierProvider.notifier)
+                                        .saveMovieToMyList(widget.movie);
+                                  },
                                   imageUrl: 'assets/icons/bookmark.png',
                                 ),
                                 MovieActionButton(

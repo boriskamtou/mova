@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MovieDetail {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
-  String? get backdropPath => throw _privateConstructorUsedError;
+  String get backdropPath => throw _privateConstructorUsedError;
   List<Genre> get genresDto => throw _privateConstructorUsedError;
   String? get homePage => throw _privateConstructorUsedError;
   String get imdbId => throw _privateConstructorUsedError;
@@ -26,7 +26,7 @@ mixin _$MovieDetail {
   String get originalTitle => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
-  String? get posterPath => throw _privateConstructorUsedError;
+  String get posterPath => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
   double get revenue => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $MovieDetailCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      String? backdropPath,
+      String backdropPath,
       List<Genre> genresDto,
       String? homePage,
       String imdbId,
@@ -56,7 +56,7 @@ abstract class $MovieDetailCopyWith<$Res> {
       String originalTitle,
       String overview,
       double popularity,
-      String? posterPath,
+      String posterPath,
       String? releaseDate,
       double revenue,
       String status,
@@ -80,7 +80,7 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? genresDto = null,
     Object? homePage = freezed,
     Object? imdbId = null,
@@ -88,7 +88,7 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = freezed,
     Object? revenue = null,
     Object? status = null,
@@ -105,10 +105,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: freezed == backdropPath
+      backdropPath: null == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       genresDto: null == genresDto
           ? _value.genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -137,10 +137,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ abstract class _$$_MovieDetailCopyWith<$Res>
   $Res call(
       {int id,
       bool adult,
-      String? backdropPath,
+      String backdropPath,
       List<Genre> genresDto,
       String? homePage,
       String imdbId,
@@ -188,7 +188,7 @@ abstract class _$$_MovieDetailCopyWith<$Res>
       String originalTitle,
       String overview,
       double popularity,
-      String? posterPath,
+      String posterPath,
       String? releaseDate,
       double revenue,
       String status,
@@ -210,7 +210,7 @@ class __$$_MovieDetailCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? genresDto = null,
     Object? homePage = freezed,
     Object? imdbId = null,
@@ -218,7 +218,7 @@ class __$$_MovieDetailCopyWithImpl<$Res>
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = freezed,
     Object? revenue = null,
     Object? status = null,
@@ -235,10 +235,10 @@ class __$$_MovieDetailCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: freezed == backdropPath
+      backdropPath: null == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       genresDto: null == genresDto
           ? _value._genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -267,10 +267,10 @@ class __$$_MovieDetailCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -305,7 +305,7 @@ class _$_MovieDetail extends _MovieDetail {
   const _$_MovieDetail(
       {required this.id,
       required this.adult,
-      this.backdropPath,
+      this.backdropPath = '',
       required final List<Genre> genresDto,
       this.homePage,
       required this.imdbId,
@@ -313,7 +313,7 @@ class _$_MovieDetail extends _MovieDetail {
       required this.originalTitle,
       required this.overview,
       required this.popularity,
-      this.posterPath,
+      this.posterPath = '',
       this.releaseDate,
       required this.revenue,
       required this.status,
@@ -328,7 +328,8 @@ class _$_MovieDetail extends _MovieDetail {
   @override
   final bool adult;
   @override
-  final String? backdropPath;
+  @JsonKey()
+  final String backdropPath;
   final List<Genre> _genresDto;
   @override
   List<Genre> get genresDto {
@@ -350,7 +351,8 @@ class _$_MovieDetail extends _MovieDetail {
   @override
   final double popularity;
   @override
-  final String? posterPath;
+  @JsonKey()
+  final String posterPath;
   @override
   final String? releaseDate;
   @override
@@ -436,7 +438,7 @@ abstract class _MovieDetail extends MovieDetail {
   const factory _MovieDetail(
       {required final int id,
       required final bool adult,
-      final String? backdropPath,
+      final String backdropPath,
       required final List<Genre> genresDto,
       final String? homePage,
       required final String imdbId,
@@ -444,7 +446,7 @@ abstract class _MovieDetail extends MovieDetail {
       required final String originalTitle,
       required final String overview,
       required final double popularity,
-      final String? posterPath,
+      final String posterPath,
       final String? releaseDate,
       required final double revenue,
       required final String status,
@@ -458,7 +460,7 @@ abstract class _MovieDetail extends MovieDetail {
   @override
   bool get adult;
   @override
-  String? get backdropPath;
+  String get backdropPath;
   @override
   List<Genre> get genresDto;
   @override
@@ -474,7 +476,7 @@ abstract class _MovieDetail extends MovieDetail {
   @override
   double get popularity;
   @override
-  String? get posterPath;
+  String get posterPath;
   @override
   String? get releaseDate;
   @override

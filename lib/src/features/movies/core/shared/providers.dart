@@ -36,6 +36,7 @@ final popularMoviesRepositoryProvider =
 
 final popularMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
     PopularMoviesNotifier, PaginatedMoviesState>((ref) {
+  ref.keepAlive();
   return PopularMoviesNotifier(ref.watch(popularMoviesRepositoryProvider));
 });
 

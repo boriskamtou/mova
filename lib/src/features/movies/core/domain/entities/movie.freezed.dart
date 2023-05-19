@@ -27,7 +27,7 @@ mixin _$Movie {
   String get originalLanguage => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
-  String? get posterPath => throw _privateConstructorUsedError;
+  String get posterPath => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get video => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $MovieCopyWith<$Res> {
       String originalLanguage,
       String overview,
       double popularity,
-      String? posterPath,
+      String posterPath,
       String releaseDate,
       String title,
       bool video,
@@ -80,7 +80,7 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
     Object? originalLanguage = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -116,10 +116,10 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ abstract class _$$_MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       String originalLanguage,
       String overview,
       double popularity,
-      String? posterPath,
+      String posterPath,
       String releaseDate,
       String title,
       bool video,
@@ -182,7 +182,7 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
     Object? originalLanguage = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -218,10 +218,10 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -291,7 +291,7 @@ class _$_Movie extends _Movie {
   final double popularity;
   @override
   @JsonKey()
-  final String? posterPath;
+  final String posterPath;
   @override
   final String releaseDate;
   @override
@@ -377,7 +377,7 @@ abstract class _Movie extends Movie {
       required final String originalLanguage,
       required final String overview,
       required final double popularity,
-      final String? posterPath,
+      final String posterPath,
       required final String releaseDate,
       required final String title,
       required final bool video,
@@ -402,7 +402,7 @@ abstract class _Movie extends Movie {
   @override
   double get popularity;
   @override
-  String? get posterPath;
+  String get posterPath;
   @override
   String get releaseDate;
   @override

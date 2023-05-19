@@ -10,7 +10,7 @@ _$_MovieDetailDTO _$$_MovieDetailDTOFromJson(Map<String, dynamic> json) =>
     _$_MovieDetailDTO(
       id: json['id'] as int,
       adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String?,
+      backdropPath: json['backdrop_path'] as String? ?? '',
       genresDto: (json['genres'] as List<dynamic>)
           .map((e) => GenreDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -20,7 +20,7 @@ _$_MovieDetailDTO _$$_MovieDetailDTOFromJson(Map<String, dynamic> json) =>
       originalTitle: json['original_title'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['poster_path'] as String?,
+      posterPath: json['poster_path'] as String? ?? '',
       releaseDate: json['release_date'] as String?,
       revenue: (json['revenue'] as num).toDouble(),
       status: json['status'] as String,

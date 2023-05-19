@@ -23,7 +23,7 @@ mixin _$MovieDetailDTO {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
-  String? get backdropPath => throw _privateConstructorUsedError;
+  String get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'genres')
   List<GenreDTO> get genresDto => throw _privateConstructorUsedError;
   @JsonKey(name: 'homepage')
@@ -37,7 +37,7 @@ mixin _$MovieDetailDTO {
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
-  String? get posterPath => throw _privateConstructorUsedError;
+  String get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
   String? get releaseDate => throw _privateConstructorUsedError;
   double get revenue => throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ abstract class $MovieDetailDTOCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'genres') List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') String? homePage,
       @JsonKey(name: 'imdb_id') String imdbId,
@@ -71,7 +71,7 @@ abstract class $MovieDetailDTOCopyWith<$Res> {
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String? posterPath,
+      @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'release_date') String? releaseDate,
       double revenue,
       String status,
@@ -95,7 +95,7 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? genresDto = null,
     Object? homePage = freezed,
     Object? imdbId = null,
@@ -103,7 +103,7 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = freezed,
     Object? revenue = null,
     Object? status = null,
@@ -120,10 +120,10 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: freezed == backdropPath
+      backdropPath: null == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       genresDto: null == genresDto
           ? _value.genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -152,10 +152,10 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ abstract class _$$_MovieDetailDTOCopyWith<$Res>
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: 'backdrop_path') String? backdropPath,
+      @JsonKey(name: 'backdrop_path') String backdropPath,
       @JsonKey(name: 'genres') List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') String? homePage,
       @JsonKey(name: 'imdb_id') String imdbId,
@@ -203,7 +203,7 @@ abstract class _$$_MovieDetailDTOCopyWith<$Res>
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String? posterPath,
+      @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(name: 'release_date') String? releaseDate,
       double revenue,
       String status,
@@ -225,7 +225,7 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? genresDto = null,
     Object? homePage = freezed,
     Object? imdbId = null,
@@ -233,7 +233,7 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
     Object? originalTitle = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = freezed,
+    Object? posterPath = null,
     Object? releaseDate = freezed,
     Object? revenue = null,
     Object? status = null,
@@ -250,10 +250,10 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: freezed == backdropPath
+      backdropPath: null == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       genresDto: null == genresDto
           ? _value._genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -282,10 +282,10 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -320,7 +320,7 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   const _$_MovieDetailDTO(
       {required this.id,
       required this.adult,
-      @JsonKey(name: 'backdrop_path') this.backdropPath,
+      @JsonKey(name: 'backdrop_path') this.backdropPath = '',
       @JsonKey(name: 'genres') required final List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') this.homePage,
       @JsonKey(name: 'imdb_id') required this.imdbId,
@@ -328,7 +328,7 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
       @JsonKey(name: 'original_title') required this.originalTitle,
       required this.overview,
       required this.popularity,
-      @JsonKey(name: 'poster_path') this.posterPath,
+      @JsonKey(name: 'poster_path') this.posterPath = '',
       @JsonKey(name: 'release_date') this.releaseDate,
       required this.revenue,
       required this.status,
@@ -347,7 +347,7 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   final bool adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  final String? backdropPath;
+  final String backdropPath;
   final List<GenreDTO> _genresDto;
   @override
   @JsonKey(name: 'genres')
@@ -375,7 +375,7 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   final double popularity;
   @override
   @JsonKey(name: 'poster_path')
-  final String? posterPath;
+  final String posterPath;
   @override
   @JsonKey(name: 'release_date')
   final String? releaseDate;
@@ -473,7 +473,7 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
       {required final int id,
       required final bool adult,
       @JsonKey(name: 'backdrop_path')
-          final String? backdropPath,
+          final String backdropPath,
       @JsonKey(name: 'genres')
           required final List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage')
@@ -487,7 +487,7 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
       required final String overview,
       required final double popularity,
       @JsonKey(name: 'poster_path')
-          final String? posterPath,
+          final String posterPath,
       @JsonKey(name: 'release_date')
           final String? releaseDate,
       required final double revenue,
@@ -508,7 +508,7 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
   bool get adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  String? get backdropPath;
+  String get backdropPath;
   @override
   @JsonKey(name: 'genres')
   List<GenreDTO> get genresDto;
@@ -530,7 +530,7 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
   double get popularity;
   @override
   @JsonKey(name: 'poster_path')
-  String? get posterPath;
+  String get posterPath;
   @override
   @JsonKey(name: 'release_date')
   String? get releaseDate;

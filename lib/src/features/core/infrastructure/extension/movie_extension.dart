@@ -1,4 +1,6 @@
 import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
+import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_detail.dart';
+import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_detail_dto.dart';
 import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_dto.dart';
 import 'package:mova/src/features/movies/core/infrastructure/dtos/review.dart';
 import 'package:mova/src/features/movies/core/infrastructure/dtos/review_dto.dart';
@@ -8,6 +10,7 @@ import '../../../movies/core/infrastructure/dtos/genre.dart';
 import '../../../movies/core/infrastructure/dtos/genre_dto.dart';
 import '../../../movies/core/infrastructure/dtos/movie_video_dto.dart';
 
+// -------------------------- Movie
 extension DTOListMoviesToDomain on List<MovieDTO> {
   List<Movie> toDomain() {
     return map((movie) => movie.toDomain()).toList();
@@ -17,6 +20,19 @@ extension DTOListMoviesToDomain on List<MovieDTO> {
 extension DomainListMoviesToDTO on List<Movie> {
   List<MovieDTO> toDTO() {
     return map((movieDTO) => MovieDTO.fromDomain(movieDTO)).toList();
+  }
+}
+
+// ------------------------ Movie details
+extension DTOListMoviesDetailToDomain on List<MovieDetailDTO> {
+  List<MovieDetail> toDomain() {
+    return map((movie) => movie.toDomain()).toList();
+  }
+}
+
+extension DomainListMoviesDetailToDTO on List<MovieDetail> {
+  List<MovieDetailDTO> toDTO() {
+    return map((movieDTO) => MovieDetailDTO.fromDomain(movieDTO)).toList();
   }
 }
 

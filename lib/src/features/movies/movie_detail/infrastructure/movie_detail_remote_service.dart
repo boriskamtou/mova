@@ -36,7 +36,6 @@ class MovieDetailRemoteService {
       }
       throw MovieException(
         errorMessage: DioException.fromDioError(e).message,
-        errorCode: e.response!.statusCode,
         exception: DioException.fromDioError(e),
       );
     }

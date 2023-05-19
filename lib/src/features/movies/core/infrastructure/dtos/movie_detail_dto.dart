@@ -14,7 +14,7 @@ class MovieDetailDTO with _$MovieDetailDTO {
   const factory MovieDetailDTO({
     required int id,
     required bool adult,
-    @JsonKey(name: 'backdrop_path') String? backdropPath,
+    @JsonKey(name: 'backdrop_path') @Default('') String backdropPath,
     @JsonKey(name: 'genres') required List<GenreDTO> genresDto,
     @JsonKey(name: 'homepage') String? homePage,
     @JsonKey(name: 'imdb_id') required String imdbId,
@@ -22,7 +22,7 @@ class MovieDetailDTO with _$MovieDetailDTO {
     @JsonKey(name: 'original_title') required String originalTitle,
     required String overview,
     required double popularity,
-    @JsonKey(name: 'poster_path') String? posterPath,
+    @JsonKey(name: 'poster_path') @Default('') String posterPath,
     @JsonKey(name: 'release_date') String? releaseDate,
     required double revenue,
     required String status,

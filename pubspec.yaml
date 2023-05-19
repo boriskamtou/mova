@@ -47,6 +47,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   equatable: ^2.0.5
   share_plus: ^7.0.0
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:
