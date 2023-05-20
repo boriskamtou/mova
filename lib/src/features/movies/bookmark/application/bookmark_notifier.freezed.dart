@@ -18,62 +18,80 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BookmarkState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) =>
@@ -96,6 +114,156 @@ class _$BookmarkStateCopyWithImpl<$Res, $Val extends BookmarkState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$BookmarkStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Initial extends _Initial with DiagnosticableTreeMixin {
+  const _$_Initial() : super._();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BookmarkState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'BookmarkState.initial'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() saveLoading,
+    required TResult Function(Movie movie) saveComplete,
+    required TResult Function(String? message) saveFailed,
+    required TResult Function() loading,
+    required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
+    required TResult Function(String? message) loadedFailed,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? saveLoading,
+    TResult? Function(Movie movie)? saveComplete,
+    TResult? Function(String? message)? saveFailed,
+    TResult? Function()? loading,
+    TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
+    TResult? Function(String? message)? loadedFailed,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? saveLoading,
+    TResult Function(Movie movie)? saveComplete,
+    TResult Function(String? message)? saveFailed,
+    TResult Function()? loading,
+    TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
+    TResult Function(String? message)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_SaveLoading value) saveLoading,
+    required TResult Function(_SaveComplete value) saveComplete,
+    required TResult Function(_SaveFailed value) saveFailed,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
+    required TResult Function(_LoadedFailed value) loadedFailed,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SaveLoading value)? saveLoading,
+    TResult? Function(_SaveComplete value)? saveComplete,
+    TResult? Function(_SaveFailed value)? saveFailed,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
+    TResult? Function(_LoadedFailed value)? loadedFailed,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_SaveLoading value)? saveLoading,
+    TResult Function(_SaveComplete value)? saveComplete,
+    TResult Function(_SaveFailed value)? saveFailed,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
+    TResult Function(_LoadedFailed value)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial extends BookmarkState {
+  const factory _Initial() = _$_Initial;
+  const _Initial._() : super._();
 }
 
 /// @nodoc
@@ -142,11 +310,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return saveLoading();
@@ -155,11 +326,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return saveLoading?.call();
@@ -168,11 +342,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -185,11 +362,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return saveLoading(this);
@@ -198,11 +378,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return saveLoading?.call(this);
@@ -211,11 +394,14 @@ class _$_SaveLoading extends _SaveLoading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -313,11 +499,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return saveComplete(movie);
@@ -326,11 +515,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return saveComplete?.call(movie);
@@ -339,11 +531,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -356,11 +551,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return saveComplete(this);
@@ -369,11 +567,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return saveComplete?.call(this);
@@ -382,11 +583,14 @@ class _$_SaveComplete extends _SaveComplete with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -479,11 +683,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return saveFailed(message);
@@ -492,11 +699,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return saveFailed?.call(message);
@@ -505,11 +715,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -522,11 +735,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return saveFailed(this);
@@ -535,11 +751,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return saveFailed?.call(this);
@@ -548,11 +767,14 @@ class _$_SaveFailed extends _SaveFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -616,11 +838,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return loading();
@@ -629,11 +854,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return loading?.call();
@@ -642,11 +870,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -659,11 +890,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return loading(this);
@@ -672,11 +906,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return loading?.call(this);
@@ -685,11 +922,14 @@ class _$_Loading extends _Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -784,11 +1024,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return loaded(bookmarkMovies);
@@ -797,11 +1040,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return loaded?.call(bookmarkMovies);
@@ -810,11 +1056,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -827,11 +1076,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return loaded(this);
@@ -840,11 +1092,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return loaded?.call(this);
@@ -853,11 +1108,14 @@ class _$_Loaded extends _Loaded with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -876,6 +1134,307 @@ abstract class _Loaded extends BookmarkState {
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DeletedCopyWith<$Res> {
+  factory _$$_DeletedCopyWith(
+          _$_Deleted value, $Res Function(_$_Deleted) then) =
+      __$$_DeletedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletedCopyWithImpl<$Res>
+    extends _$BookmarkStateCopyWithImpl<$Res, _$_Deleted>
+    implements _$$_DeletedCopyWith<$Res> {
+  __$$_DeletedCopyWithImpl(_$_Deleted _value, $Res Function(_$_Deleted) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Deleted extends _Deleted with DiagnosticableTreeMixin {
+  const _$_Deleted() : super._();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BookmarkState.deleted()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'BookmarkState.deleted'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Deleted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() saveLoading,
+    required TResult Function(Movie movie) saveComplete,
+    required TResult Function(String? message) saveFailed,
+    required TResult Function() loading,
+    required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
+    required TResult Function(String? message) loadedFailed,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? saveLoading,
+    TResult? Function(Movie movie)? saveComplete,
+    TResult? Function(String? message)? saveFailed,
+    TResult? Function()? loading,
+    TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
+    TResult? Function(String? message)? loadedFailed,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? saveLoading,
+    TResult Function(Movie movie)? saveComplete,
+    TResult Function(String? message)? saveFailed,
+    TResult Function()? loading,
+    TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
+    TResult Function(String? message)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_SaveLoading value) saveLoading,
+    required TResult Function(_SaveComplete value) saveComplete,
+    required TResult Function(_SaveFailed value) saveFailed,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
+    required TResult Function(_LoadedFailed value) loadedFailed,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SaveLoading value)? saveLoading,
+    TResult? Function(_SaveComplete value)? saveComplete,
+    TResult? Function(_SaveFailed value)? saveFailed,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
+    TResult? Function(_LoadedFailed value)? loadedFailed,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_SaveLoading value)? saveLoading,
+    TResult Function(_SaveComplete value)? saveComplete,
+    TResult Function(_SaveFailed value)? saveFailed,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
+    TResult Function(_LoadedFailed value)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted extends BookmarkState {
+  const factory _Deleted() = _$_Deleted;
+  const _Deleted._() : super._();
+}
+
+/// @nodoc
+abstract class _$$_DeletedFailedCopyWith<$Res> {
+  factory _$$_DeletedFailedCopyWith(
+          _$_DeletedFailed value, $Res Function(_$_DeletedFailed) then) =
+      __$$_DeletedFailedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletedFailedCopyWithImpl<$Res>
+    extends _$BookmarkStateCopyWithImpl<$Res, _$_DeletedFailed>
+    implements _$$_DeletedFailedCopyWith<$Res> {
+  __$$_DeletedFailedCopyWithImpl(
+      _$_DeletedFailed _value, $Res Function(_$_DeletedFailed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_DeletedFailed extends _DeletedFailed with DiagnosticableTreeMixin {
+  const _$_DeletedFailed() : super._();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BookmarkState.deletedFailed()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'BookmarkState.deletedFailed'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DeletedFailed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() saveLoading,
+    required TResult Function(Movie movie) saveComplete,
+    required TResult Function(String? message) saveFailed,
+    required TResult Function() loading,
+    required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
+    required TResult Function(String? message) loadedFailed,
+  }) {
+    return deletedFailed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? saveLoading,
+    TResult? Function(Movie movie)? saveComplete,
+    TResult? Function(String? message)? saveFailed,
+    TResult? Function()? loading,
+    TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
+    TResult? Function(String? message)? loadedFailed,
+  }) {
+    return deletedFailed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? saveLoading,
+    TResult Function(Movie movie)? saveComplete,
+    TResult Function(String? message)? saveFailed,
+    TResult Function()? loading,
+    TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
+    TResult Function(String? message)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (deletedFailed != null) {
+      return deletedFailed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_SaveLoading value) saveLoading,
+    required TResult Function(_SaveComplete value) saveComplete,
+    required TResult Function(_SaveFailed value) saveFailed,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
+    required TResult Function(_LoadedFailed value) loadedFailed,
+  }) {
+    return deletedFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SaveLoading value)? saveLoading,
+    TResult? Function(_SaveComplete value)? saveComplete,
+    TResult? Function(_SaveFailed value)? saveFailed,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
+    TResult? Function(_LoadedFailed value)? loadedFailed,
+  }) {
+    return deletedFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_SaveLoading value)? saveLoading,
+    TResult Function(_SaveComplete value)? saveComplete,
+    TResult Function(_SaveFailed value)? saveFailed,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
+    TResult Function(_LoadedFailed value)? loadedFailed,
+    required TResult orElse(),
+  }) {
+    if (deletedFailed != null) {
+      return deletedFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletedFailed extends BookmarkState {
+  const factory _DeletedFailed() = _$_DeletedFailed;
+  const _DeletedFailed._() : super._();
 }
 
 /// @nodoc
@@ -950,11 +1509,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() saveLoading,
     required TResult Function(Movie movie) saveComplete,
     required TResult Function(String? message) saveFailed,
     required TResult Function() loading,
     required TResult Function(List<Movie> bookmarkMovies) loaded,
+    required TResult Function() deleted,
+    required TResult Function() deletedFailed,
     required TResult Function(String? message) loadedFailed,
   }) {
     return loadedFailed(message);
@@ -963,11 +1525,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? saveLoading,
     TResult? Function(Movie movie)? saveComplete,
     TResult? Function(String? message)? saveFailed,
     TResult? Function()? loading,
     TResult? Function(List<Movie> bookmarkMovies)? loaded,
+    TResult? Function()? deleted,
+    TResult? Function()? deletedFailed,
     TResult? Function(String? message)? loadedFailed,
   }) {
     return loadedFailed?.call(message);
@@ -976,11 +1541,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? saveLoading,
     TResult Function(Movie movie)? saveComplete,
     TResult Function(String? message)? saveFailed,
     TResult Function()? loading,
     TResult Function(List<Movie> bookmarkMovies)? loaded,
+    TResult Function()? deleted,
+    TResult Function()? deletedFailed,
     TResult Function(String? message)? loadedFailed,
     required TResult orElse(),
   }) {
@@ -993,11 +1561,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_SaveLoading value) saveLoading,
     required TResult Function(_SaveComplete value) saveComplete,
     required TResult Function(_SaveFailed value) saveFailed,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_DeletedFailed value) deletedFailed,
     required TResult Function(_LoadedFailed value) loadedFailed,
   }) {
     return loadedFailed(this);
@@ -1006,11 +1577,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_SaveLoading value)? saveLoading,
     TResult? Function(_SaveComplete value)? saveComplete,
     TResult? Function(_SaveFailed value)? saveFailed,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_DeletedFailed value)? deletedFailed,
     TResult? Function(_LoadedFailed value)? loadedFailed,
   }) {
     return loadedFailed?.call(this);
@@ -1019,11 +1593,14 @@ class _$_LoadedFailed extends _LoadedFailed with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_SaveLoading value)? saveLoading,
     TResult Function(_SaveComplete value)? saveComplete,
     TResult Function(_SaveFailed value)? saveFailed,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_DeletedFailed value)? deletedFailed,
     TResult Function(_LoadedFailed value)? loadedFailed,
     required TResult orElse(),
   }) {

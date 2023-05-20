@@ -50,6 +50,7 @@ class MovieDetailDTO with _$MovieDetailDTO {
       title: title,
       voteAverage: voteAverage,
       voteCount: voteCount,
+      releaseDate: releaseDate,
     );
   }
 
@@ -68,6 +69,7 @@ class MovieDetailDTO with _$MovieDetailDTO {
       title: _.title,
       voteAverage: _.voteAverage,
       voteCount: _.voteCount,
+      releaseDate: _.releaseDate,
     );
   }
 }

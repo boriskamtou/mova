@@ -102,7 +102,7 @@ class AppTheme {
       ),
       appBarTheme: const AppBarTheme(
         foregroundColor: AppColors.black,
-        backgroundColor: AppColors.scafoldBackgroundBlack,
+        backgroundColor: AppColors.scafoldBackgroundWhite,
         elevation: 0,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(

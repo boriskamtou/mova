@@ -9,9 +9,13 @@ import 'opacity_on_image_widget.dart';
 
 class TopMovie extends ConsumerWidget {
   final Movie movie;
+  final VoidCallback onAddToMyListPressed;
+  final VoidCallback onPlayPressed;
   const TopMovie({
     super.key,
     required this.movie,
+    required this.onAddToMyListPressed,
+    required this.onPlayPressed,
   });
 
   @override
@@ -61,8 +65,8 @@ class TopMovie extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               PlayAndAddToMyListButtons(
-                onPlayPressed: () {},
-                onAddToMyListPressed: () {},
+                onPlayPressed: onPlayPressed,
+                onAddToMyListPressed: onAddToMyListPressed,
               )
             ],
           ),

@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
@@ -80,20 +83,23 @@ class MovieItem extends StatelessWidget {
   }
 }
 
-class MovieDetailItem extends StatelessWidget {
+class MovieDetailItem extends ConsumerWidget {
   final Movie movie;
   final bool isHome;
   final bool isAlreadyInDetail;
+  final VoidCallback onLongPress;
   const MovieDetailItem({
     Key? key,
     required this.movie,
     this.isHome = false,
     this.isAlreadyInDetail = false,
+    required this.onLongPress,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
+      onLongPress: onLongPress,
       onTap: () {
         context.navigateTo(MovieDetailRoute(movie: movie));
       },

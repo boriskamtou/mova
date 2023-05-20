@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/core/shared/providers.dart';
@@ -6,6 +7,7 @@ import 'package:mova/src/features/movies/upcomming_movie/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import '../../../../utils/common_import.dart';
+import '../../bookmark/shared/providers.dart';
 import '../../top_rated_movies/shared/providers.dart';
 import 'see_all_widget.dart';
 import 'widgets/list_of_top_movies_widget.dart';
@@ -45,6 +47,15 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     final topRatedMoviesState = ref.watch(topRatedMoviesStateNotifierProvider);
     final upComingMoviesState = ref.watch(upComingMoviesStateNotifierProvider);
 
+    ref.listen(bookmarkNotifierProvider, (prev, next) {
+      next.maybeWhen(
+        orElse: () {},
+        saveLoading: () => EasyLoading.show(),
+        saveComplete: (movie) =>
+            EasyLoading.showSuccess('${movie.title} has been add to your list'),
+      );
+    });
+
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       primary: true,
@@ -66,6 +77,16 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               loaded: (data) {
                 return TopMovie(
                   movie: data.movies.entity[0],
+                  onPlayPressed: () {
+                    context.navigateTo(
+                      MovieDetailRoute(movie: data.movies.entity[0]),
+                    );
+                  },
+                  onAddToMyListPressed: () async {
+                    await ref
+                        .read(bookmarkNotifierProvider.notifier)
+                        .saveMovieToMyList(data.movies.entity[0]);
+                  },
                 );
               },
               failure: (_) => NoData(

@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../utils/common_import.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
-import 'my_list_tab.dart';
+import 'bookmark_tab.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulHookConsumerWidget {

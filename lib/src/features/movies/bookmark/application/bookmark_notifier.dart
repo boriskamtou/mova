@@ -11,39 +11,51 @@ part 'bookmark_notifier.freezed.dart';
 @freezed
 class BookmarkState with _$BookmarkState {
   const BookmarkState._();
+  const factory BookmarkState.initial() = _Initial;
   const factory BookmarkState.saveLoading() = _SaveLoading;
   const factory BookmarkState.saveComplete(Movie movie) = _SaveComplete;
   const factory BookmarkState.saveFailed([String? message]) = _SaveFailed;
   const factory BookmarkState.loading() = _Loading;
   const factory BookmarkState.loaded(List<Movie> bookmarkMovies) = _Loaded;
+  const factory BookmarkState.deleted() = _Deleted;
+  const factory BookmarkState.deletedFailed() = _DeletedFailed;
   const factory BookmarkState.loadedFailed([String? message]) = _LoadedFailed;
 }
 
 class BookmarkNotifier extends StateNotifier<BookmarkState> {
   final BookmarkRepository _repository;
 
-  BookmarkNotifier(this._repository) : super(const BookmarkState.loading());
+  BookmarkNotifier(this._repository) : super(const BookmarkState.initial());
 
   Future<void> saveMovieToMyList(Movie movie) async {
     try {
       state = const BookmarkState.saveLoading();
       await _repository.addMovie(MovieDTO.fromDomain(movie));
       state = BookmarkState.saveComplete(movie);
-
-      debugPrint(state.toString());
     } catch (e) {
       state = BookmarkState.saveFailed(e.toString());
     }
+    debugPrint("State is: $state");
   }
 
-  Future<void> getAllBookmarkMovies() async {
-    try {
-      state = const BookmarkState.loading();
-      final movies = await _repository.getAllBookmarkMovies();
-      state = BookmarkState.loaded(movies.toDomain());
-    } catch (e) {
-      state = BookmarkState.loadedFailed(e.toString());
-    }
+  void getAllBookmarkMovies() {
+    _repository.watchListOfMovies().listen(
+      (data) {
+        state = BookmarkState.loaded(data.toDomain());
+      },
+      onError: (error) {
+        state = BookmarkState.loadedFailed(error);
+      },
+    );
+
+    debugPrint("State is: $state");
+  }
+
+  Future<void> deleteMovieFromBookMark(Movie movie) async {
+    state = const BookmarkState.loading();
+    await _repository.deleteMovie(MovieDTO.fromDomain(movie));
+    state = const BookmarkState.deleted();
+    debugPrint("State is: $state");
   }
 
   Future<void> clearAll() async => _repository.clearAll();

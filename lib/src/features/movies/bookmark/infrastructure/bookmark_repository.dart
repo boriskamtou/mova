@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 
 import '../../../core/infrastructure/sembast_database.dart';
@@ -21,6 +22,24 @@ class BookmarkRepository {
         await _store.find(await _db.then((db) => db!), finder: finder);
 
     return records
+        .map((e) {
+          final movie = MovieDTO.fromJson(e.value);
+          return movie;
+        })
+        .toList()
+        .reversed
+        .toList();
+  }
+
+  Stream<List<MovieDTO>> watchListOfMovies() async* {
+    final finder = Finder(
+      limit: 500,
+    );
+
+    final records =
+        await _store.find(await _db.then((db) => db!), finder: finder);
+
+    yield records
         .map((e) {
           final movie = MovieDTO.fromJson(e.value);
           return movie;
@@ -55,11 +74,12 @@ class BookmarkRepository {
     );
 
     if (existingKey != null) {
+      debugPrint("Already exist in the database");
       await putMovieFirst(movieDTO);
       return;
     }
 
-    await _store.add(databaseClient, movieDTO.toJson());
+    await _store.record(movieDTO.id).put(databaseClient, movieDTO.toJson());
   }
 
   Future<void> deleteMovie(MovieDTO movieDTO) async =>
@@ -72,8 +92,7 @@ class BookmarkRepository {
     await _store.delete(
       databaseClient,
       finder: Finder(
-        filter: Filter.custom(
-            (record) => (record.value as MovieDTO).id == movieDTO.id),
+        filter: Filter.byKey(movieDTO.id),
       ),
     );
   }

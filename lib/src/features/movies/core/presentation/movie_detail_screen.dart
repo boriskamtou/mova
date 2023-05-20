@@ -190,7 +190,9 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                   imageUrl: 'assets/icons/bookmark.png',
                                 ),
                                 MovieActionButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // TODO: Shared to social network
+                                  },
                                   imageUrl: 'assets/icons/send.png',
                                 ),
                               ],

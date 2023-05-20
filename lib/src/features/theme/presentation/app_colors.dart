@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const primary = Color(0xFFE21221);
   static const scafoldBackgroundBlack = Color(0xFF181a20);
+  static const scafoldBackgroundWhite = Colors.white;
 
   static const transparent = Colors.transparent;
   static const inactiveColor = Color(0xFF9E9E9E);
