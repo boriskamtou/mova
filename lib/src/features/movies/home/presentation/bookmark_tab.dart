@@ -60,7 +60,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
         ),
       ),
       body: bookmarkState.maybeMap(
-        orElse: () => const EmptyList(),
+        orElse: () => const Center(child: CircularProgressIndicator()),
         loading: (_) => const Center(child: CircularProgressIndicator()),
         loadedFailed: (_) => NoData(message: _.message!),
         loaded: (data) {

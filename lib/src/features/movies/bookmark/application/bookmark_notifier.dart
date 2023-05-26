@@ -11,7 +11,6 @@ part 'bookmark_notifier.freezed.dart';
 @freezed
 class BookmarkState with _$BookmarkState {
   const BookmarkState._();
-  const factory BookmarkState.initial() = _Initial;
   const factory BookmarkState.saveLoading() = _SaveLoading;
   const factory BookmarkState.saveComplete(Movie movie) = _SaveComplete;
   const factory BookmarkState.saveFailed([String? message]) = _SaveFailed;
@@ -25,7 +24,7 @@ class BookmarkState with _$BookmarkState {
 class BookmarkNotifier extends StateNotifier<BookmarkState> {
   final BookmarkRepository _repository;
 
-  BookmarkNotifier(this._repository) : super(const BookmarkState.initial());
+  BookmarkNotifier(this._repository) : super(const BookmarkState.loading());
 
   Future<void> saveMovieToMyList(Movie movie) async {
     try {
@@ -55,7 +54,6 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     state = const BookmarkState.loading();
     await _repository.deleteMovie(MovieDTO.fromDomain(movie));
     state = const BookmarkState.deleted();
-    debugPrint("State is: $state");
   }
 
   Future<void> clearAll() async => _repository.clearAll();

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_youtube_downloader/flutter_youtube_downloader.dart';
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/similar_movies/shared/providers.dart';
@@ -37,6 +39,37 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
 
   final ScrollController _scrollController = ScrollController();
 
+  String _extractedLink = 'Loading...';
+
+  String youTube_link = "https://www.youtube.com/watch?v=nRhYQlg8fVw";
+
+  Future<void> extractYoutubeLink() async {
+    String link;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      link =
+          await FlutterYoutubeDownloader.extractYoutubeLink(youTube_link, 18);
+    } on PlatformException {
+      link = 'Failed to Extract YouTube Video Link.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _extractedLink = link;
+    });
+  }
+
+  Future<void> downloadVideo() async {
+    final result = await FlutterYoutubeDownloader.downloadVideo(
+        youTube_link, "Video Title goes Here", 18);
+    print(result);
+    print('on tap');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +88,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
         ref
             .read(movieDetailNotifierProvider.notifier)
             .getMovieDetail(widget.movie.id),
+        extractYoutubeLink(),
       ]);
     });
   }
@@ -190,9 +224,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                   imageUrl: 'assets/icons/bookmark.png',
                                 ),
                                 MovieActionButton(
-                                  onPressed: () {
-                                    // TODO: Shared to social network
-                                  },
+                                  onPressed: () {},
                                   imageUrl: 'assets/icons/send.png',
                                 ),
                               ],
@@ -234,7 +266,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                           ),
                         );
                       },
-                      onDownloadPressed: () {},
+                      onDownloadPressed: downloadVideo,
                     ),
                     gapH10,
                     movieDetailState.maybeMap(

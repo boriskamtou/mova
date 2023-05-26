@@ -18,6 +18,6 @@ class AppThemeNotifier extends ChangeNotifier {
 
 final appThemeProvider = ChangeNotifierProvider<AppThemeNotifier>(
   (ref) {
-    return AppThemeNotifier(AppTheme.lightTheme());
+    return AppThemeNotifier(AppTheme.darkTheme());
   },
 );

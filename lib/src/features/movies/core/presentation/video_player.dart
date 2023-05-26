@@ -28,7 +28,7 @@ class _VideoPlayerState extends ConsumerState<VideoPlayerScreen> {
         mute: false,
       ),
     );
-    // _controller.toggleFullScreenMode();
+    _controller.toggleFullScreenMode();
     super.initState();
   }
 

@@ -27,4 +27,8 @@ class UrlBuilder {
   String buildSimilarMoviesReviews(int movieId, int page,
           [String language = 'en']) =>
       '$baseUrl/movie/$movieId/similar?api_key=$tmdbApiKey&language=$language&page=$page';
+
+  String buildSearchMovie(String searchTerm, int page,
+          [String language = 'en']) =>
+      '$baseUrl/discover/movie?with_keywords=$searchTerm&api_key=$tmdbApiKey';
 }

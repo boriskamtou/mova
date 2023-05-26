@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
@@ -18,6 +19,7 @@ class PaginatedMoviesGridView extends ConsumerStatefulWidget {
   final bool isAlreadyInDetail;
 
   final ScrollController? scrollController;
+  final bool? appliedPaddingTop;
 
   const PaginatedMoviesGridView({
     super.key,
@@ -26,6 +28,7 @@ class PaginatedMoviesGridView extends ConsumerStatefulWidget {
     required this.noDataMessage,
     this.scrollController,
     this.isAlreadyInDetail = false,
+    this.appliedPaddingTop = false,
   });
 
   @override
@@ -46,8 +49,8 @@ class _PaginatedMoviesGridViewState
           loading: (_) => canLoadNextPage = false,
           loaded: (_) {
             if (!_.movies.isFresh) {
-              // TODO: Display error message to the user
-              debugPrint('Not connected');
+              EasyLoading.showInfo(
+                  'You are not connected. Please check your network connexion');
             }
             return canLoadNextPage = _.isNextPageAvailable;
           },
@@ -100,6 +103,7 @@ class _PaginatedMoviesGridViewState
             state: state,
             isAlreadyInDetailScreen: widget.isAlreadyInDetail,
             scrollController: widget.scrollController,
+            appliedPadding: widget.appliedPaddingTop,
           ),
         );
       },
@@ -111,13 +115,15 @@ class _PaginatedGridView extends StatefulWidget {
   final PaginatedMoviesState state;
   final bool isAlreadyInDetailScreen;
   final ScrollController? scrollController;
+  final bool? appliedPadding;
 
-  const _PaginatedGridView(
-      {Key? key,
-      required this.state,
-      this.isAlreadyInDetailScreen = false,
-      this.scrollController})
-      : super(key: key);
+  const _PaginatedGridView({
+    Key? key,
+    required this.state,
+    this.isAlreadyInDetailScreen = false,
+    this.scrollController,
+    this.appliedPadding = false,
+  }) : super(key: key);
 
   @override
   State<_PaginatedGridView> createState() => _PaginatedGridViewState();
@@ -127,9 +133,9 @@ class _PaginatedGridViewState extends State<_PaginatedGridView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         top: 16,
-        bottom: 16,
+        bottom: widget.appliedPadding! ? 100 : 16,
         left: 24,
         right: 24,
       ),

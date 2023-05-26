@@ -48,6 +48,8 @@ dependencies:
   equatable: ^2.0.5
   share_plus: ^7.0.0
   flutter_easyloading: ^3.0.5
+  flutter_youtube_downloader: ^0.0.5
+  material_floating_search_bar: ^0.3.7
 
 dev_dependencies:
   flutter_test:
