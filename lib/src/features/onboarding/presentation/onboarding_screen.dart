@@ -1,11 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/constants/app_sizes.dart';
+import 'package:mova/src/routing/app_router.dart';
 
 import '../../../widgets/custom_linear_gradient.dart';
 import '../../../widgets/onboarding_text_description.dart';
 import '../../../widgets/page_indicators.dart';
 
+@RoutePage()
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -86,7 +89,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 48),
                     child: Consumer(builder: (context, ref, _) {
                       return ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.pushRoute(const LetYouInRoute());
+                        },
                         child: const Text('Get Started'),
                       );
                     }),

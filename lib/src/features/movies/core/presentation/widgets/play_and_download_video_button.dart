@@ -24,7 +24,7 @@ class PlayAndDownloadVideoButtons extends StatelessWidget {
               ),
             ),
           ),
-          gapW16,
+          /*     gapW16,
           Expanded(
             child: OutlinedButton.icon(
               onPressed: onDownloadPressed,
@@ -50,7 +50,7 @@ class PlayAndDownloadVideoButtons extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ), */
         ],
       ),
     );

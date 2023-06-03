@@ -6,17 +6,20 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/auth/application/auth_notifier.dart';
 import 'package:mova/src/features/theme/application/app_theme_notifier.dart';
 import 'package:mova/src/routing/app_router.dart';
 
+import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
-  // await ref.read(sembastProvider).init();
   ref.read(dioProvider).options = BaseOptions(
     connectTimeout: const Duration(seconds: 30),
     sendTimeout: const Duration(seconds: 30),
   );
+  final auth = ref.watch(authNotifier.notifier);
+  auth.checkAuthStatus();
   return unit;
 });
 
@@ -33,6 +36,8 @@ class RouteObserver extends AutoRouterObserver {
   }
 }
 
+final _appRouter = AppRouter();
+
 class AppWidget extends ConsumerWidget {
   const AppWidget({
     super.key,
@@ -44,10 +49,22 @@ class AppWidget extends ConsumerWidget {
       initializationProvider,
       (previous, next) {},
     );
+    ref.listen<AuthState>(
+      authNotifier,
+      (previous, next) {
+        next.maybeWhen(
+          orElse: () {},
+          authenticated: () => _appRouter.pushAndPopUntil(const HomeRoute(),
+              predicate: (route) => false),
+          unauthenticated: () => _appRouter.pushAndPopUntil(
+              const OnboardingRoute(),
+              predicate: (route) => false),
+        );
+      },
+    );
     final appTheme = ref.watch(appThemeProvider);
-    final appRouter = AppRouter();
     return MaterialApp.router(
-      routerConfig: appRouter.config(
+      routerConfig: _appRouter.config(
         navigatorObservers: () => [
           RouteObserver(),
         ],

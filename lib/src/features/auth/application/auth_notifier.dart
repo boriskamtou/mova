@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -49,13 +50,8 @@ class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  bool isSigned() {
-    final value = _signUpAuthenticator.isSigned();
-    return value;
-  }
-
-  void checkAuthStatus() {
-    state = (_signUpAuthenticator.isSigned())
+  void checkAuthStatus() async {
+    state = await (_signUpAuthenticator.isSigned())
         ? const AuthState.authenticated()
         : const AuthState.unauthenticated();
   }

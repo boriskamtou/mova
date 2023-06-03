@@ -6,6 +6,7 @@ import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 
 import '../../../../utils/common_import.dart';
+import '../../../core/presentation/widgets/bottom_sheet_top_bar.dart';
 import '../../core/presentation/movie_item.dart';
 import 'widgets/empty_list.dart';
 
@@ -101,16 +102,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          height: 6,
-                          width: 50,
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.symmetric(vertical: 6),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.grey.shade300,
-                          ),
-                        ),
+                        const BottomSheetTopBar(),
                         gapH6,
                         Text(
                           'Delete',

@@ -15,7 +15,9 @@ final flutterSecureStorageProvider = Provider<FlutterSecureStorage>((ref) {
 });
 
 final userSecureStorageProvider = Provider<UserCredentialsStorage>((ref) {
-  return UserCredentialsStorage(ref.watch(flutterSecureStorageProvider));
+  return UserCredentialsStorage(
+    ref.watch(flutterSecureStorageProvider),
+  );
 });
 
 final firebaseAuthenticatorProvider =
@@ -26,7 +28,7 @@ final firebaseAuthenticatorProvider =
   );
 });
 
-final authNotificationNotifier =
+final authNotifier =
     StateNotifierProvider<FirebaseAuthenticatorNotifier, AuthState>((ref) {
   return FirebaseAuthenticatorNotifier(
       ref.watch(firebaseAuthenticatorProvider));

@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mova/src/features/movies/home/presentation/profile_tab.dart';
 
 import '../../../../utils/common_import.dart';
 import '../shared/providers.dart';
@@ -51,9 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // Text(
     //   'Index 3: Download',
     // ),
-    Text(
-      'Index 4: Profile',
-    ),
+    ProfileTab(),
   ];
 
   @override

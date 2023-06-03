@@ -43,6 +43,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
               icon: Image.asset(
                 'assets/icons/search.png',
                 width: 20,
+                color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
             ),
           ],

@@ -1,18 +1,21 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_youtube_downloader/flutter_youtube_downloader.dart';
+import 'package:readmore/readmore.dart';
+
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/similar_movies/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
-import 'package:readmore/readmore.dart';
+import 'package:social_share/social_share.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../../core/presentation/widgets/bottom_sheet_top_bar.dart';
 import '../../movie_detail/shared/providers.dart';
 import '../domain/entities/movie.dart';
 import '../shared/providers.dart';
@@ -39,30 +42,12 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
 
   final ScrollController _scrollController = ScrollController();
 
-  String _extractedLink = 'Loading...';
-
-  String youTube_link = "https://www.youtube.com/watch?v=nRhYQlg8fVw";
-
-  Future<void> extractYoutubeLink() async {
-    String link;
-    try {
-      link =
-          await FlutterYoutubeDownloader.extractYoutubeLink(youTube_link, 18);
-    } on PlatformException {
-      link = 'Failed to Extract YouTube Video Link.';
-    }
-    if (!mounted) return;
-
-    setState(() {
-      _extractedLink = link;
-    });
-
-    debugPrint('Extracted Link: $_extractedLink');
-  }
-
   Future<void> downloadVideo() async {
     final result = await FlutterYoutubeDownloader.downloadVideo(
-        _extractedLink, "Video Title goes Here", 18);
+      "_extractedLink",
+      "Video Title goes Here",
+      18,
+    );
   }
 
   @override
@@ -83,7 +68,6 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
         ref
             .read(movieDetailNotifierProvider.notifier)
             .getMovieDetail(widget.movie.id),
-        extractYoutubeLink(),
       ]);
     });
   }
@@ -219,7 +203,72 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                   imageUrl: 'assets/icons/bookmark.png',
                                 ),
                                 MovieActionButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30),
+                                        ),
+                                      ),
+                                      builder: (context) => Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          gapH6,
+                                          const Center(
+                                              child: BottomSheetTopBar()),
+                                          gapH30,
+                                          const Padding(
+                                            padding: EdgeInsets.only(
+                                                left: AppSizes.p16),
+                                            child: Text('Share with'),
+                                          ),
+                                          Expanded(
+                                            child: GridView.count(
+                                              shrinkWrap: true,
+                                              crossAxisCount: 4,
+                                              crossAxisSpacing: 10,
+                                              mainAxisSpacing: 10,
+                                              children: [
+                                                ShareWithSocial(
+                                                  imagePath:
+                                                      'assets/images/whatapps_img.png',
+                                                  title: 'WhatsApp',
+                                                  onPressed: () async {
+                                                    context.popRoute();
+                                                    await SocialShare
+                                                        .shareWhatsapp(widget
+                                                            .movie
+                                                            .fullImageUrl);
+                                                  },
+                                                ),
+                                                ShareWithSocial(
+                                                  imagePath:
+                                                      'assets/images/facebook_img.png',
+                                                  title: 'FaceBook',
+                                                  onPressed: () async {
+                                                    context.popRoute();
+                                                    await SocialShare
+                                                        .shareFacebookStory(
+                                                      imagePath: widget
+                                                          .movie.fullImageUrl,
+                                                      backgroundBottomColor:
+                                                          "assets/images/facebook_img.png",
+                                                      backgroundTopColor:
+                                                          "#000000",
+                                                      appId: "208748808766737",
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   imageUrl: 'assets/icons/send.png',
                                 ),
                               ],
@@ -381,6 +430,39 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
           ),
         ),
       ),
+    );
+  }
+}
+
+class ShareWithSocial extends StatelessWidget {
+  final String imagePath;
+  final VoidCallback onPressed;
+  final String title;
+  const ShareWithSocial({
+    Key? key,
+    required this.imagePath,
+    required this.onPressed,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: onPressed,
+          icon: Image.asset(
+            imagePath,
+            width: 80,
+          ),
+        ),
+        gapH6,
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headlineMedium,
+        )
+      ],
     );
   }
 }
