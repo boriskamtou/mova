@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/movies/top_rated_movies/presentation/widgets/go_to_search_tab_button.dart';
 
+import '../../../../utils/common_import.dart';
 import '../../core/presentation/paginated_movie_gridview.dart';
 import '../shared/providers.dart';
 
@@ -29,13 +30,21 @@ class _TopRatedMoviesScreenState extends ConsumerState<TopRatedMoviesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Top Rated Movies'),
+        actions: [
+          GoToSearchTabButton(ref: ref),
+        ],
       ),
-      body: PaginatedMoviesGridView(
-        paginatedMoviesNotifier: topRatedMoviesStateNotifierProvider,
-        getNextPage: (ref) => ref
-            .read(topRatedMoviesStateNotifierProvider.notifier)
+      body: RefreshIndicator(
+        onRefresh: () => ref
+            .refresh(topRatedMoviesStateNotifierProvider.notifier)
             .getNextTopRatedMoviesPage(),
-        noDataMessage: 'No Top Rated Movies!',
+        child: PaginatedMoviesGridView(
+          paginatedMoviesNotifier: topRatedMoviesStateNotifierProvider,
+          getNextPage: (ref) => ref
+              .read(topRatedMoviesStateNotifierProvider.notifier)
+              .getNextTopRatedMoviesPage(),
+          noDataMessage: 'No Top Rated Movies!',
+        ),
       ),
     );
   }

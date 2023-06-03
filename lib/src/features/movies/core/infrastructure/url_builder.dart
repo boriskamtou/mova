@@ -30,5 +30,5 @@ class UrlBuilder {
 
   String buildSearchMovie(String searchTerm, int page,
           [String language = 'en']) =>
-      '$baseUrl/discover/movie?with_keywords=$searchTerm&api_key=$tmdbApiKey';
+      '$baseUrl/discover/movie?with_keywords=$searchTerm&api_key=$tmdbApiKey&page=$page';
 }

@@ -13,24 +13,6 @@ class BookmarkRepository {
 
   final _store = StoreRef<int, Map<String, dynamic>>('bookMarks');
 
-  Future<List<MovieDTO>> getAllBookmarkMovies() async {
-    final finder = Finder(
-      limit: 500,
-    );
-
-    final records =
-        await _store.find(await _db.then((db) => db!), finder: finder);
-
-    return records
-        .map((e) {
-          final movie = MovieDTO.fromJson(e.value);
-          return movie;
-        })
-        .toList()
-        .reversed
-        .toList();
-  }
-
   Stream<List<MovieDTO>> watchListOfMovies() async* {
     final finder = Finder(
       limit: 500,

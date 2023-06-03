@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/movies/home/shared/providers.dart';
 
 import '../../../theme/presentation/app_colors.dart';
 
-class HomeScreenHeader extends StatelessWidget {
+class HomeScreenHeader extends ConsumerWidget {
   const HomeScreenHeader({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Positioned(
       top: 40,
       left: 0,
@@ -28,7 +30,9 @@ class HomeScreenHeader extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => ref
+                    .read(bottomNavigationRouterNotifierProvider.notifier)
+                    .changeTab(1),
                 icon: Image.asset(
                   'assets/icons/search.png',
                   color: AppColors.white,

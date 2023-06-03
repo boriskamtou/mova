@@ -40,4 +40,38 @@ class MovieDetailRemoteService {
       );
     }
   }
+
+  // void showDownloadProgress(received, total) {
+  //   if (total != -1) {
+  //     print((received / total * 100).toStringAsFixed(0) + "%");
+  //   }
+  // }
+
+  // Future<void> downloadYouTubeVideo(String videoUrl) async {
+  //   var tempDir = await getTemporaryDirectory();
+  //   String fullPath = "${tempDir.path}/boo2.pdf'";
+  //   debugPrint('full path $fullPath');
+
+  //   try {
+  //     Response response = await _dio.get(
+  //       videoUrl,
+  //       onReceiveProgress: showDownloadProgress,
+  //       //Received data with List<int>
+  //       options: Options(
+  //         responseType: ResponseType.bytes,
+  //         followRedirects: false,
+  //         validateStatus: (status) {
+  //           return status! < 500;
+  //         },
+  //       ),
+  //     );
+  //     File file = File(fullPath);
+  //     var raf = file.openSync(mode: FileMode.write);
+  //     // response.data is List<int> type
+  //     raf.writeFromSync(response.data);
+  //     await raf.close();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }

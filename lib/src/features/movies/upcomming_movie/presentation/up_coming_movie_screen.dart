@@ -4,6 +4,8 @@ import 'package:mova/src/features/movies/core/presentation/paginated_movie_gridv
 import 'package:mova/src/features/movies/upcomming_movie/shared/providers.dart';
 import 'package:mova/src/utils/common_import.dart';
 
+import '../../top_rated_movies/presentation/widgets/go_to_search_tab_button.dart';
+
 @RoutePage()
 class UpcomingMoviesScreen extends ConsumerStatefulWidget {
   const UpcomingMoviesScreen({super.key});
@@ -28,13 +30,21 @@ class _UpcomingMoviesScreenState extends ConsumerState<UpcomingMoviesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Top Rated Movies'),
+        actions: [
+          GoToSearchTabButton(ref: ref),
+        ],
       ),
-      body: PaginatedMoviesGridView(
-        paginatedMoviesNotifier: upComingMoviesStateNotifierProvider,
-        getNextPage: (ref) => ref
-            .read(upComingMoviesStateNotifierProvider.notifier)
+      body: RefreshIndicator(
+        onRefresh: () => ref
+            .refresh(upComingMoviesStateNotifierProvider.notifier)
             .getNextUpcomingMoviesPage(),
-        noDataMessage: 'No Upcoming Movies!',
+        child: PaginatedMoviesGridView(
+          paginatedMoviesNotifier: upComingMoviesStateNotifierProvider,
+          getNextPage: (ref) => ref
+              .read(upComingMoviesStateNotifierProvider.notifier)
+              .getNextUpcomingMoviesPage(),
+          noDataMessage: 'No Upcoming Movies!',
+        ),
       ),
     );
   }

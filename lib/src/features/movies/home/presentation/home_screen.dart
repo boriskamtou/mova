@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/common_import.dart';
+import '../shared/providers.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
 import 'bookmark_tab.dart';
@@ -18,13 +19,13 @@ class HomeScreen extends StatefulHookConsumerWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final autoSizeGroup = AutoSizeGroup();
-  var _bottomNavIndex = 0;
+  final _bottomNavIndex = 0;
 
   final _iconOutlineList = <String>[
     'assets/icons/home.png',
     'assets/icons/discovery.png',
     'assets/icons/bookmark.png',
-    'assets/icons/download.png',
+    // 'assets/icons/download.png',
     'assets/icons/profile.png',
   ];
 
@@ -32,14 +33,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     'assets/icons/home_solid.png',
     'assets/icons/discovery_solid.png',
     'assets/icons/bookmark_solid.png',
-    'assets/icons/download_solid.png',
+    // 'assets/icons/download_solid.png',
     'assets/icons/profile_solid.png',
   ];
   final titleList = <String>[
     'Home',
     'Discovery',
     'Bookmark',
-    'Download',
+    // 'Download',
     'Profile',
   ];
 
@@ -47,9 +48,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     HomeTab(),
     DiscoveryTab(),
     MyListTab(),
-    Text(
-      'Index 3: Download',
-    ),
+    // Text(
+    //   'Index 3: Download',
+    // ),
     Text(
       'Index 4: Profile',
     ),
@@ -62,6 +63,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bottomNavigationRouter =
+        ref.watch(bottomNavigationRouterNotifierProvider.notifier);
+    final state = ref.watch(bottomNavigationRouterNotifierProvider);
+
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
@@ -96,12 +101,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ],
           );
         },
-        activeIndex: _bottomNavIndex,
+        activeIndex: bottomNavigationRouter.currentIndex,
         gapLocation: GapLocation.none,
         leftCornerRadius: 14,
         rightCornerRadius: 14,
         notchSmoothness: NotchSmoothness.verySmoothEdge,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
+        onTap: (index) => bottomNavigationRouter.changeTab(index),
         shadow: const BoxShadow(
           offset: Offset(0, 1),
           blurRadius: 1.5,
@@ -109,7 +114,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         elevation: 2,
       ),
-      body: _widgetOptions.elementAt(_bottomNavIndex),
+      body: _widgetOptions.elementAt(state),
     );
   }
 }

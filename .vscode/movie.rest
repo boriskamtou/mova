@@ -38,4 +38,4 @@ GET {{baseUrl}}/movie/upcoming/?api_key={{api_key}}&page={{page}}
 ### Get [Similar] movies
 GET {{baseUrl}}/movie/{{movie_id}}/similar?api_key={{api_key}}
 ### GET [Search] Movies
-GET {{baseUrl}}/discover/movie?with_keywords=John,Wick&api_key={{api_key}}
+GET {{baseUrl}}/discover/movie?with_keywords=xxxxx&api_key={{api_key}}&page={{page}}
