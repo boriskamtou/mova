@@ -15,8 +15,6 @@ class FirebaseAuthenticatorRepository {
     this._credentialsStorage,
   );
 
-  Stream<User?> get currentUser => _auth.authStateChanges();
-
   Future<Either<AuthFailure, UserCredential>> signUpWithEmailAndPassword(
       String email, String password) async {
     UserCredential userCredentials;
@@ -117,6 +115,10 @@ class FirebaseAuthenticatorRepository {
         );
       }
     }
+  }
+
+  Future<String?> userEmail() async {
+    return await _credentialsStorage.getUserEmail();
   }
 
   Future<bool> isSigned() async {

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/sign_up_with_email_pasword_screen.dart';
+import '../features/fill_profile/presentation/fill_profile_screen.dart';
 import '../features/movies/core/domain/entities/movie.dart';
 import '../features/movies/core/presentation/movie_detail_screen.dart';
 import '../features/movies/core/presentation/video_player.dart';
@@ -26,6 +27,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: OnboardingRoute.page, initial: true),
         AutoRoute(page: LetYouInRoute.page),
         AutoRoute(page: SignUpWithPasswordRoute.page),
+        AutoRoute(page: FillProfileRoute.page),
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: PopularMoviesRoute.page),
         AutoRoute(page: MovieDetailRoute.page),

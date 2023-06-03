@@ -84,6 +84,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignUpWithPasswordScreen(),
       );
     },
+    FillProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FillProfileScreen(),
+      );
+    },
   };
 }
 
@@ -271,6 +277,20 @@ class SignUpWithPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignUpWithPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FillProfileScreen]
+class FillProfileRoute extends PageRouteInfo<void> {
+  const FillProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          FillProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FillProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

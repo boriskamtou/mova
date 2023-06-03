@@ -51,6 +51,9 @@ dependencies:
   flutter_easyloading: ^3.0.5
   flutter_youtube_downloader: ^0.0.5
   material_floating_search_bar: ^0.3.7
+  image_picker: ^0.8.7+5
+  cloud_firestore: ^4.8.0
+  firebase_storage: ^11.2.2
 
 dev_dependencies:
   flutter_test:
