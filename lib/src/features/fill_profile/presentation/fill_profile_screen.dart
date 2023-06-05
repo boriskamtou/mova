@@ -1,14 +1,18 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mova/src/features/fill_profile/presentation/skip_or_continue_button.dart';
 import 'package:mova/src/features/fill_profile/presentation/user_image.dart';
+import 'package:mova/src/routing/app_router.dart';
 
 import '../../../utils/common_import.dart';
 import '../../auth/infrastructure/validation_service.dart';
 import '../../auth/presentation/widgets/common_textfield.dart';
+import '../application/fill_profil_notifier.dart';
+import '../shared/providers.dart';
 
 @RoutePage()
 class FillProfileScreen extends StatefulHookConsumerWidget {
@@ -35,28 +39,17 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
     final nicknameController = useTextEditingController();
     final emailController = useTextEditingController();
     final phoneController = useTextEditingController();
-    // ref.listen<FillProfileState>(
-    //   fillProfileNotifier,
-    //   (previous, next) {
-    //     next.maybeWhen(
-    //       orElse: () {},
-    //       failure: (message) {
-    //         Flushbar(
-    //           message: message,
-    //           icon: const Icon(
-    //             Icons.info,
-    //             color: AppColors.alertError,
-    //           ),
-    //           borderRadius: BorderRadius.circular(10),
-    //           backgroundColor: AppColors.bgRed,
-    //           messageColor: AppColors.alertError,
-    //           duration: const Duration(seconds: 2),
-    //           margin: const EdgeInsets.all(16),
-    //         ).show(context);
-    //       },
-    //     );
-    //   },
-    // );
+    ref.listen<FillProfileState>(
+      fillProfileNotifier,
+      (previous, next) {
+        next.maybeWhen(
+          orElse: () {},
+          failure: (message) {
+            EasyLoading.showError(message!);
+          },
+        );
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fill Your Profile'),
@@ -152,6 +145,7 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                   onContinuePressed: () {
                     FocusScope.of(context).unfocus();
                     if (_image == null) {
+                      EasyLoading.showInfo('Please provide an image');
                       /*  Flushbar(
                             message: 'Please provide an image',
                             icon: const Icon(
@@ -166,6 +160,21 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                           ).show(context); */
                     } else {
                       if (_formkey.currentState!.validate()) {
+                        EasyLoading.show(dismissOnTap: false);
+                        ref
+                            .read(fillProfileNotifier.notifier)
+                            .createProfile(
+                              _image!,
+                              userNameController.text,
+                              nicknameController.text,
+                              emailController.text,
+                              phoneController.text,
+                              _genderValue,
+                            )
+                            .then((value) {
+                          EasyLoading.dismiss();
+                          context.pushRoute(const HomeRoute());
+                        });
                         /* final progress = ProgressHUD.of(ctx);
 
                             progress?.show();

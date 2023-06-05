@@ -55,7 +55,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
           ),
         ),
         Positioned(
-          right: 110,
+          right: 130,
           bottom: 8,
           child: GestureDetector(
             onTap: _pickImage,

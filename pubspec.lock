@@ -925,6 +925,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  modal_progress_indicator:
+    dependency: "direct main"
+    description:
+      name: modal_progress_indicator
+      sha256: "8ffbf2da51b3ac7bb7bdbb2908861d39478269a4d821637d995e2098df4e40bd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   octo_image:
     dependency: transitive
     description:

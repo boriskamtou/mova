@@ -21,6 +21,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LetYouInScreen(),
       );
     },
+    SignUpWithPasswordRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignUpWithPasswordScreen(),
+      );
+    },
+    FillProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FillProfileScreen(),
+      );
+    },
     MovieDetailRoute.name: (routeData) {
       final args = routeData.argsAs<MovieDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -78,18 +90,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashScreen(),
       );
     },
-    SignUpWithPasswordRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SignUpWithPasswordScreen(),
-      );
-    },
-    FillProfileRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FillProfileScreen(),
-      );
-    },
   };
 }
 
@@ -103,6 +103,34 @@ class LetYouInRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LetYouInRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignUpWithPasswordScreen]
+class SignUpWithPasswordRoute extends PageRouteInfo<void> {
+  const SignUpWithPasswordRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpWithPasswordRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpWithPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FillProfileScreen]
+class FillProfileRoute extends PageRouteInfo<void> {
+  const FillProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          FillProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FillProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -263,34 +291,6 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SignUpWithPasswordScreen]
-class SignUpWithPasswordRoute extends PageRouteInfo<void> {
-  const SignUpWithPasswordRoute({List<PageRouteInfo>? children})
-      : super(
-          SignUpWithPasswordRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SignUpWithPasswordRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [FillProfileScreen]
-class FillProfileRoute extends PageRouteInfo<void> {
-  const FillProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          FillProfileRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FillProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

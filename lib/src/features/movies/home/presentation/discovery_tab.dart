@@ -29,6 +29,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
         padding: const EdgeInsets.only(top: 20),
         child: FloatingSearchBar(
           controller: _controller,
+          automaticallyImplyBackButton: false,
           hint: 'Search...',
           elevation: 0,
           actions: [

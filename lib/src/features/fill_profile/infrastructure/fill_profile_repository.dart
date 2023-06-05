@@ -28,12 +28,12 @@ class FillProfileRepository {
       final url = await ref.getDownloadURL();
       await _firebaseFirestore.collection('users').add(
         {
-          "imageUrl": url,
-          "fullName": fullName,
-          "nickName": nickName,
           "email": email,
-          "phoneNumber": phoneNumber,
+          "fullName": fullName,
           "gender": gender,
+          "imageUrl": url,
+          "nickName": nickName,
+          "phoneNumber": phoneNumber,
         },
       );
 

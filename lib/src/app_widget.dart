@@ -54,10 +54,11 @@ class AppWidget extends ConsumerWidget {
       (previous, next) {
         next.maybeWhen(
           orElse: () {},
-          authenticated: () => _appRouter.pushAndPopUntil(const HomeRoute(),
+          authenticated: () => _appRouter.pushAndPopUntil(
+              const FillProfileRoute(),
               predicate: (route) => false),
           unauthenticated: () => _appRouter.pushAndPopUntil(
-              const OnboardingRoute(),
+              const SignUpWithPasswordRoute(),
               predicate: (route) => false),
         );
       },
