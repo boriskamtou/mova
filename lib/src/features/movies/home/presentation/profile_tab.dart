@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
 import 'package:mova/src/utils/common_import.dart';
@@ -11,12 +12,20 @@ class ProfileTab extends ConsumerStatefulWidget {
 
 class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _userEmail = '';
+  String? _username = '';
+  String? _imageUrl = '';
+
+  void _initialize() async {
+    _userEmail = await ref.read(authNotifier.notifier).getUserEmail();
+    _username = await ref.read(authNotifier.notifier).getUsername();
+    _imageUrl = await ref.read(authNotifier.notifier).getUserImageUrl();
+    print('Image Url: $_imageUrl');
+    setState(() {});
+  }
 
   @override
   void initState() {
-    Future.microtask(() async {
-      _userEmail = await ref.read(authNotifier.notifier).getUserEmail();
-    });
+    _initialize();
     super.initState();
   }
 
@@ -45,15 +54,16 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: AppSizes.p20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: AppSizes.p20),
               child: CircleAvatar(
                 backgroundColor: AppColors.grey,
                 radius: 50,
+                backgroundImage: CachedNetworkImageProvider(_imageUrl!),
               ),
             ),
             Text(
-              'Boris Kamtou',
+              _username ?? '',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: 22,

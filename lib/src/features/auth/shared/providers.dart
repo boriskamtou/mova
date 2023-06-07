@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mova/src/features/auth/infrastructure/firebase_authenticator_repository.dart';
 import 'package:mova/src/features/auth/infrastructure/user_credentials_storage/user_credentials_storage.dart';
 
+import '../../core/shared/providers.dart';
 import '../application/auth_notifier.dart';
 
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
@@ -23,9 +24,9 @@ final userSecureStorageProvider = Provider<UserCredentialsStorage>((ref) {
 final firebaseAuthenticatorProvider =
     Provider<FirebaseAuthenticatorRepository>((ref) {
   return FirebaseAuthenticatorRepository(
-    ref.watch(firebaseAuthProvider),
-    ref.watch(userSecureStorageProvider),
-  );
+      ref.watch(firebaseAuthProvider),
+      ref.watch(userSecureStorageProvider),
+      ref.watch(userPreferenceLocalServiceProvider));
 });
 
 final authNotifier =

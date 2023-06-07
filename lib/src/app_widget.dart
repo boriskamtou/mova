@@ -14,6 +14,7 @@ import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
+  await ref.read(sembastProvider).database;
   ref.read(dioProvider).options = BaseOptions(
     connectTimeout: const Duration(seconds: 30),
     sendTimeout: const Duration(seconds: 30),
@@ -54,9 +55,18 @@ class AppWidget extends ConsumerWidget {
       (previous, next) {
         next.maybeWhen(
           orElse: () {},
-          authenticated: () => _appRouter.pushAndPopUntil(
-              const FillProfileRoute(),
-              predicate: (route) => false),
+          authenticated: () async {
+            final hasFillProfile =
+                await ref.watch(authNotifier.notifier).hasFillProfile() as bool;
+
+            if (hasFillProfile) {
+              return _appRouter.pushAndPopUntil(const HomeRoute(),
+                  predicate: (route) => false);
+            } else {
+              return _appRouter.pushAndPopUntil(const FillProfileRoute(),
+                  predicate: (route) => false);
+            }
+          },
           unauthenticated: () => _appRouter.pushAndPopUntil(
               const SignUpWithPasswordRoute(),
               predicate: (route) => false),

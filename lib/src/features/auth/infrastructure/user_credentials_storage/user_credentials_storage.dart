@@ -18,7 +18,7 @@ class UserCredentialsStorage {
       Future.wait([
         _storage.write(key: _userEmail, value: userEmail),
         _storage.write(key: _userName, value: userName),
-        if (photoUrl != null) _storage.write(key: _photoUrl, value: _photoUrl),
+        if (photoUrl != null) _storage.write(key: _photoUrl, value: photoUrl),
         if (phoneNumber != null)
           _storage.write(key: _userPhoneNumber, value: phoneNumber)
       ]);
@@ -29,7 +29,7 @@ class UserCredentialsStorage {
         _storage.delete(key: _userName)
       ]);
 
-  Future<String?> getUserToken() => _storage.read(key: _photoUrl);
+  Future<String?> getUserPhotoUrl() => _storage.read(key: _photoUrl);
   Future<String?> getUserEmail() => _storage.read(key: _userEmail);
   Future<String?> getUserName() => _storage.read(key: _userName);
 }

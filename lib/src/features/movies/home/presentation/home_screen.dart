@@ -65,7 +65,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final bottomNavigationRouter =
         ref.watch(bottomNavigationRouterNotifierProvider.notifier);
     final state = ref.watch(bottomNavigationRouterNotifierProvider);
-
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(

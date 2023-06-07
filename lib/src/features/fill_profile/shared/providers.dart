@@ -4,6 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/fill_profile/application/fill_profil_notifier.dart';
 import 'package:mova/src/features/fill_profile/infrastructure/fill_profile_repository.dart';
 
+import '../../auth/shared/providers.dart';
+import '../../core/shared/providers.dart';
+
 final firebaseStorageProvider = Provider((ref) {
   return FirebaseStorage.instance;
 });
@@ -14,9 +17,10 @@ final firestoreProvider = Provider<FirebaseFirestore>((ref) {
 
 final fillProfileProvider = Provider((ref) {
   return FillProfileRepository(
-    ref.watch(firestoreProvider),
-    ref.watch(firebaseStorageProvider),
-  );
+      ref.watch(firestoreProvider),
+      ref.watch(firebaseStorageProvider),
+      ref.watch(userPreferenceLocalServiceProvider),
+      ref.watch(userSecureStorageProvider));
 });
 
 final fillProfileNotifier =

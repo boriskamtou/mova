@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 
 import '../domain/failures/auth_failure.dart';
 import 'user_credentials_storage/user_credentials_storage.dart';
@@ -9,11 +10,15 @@ import 'user_credentials_storage/user_credentials_storage.dart';
 class FirebaseAuthenticatorRepository {
   final FirebaseAuth _auth;
   final UserCredentialsStorage _credentialsStorage;
+  final UserPreferencesLocalService _userPreferencesLocalService;
 
   FirebaseAuthenticatorRepository(
     this._auth,
     this._credentialsStorage,
+    this._userPreferencesLocalService,
   );
+
+  final String _userEmail = '';
 
   Future<Either<AuthFailure, UserCredential>> signUpWithEmailAndPassword(
       String email, String password) async {
@@ -31,6 +36,7 @@ class FirebaseAuthenticatorRepository {
           photoUrl: userCredentials.user!.photoURL,
           phoneNumber: userCredentials.user!.phoneNumber,
         );
+        await _userPreferencesLocalService.hasFillProfile(false);
       }
       return right(userCredentials);
     } on PlatformException catch (e) {
@@ -117,9 +123,17 @@ class FirebaseAuthenticatorRepository {
     }
   }
 
+  Future<bool?> hasFillProfile() async =>
+      await _userPreferencesLocalService.getHasFillProfile();
+
+  String get email => _userEmail;
+
   Future<String?> userEmail() async {
-    return await _credentialsStorage.getUserEmail();
+    return _credentialsStorage.getUserEmail();
   }
+
+  Future<String?> userName() async => _credentialsStorage.getUserName();
+  Future<String?> imageUrl() async => _credentialsStorage.getUserPhotoUrl();
 
   Future<bool> isSigned() async {
     if (await _credentialsStorage.getUserEmail() != null) {
