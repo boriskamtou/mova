@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
+import 'package:mova/src/features/core/shared/providers.dart';
 import 'package:mova/src/utils/common_import.dart';
+
+import '../../../theme/application/app_theme_notifier.dart';
 
 class ProfileTab extends ConsumerStatefulWidget {
   const ProfileTab({super.key});
@@ -14,12 +17,15 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _userEmail = '';
   String? _username = '';
   String? _imageUrl = '';
+  bool? _isDarkMode = false;
 
   void _initialize() async {
     _userEmail = await ref.read(authNotifier.notifier).getUserEmail();
     _username = await ref.read(authNotifier.notifier).getUsername();
     _imageUrl = await ref.read(authNotifier.notifier).getUserImageUrl();
-    print('Image Url: $_imageUrl');
+
+    _isDarkMode =
+        await ref.read(userPreferenceLocalServiceProvider).getUserThemeMode();
     setState(() {});
   }
 
@@ -134,9 +140,18 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                     ),
               ),
               trailing: Switch.adaptive(
-                value: true,
+                value: _isDarkMode ?? false,
                 activeColor: Theme.of(context).primaryColor,
-                onChanged: (value) {},
+                onChanged: (value) async {
+                  ref
+                      .read(userPreferenceLocalServiceProvider)
+                      .storePrefMode(value);
+                  _isDarkMode = await ref
+                      .read(userPreferenceLocalServiceProvider)
+                      .getUserThemeMode();
+                  await ref.read(appThemeProvider.notifier).toggleTheme(value);
+                  setState(() {});
+                },
               ),
             ),
             ListTile(

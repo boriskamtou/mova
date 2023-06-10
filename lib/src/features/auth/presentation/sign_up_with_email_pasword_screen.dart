@@ -1,6 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:mova/src/features/auth/shared/providers.dart';
 
 import '../../../utils/common_import.dart';
@@ -27,6 +30,7 @@ class _SignUpWithPasswordScreenState
   final _passwordController = TextEditingController();
 
   bool _showPassword = false;
+  bool _isLoggedIn = false;
 
   @override
   void initState() {
@@ -47,171 +51,220 @@ class _SignUpWithPasswordScreenState
       (previous, next) {
         next.maybeWhen(
           orElse: () {},
-          loading: () {},
-          authenticated: () {
-            EasyLoading.showSuccess("Success");
-          },
           failure: (authFailure) {
             authFailure.maybeMap(
               orElse: () {},
               failure: (value) {
-                EasyLoading.dismiss();
-                EasyLoading.showError(authFailure.message,
-                    duration: const Duration(seconds: 3));
+                Flushbar(
+                  message: value.message,
+                  icon: const Icon(
+                    Icons.info,
+                    color: AppColors.alertError,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  backgroundColor: AppColors.bgRed,
+                  messageColor: AppColors.alertError,
+                  duration: const Duration(seconds: 2),
+                  margin: const EdgeInsets.all(16),
+                ).show(context);
               },
             );
           },
         );
       },
     );
-    return Scaffold(
-      appBar: AppBar(),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  gapH20,
-                  Text(
-                    'Create your account',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                  gapH30,
-                  CommonTextFormField(
-                    controller: _emailController,
-                    hasFocus: _hasFocus,
-                    focusNode: _focusNode,
-                    prefixIcon: Image.asset('assets/icons/message.png'),
-                    validator: ValidationService.validateEmail,
-                    hintText: 'Email',
-                  ),
-                  gapH20,
-                  CommonTextFormField(
-                    controller: _passwordController,
-                    hasFocus: _hasFocus,
-                    validator: ValidationService.validatePassword,
-                    obscureText: _showPassword,
-                    prefixIcon: Image.asset('assets/icons/lock.png'),
-                    suffixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _showPassword = !_showPassword;
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset('assets/icons/hide_close.png'),
-                    ),
-                    hintText: 'Password',
-                  ),
-                  /* Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 4),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Checkbox(
-                                      value: _authNotifier.getIsRememberMe,
-                                      onChanged: (v) {
-                                        setState(() {
-                                          _authNotifier.toggleRemeberMe(v!);
-                                        });
-                                      },
-                                    ),
-                                    const SizedBox(width: 2),
-                                    Text(
-                                      'Remember me',
-                                      style: Theme.of(context).textTheme.bodyText1,
-                                    )
-                                  ],
-                                ),
-                              ), */
-                  gapH20,
-                  ElevatedButton(
-                    onPressed: () async {
-                      // context.go('/sign_up_with_password');*
-                      FocusScope.of(context).unfocus();
-                      if (_formKey.currentState!.validate()) {
-                        await ref
-                            .read(authNotifier.notifier)
-                            .signUpWithEmailAndPassword(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                      }
-                    },
-                    child: const Text('Sign up'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Divider(),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Text(
-                            'Or continue with',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        ),
-                        const Divider(),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _SocialIconSignUp(
-                        onTap: () {},
-                        imageUrl: 'assets/icons/facebook.png',
-                      ),
-                      _SocialIconSignUp(
-                        onTap: () {
-                          ref.read(authNotifier.notifier).signUpWithGoogle();
-                        },
-                        imageUrl: 'assets/icons/google.png',
-                      ),
-                      _SocialIconSignUp(
-                        onTap: () {},
-                        imageUrl: 'assets/icons/apple-dark.png',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
+    return ProgressHUD(
+      barrierEnabled: true,
+      child: Builder(builder: (ctx) {
+        return Scaffold(
+          appBar: AppBar(),
+          body: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('Already have an account?'),
-                      const SizedBox(width: 4),
-                      InkWell(
-                        onTap: () {},
-                        child: const Text(
-                          'Sign In',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primary,
-                          ),
+                      Image.asset(
+                        'assets/images/logo.png',
+                        width: 50,
+                        height: 50,
+                      ),
+                      gapH20,
+                      Text(
+                        _isLoggedIn
+                            ? 'Login to Your Account'
+                            : 'Create your account',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      gapH30,
+                      CommonTextFormField(
+                        controller: _emailController,
+                        hasFocus: _hasFocus,
+                        focusNode: _focusNode,
+                        prefixIcon: Image.asset('assets/icons/message.png'),
+                        validator: ValidationService.validateEmail,
+                        hintText: 'Email',
+                      ),
+                      gapH20,
+                      CommonTextFormField(
+                        controller: _passwordController,
+                        hasFocus: _hasFocus,
+                        validator: ValidationService.validatePassword,
+                        obscureText: _showPassword,
+                        prefixIcon: Image.asset('assets/icons/lock.png'),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset('assets/icons/hide_close.png'),
                         ),
+                        hintText: 'Password',
+                      ),
+                      /* Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 4),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Checkbox(
+                                            value: _authNotifier.getIsRememberMe,
+                                            onChanged: (v) {
+                                              setState(() {
+                                                _authNotifier.toggleRemeberMe(v!);
+                                              });
+                                            },
+                                          ),
+                                          const SizedBox(width: 2),
+                                          Text(
+                                            'Remember me',
+                                            style: Theme.of(context).textTheme.bodyText1,
+                                          )
+                                        ],
+                                      ),
+                                    ), */
+                      gapH20,
+                      ElevatedButton(
+                        onPressed: () async {
+                          // context.go('/sign_up_with_password');*
+                          FocusScope.of(context).unfocus();
+                          if (_formKey.currentState!.validate()) {
+                            final progress = ProgressHUD.of(ctx);
+                            progress?.show();
+                            _isLoggedIn
+                                ? await ref
+                                    .read(authNotifier.notifier)
+                                    .signInWithEmailAndPassword(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    )
+                                    .then((value) => progress?.dismiss())
+                                : await ref
+                                    .read(authNotifier.notifier)
+                                    .signUpWithEmailAndPassword(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    )
+                                    .then((value) => progress?.dismiss());
+                          }
+                        },
+                        child: Text(_isLoggedIn ? 'Sign in' : 'Sign up'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Divider(),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Text(
+                                'Or continue with',
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                            ),
+                            const Divider(),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _SocialIconSignUp(
+                            onTap: () {},
+                            imageUrl: 'assets/icons/facebook.png',
+                          ),
+                          _SocialIconSignUp(
+                            onTap: () {
+                              ref
+                                  .read(authNotifier.notifier)
+                                  .signUpWithGoogle();
+                            },
+                            imageUrl: 'assets/icons/google.png',
+                          ),
+                          _SocialIconSignUp(
+                            onTap: () {},
+                            imageUrl: 'assets/icons/apple-dark.png',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      _AlreadyHaveAnAccount(
+                        isLoggedIn: _isLoggedIn,
+                        onTap: () {
+                          setState(() {
+                            _isLoggedIn = !_isLoggedIn;
+                          });
+                        },
                       )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
+    );
+  }
+}
+
+class _AlreadyHaveAnAccount extends StatelessWidget {
+  final bool isLoggedIn;
+  final VoidCallback onTap;
+  const _AlreadyHaveAnAccount({
+    Key? key,
+    required this.isLoggedIn,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+            isLoggedIn ? "Don’t have an account?" : 'Already have an account?'),
+        const SizedBox(width: 4),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            isLoggedIn ? 'Sign up' : 'Sign In',
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              color: AppColors.primary,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

@@ -33,6 +33,16 @@ class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
     );
   }
 
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    state = const AuthState.loading();
+    final failureOrSuccess =
+        await _signUpAuthenticator.signInWithEmailAndPassword(email, password);
+    state = failureOrSuccess.fold(
+      (l) => AuthState.failure(l),
+      (r) => const AuthState.authenticated(),
+    );
+  }
+
   Future<void> signUpWithGoogle() async {
     state = const AuthState.loading();
     final failureOrSuccess = await _signUpAuthenticator.signUpWithGoogle();

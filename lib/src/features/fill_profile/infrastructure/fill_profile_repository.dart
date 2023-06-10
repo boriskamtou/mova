@@ -12,7 +12,7 @@ import '../domain/fill_profil_failure.dart';
 class FillProfileRepository {
   final FirebaseFirestore _firebaseFirestore;
   final FirebaseStorage _firebaseStorage;
-  final UserPreferencesLocalService _userPreferencesLocalService;
+  final UserPreferencesRepository _userPreferencesLocalService;
   final UserCredentialsStorage _userCredentialsStorage;
   FillProfileRepository(this._firebaseFirestore, this._firebaseStorage,
       this._userPreferencesLocalService, this._userCredentialsStorage);

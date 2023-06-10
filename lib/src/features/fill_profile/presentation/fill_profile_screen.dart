@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mova/src/features/fill_profile/presentation/skip_or_continue_button.dart';
 import 'package:mova/src/features/fill_profile/presentation/user_image.dart';
@@ -54,149 +55,158 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
       appBar: AppBar(
         title: const Text('Fill Your Profile'),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formkey,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                UserImagePicker(
-                  onPickImagePressed: (imageFile) {
-                    setState(() {
-                      _image = imageFile;
-                    });
-                  },
-                ),
-                const SizedBox(height: 24),
-                CommonTextFormField(
-                  hintText: 'Full Name',
-                  controller: userNameController,
-                  validator: ValidationService.validateFullNaMe,
-                  textInputType: TextInputType.text,
-                ),
-                const SizedBox(height: 15),
-                CommonTextFormField(
-                  hintText: 'Nickname',
-                  controller: nicknameController,
-                  validator: ValidationService.validateNickName,
-                  textInputType: TextInputType.text,
-                ),
-                const SizedBox(height: 15),
-                CommonTextFormField(
-                  hintText: 'Email',
-                  controller: emailController,
-                  validator: ValidationService.validateEmail,
-                  suffixIcon: Image.asset('assets/icons/user_email.png'),
-                  textInputType: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 15),
-                CommonTextFormField(
-                  hintText: 'Phone Number',
-                  controller: phoneController,
-                  validator: ValidationService.validatePhoneNumber,
-                  textInputType: TextInputType.phone,
-                ),
-                const SizedBox(height: 15),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 18,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).canvasColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: DropdownButton(
-                    value: _genderValue,
-                    borderRadius: BorderRadius.circular(12),
-                    dropdownColor: Theme.of(context).canvasColor,
-                    isExpanded: true,
-                    hint: Text(
-                      'Gender',
-                      style: Theme.of(context).inputDecorationTheme.hintStyle,
-                    ),
-                    icon: Image.asset('assets/icons/arrow_down.png'),
-                    underline: const SizedBox.shrink(),
-                    items: _genderList.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(
-                          items,
-                          style: GoogleFonts.urbanist(
-                            color: Theme.of(context).textTheme.bodyLarge?.color,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: .2,
-                            fontSize: 14,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _genderValue = newValue!;
-                      });
-                    },
-                  ),
-                ),
-                const SizedBox(height: 24),
-                SkipOrContinueButtons(
-                  onSkipPressed: () {},
-                  onContinuePressed: () {
-                    FocusScope.of(context).unfocus();
-                    if (_image == null) {
-                      EasyLoading.showInfo('Please provide an image');
-                      /*  Flushbar(
-                            message: 'Please provide an image',
-                            icon: const Icon(
-                              Icons.info,
-                              color: AppColors.alertError,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                            backgroundColor: AppColors.bgRed,
-                            messageColor: AppColors.alertError,
-                            duration: const Duration(seconds: 2),
-                            margin: const EdgeInsets.all(16),
-                          ).show(context); */
-                    } else {
-                      if (_formkey.currentState!.validate()) {
-                        EasyLoading.show(dismissOnTap: false);
-                        ref
-                            .read(fillProfileNotifier.notifier)
-                            .createProfile(
-                              _image!,
-                              userNameController.text,
-                              nicknameController.text,
-                              emailController.text,
-                              phoneController.text,
-                              _genderValue,
-                            )
-                            .then((value) {
-                          EasyLoading.dismiss();
-                          context.pushRoute(const HomeRoute());
+      body: ProgressHUD(
+        child: Builder(builder: (ctx) {
+          return SingleChildScrollView(
+            child: Form(
+              key: _formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    UserImagePicker(
+                      onPickImagePressed: (imageFile) {
+                        setState(() {
+                          _image = imageFile;
                         });
-                        /* final progress = ProgressHUD.of(ctx);
-
-                            progress?.show();
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    CommonTextFormField(
+                      hintText: 'Full Name',
+                      controller: userNameController,
+                      validator: ValidationService.validateFullNaMe,
+                      textInputType: TextInputType.text,
+                    ),
+                    const SizedBox(height: 15),
+                    CommonTextFormField(
+                      hintText: 'Nickname',
+                      controller: nicknameController,
+                      validator: ValidationService.validateNickName,
+                      textInputType: TextInputType.text,
+                    ),
+                    const SizedBox(height: 15),
+                    CommonTextFormField(
+                      hintText: 'Email',
+                      controller: emailController,
+                      validator: ValidationService.validateEmail,
+                      suffixIcon: Image.asset('assets/icons/user_email.png'),
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(height: 15),
+                    CommonTextFormField(
+                      hintText: 'Phone Number',
+                      controller: phoneController,
+                      validator: ValidationService.validatePhoneNumber,
+                      textInputType: TextInputType.phone,
+                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).canvasColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: DropdownButton(
+                        value: _genderValue,
+                        borderRadius: BorderRadius.circular(12),
+                        dropdownColor: Theme.of(context).canvasColor,
+                        isExpanded: true,
+                        hint: Text(
+                          'Gender',
+                          style:
+                              Theme.of(context).inputDecorationTheme.hintStyle,
+                        ),
+                        icon: Image.asset('assets/icons/arrow_down.png'),
+                        underline: const SizedBox.shrink(),
+                        items: _genderList.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(
+                              items,
+                              style: GoogleFonts.urbanist(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.color,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: .2,
+                                fontSize: 14,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _genderValue = newValue!;
+                          });
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    SkipOrContinueButtons(
+                      onSkipPressed: () {},
+                      onContinuePressed: () {
+                        FocusScope.of(context).unfocus();
+                        if (_image == null) {
+                          EasyLoading.showInfo('Please provide an image');
+                          /*  Flushbar(
+                                  message: 'Please provide an image',
+                                  icon: const Icon(
+                                    Icons.info,
+                                    color: AppColors.alertError,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                  backgroundColor: AppColors.bgRed,
+                                  messageColor: AppColors.alertError,
+                                  duration: const Duration(seconds: 2),
+                                  margin: const EdgeInsets.all(16),
+                                ).show(context); */
+                        } else {
+                          if (_formkey.currentState!.validate()) {
+                            final progress = ProgressHUD.of(ctx);
+                            progress!.show();
                             ref
                                 .read(fillProfileNotifier.notifier)
                                 .createProfile(
                                   _image!,
-                                  _userNameController.text,
-                                  _nicknameController.text,
-                                  _emailController.text,
-                                  _phoneController.text,
+                                  userNameController.text,
+                                  nicknameController.text,
+                                  emailController.text,
+                                  phoneController.text,
                                   _genderValue,
                                 )
-                                .then((_) => progress?.dismiss()); */
-                      }
-                    }
-                  },
-                )
-              ],
+                                .then((value) {
+                              progress.dismiss();
+                              context.pushRoute(const HomeRoute());
+                            });
+                            /* final progress = ProgressHUD.of(ctx);
+        
+                                  progress?.show();
+                                  ref
+                                      .read(fillProfileNotifier.notifier)
+                                      .createProfile(
+                                        _image!,
+                                        _userNameController.text,
+                                        _nicknameController.text,
+                                        _emailController.text,
+                                        _phoneController.text,
+                                        _genderValue,
+                                      )
+                                      .then((_) => progress?.dismiss()); */
+                          }
+                        }
+                      },
+                    )
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

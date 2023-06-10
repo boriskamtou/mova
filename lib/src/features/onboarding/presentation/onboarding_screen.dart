@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/constants/app_sizes.dart';
+import 'package:mova/src/features/core/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import '../../../widgets/custom_linear_gradient.dart';
@@ -90,6 +91,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Consumer(builder: (context, ref, _) {
                       return ElevatedButton(
                         onPressed: () {
+                          ref
+                              .read(userPreferenceLocalServiceProvider)
+                              .storeHasSeenOnboarding(true);
                           context.pushRoute(const LetYouInRoute());
                         },
                         child: const Text('Get Started'),

@@ -10,7 +10,7 @@ import 'user_credentials_storage/user_credentials_storage.dart';
 class FirebaseAuthenticatorRepository {
   final FirebaseAuth _auth;
   final UserCredentialsStorage _credentialsStorage;
-  final UserPreferencesLocalService _userPreferencesLocalService;
+  final UserPreferencesRepository _userPreferencesLocalService;
 
   FirebaseAuthenticatorRepository(
     this._auth,
@@ -19,6 +19,46 @@ class FirebaseAuthenticatorRepository {
   );
 
   final String _userEmail = '';
+
+  Future<Either<AuthFailure, UserCredential>> signInWithEmailAndPassword(
+      String email, String password) async {
+    UserCredential userCredentials;
+    try {
+      userCredentials = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return right(userCredentials);
+    } on PlatformException catch (e) {
+      String message = 'An error occured. Please check your credentials.';
+      if (e.message != null) {
+        message = e.message!;
+      }
+      return left(AuthFailure.failure(message));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        return left(
+          const AuthFailure.failure('This password is not correct.'),
+        );
+      } else if (e.code == 'invalid-email') {
+        return left(
+          const AuthFailure.failure('The email address is not valid.'),
+        );
+      } else if (e.code == 'user-disabled') {
+        return left(
+          const AuthFailure.failure('This user has been disablled'),
+        );
+      } else if (e.code == 'user-not-found') {
+        return left(
+          const AuthFailure.failure('User not found'),
+        );
+      } else {
+        return left(
+          AuthFailure.failure('Failed with error code: ${e.code}'),
+        );
+      }
+    }
+  }
 
   Future<Either<AuthFailure, UserCredential>> signUpWithEmailAndPassword(
       String email, String password) async {

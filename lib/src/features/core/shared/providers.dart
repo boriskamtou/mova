@@ -22,6 +22,6 @@ final totalMoviesCacheProvider = Provider<TotalResultsCache>((ref) {
 });
 
 final userPreferenceLocalServiceProvider =
-    Provider<UserPreferencesLocalService>((ref) {
-  return UserPreferencesLocalService(ref.watch(sembastProvider));
+    Provider<UserPreferencesRepository>((ref) {
+  return UserPreferencesRepository(ref.watch(sembastProvider));
 });

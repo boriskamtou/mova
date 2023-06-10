@@ -7,11 +7,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/application/auth_notifier.dart';
-import 'package:mova/src/features/theme/application/app_theme_notifier.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
+import 'features/theme/application/app_theme_notifier.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).database;
@@ -67,13 +67,23 @@ class AppWidget extends ConsumerWidget {
                   predicate: (route) => false);
             }
           },
-          unauthenticated: () => _appRouter.pushAndPopUntil(
-              const SignUpWithPasswordRoute(),
-              predicate: (route) => false),
+          unauthenticated: () async {
+            final hasSeenOnboarding = await ref
+                .watch(userPreferenceLocalServiceProvider)
+                .getHasSeenOnboardung() as bool;
+
+            if (hasSeenOnboarding) {
+              return _appRouter.pushAndPopUntil(const SignUpWithPasswordRoute(),
+                  predicate: (route) => false);
+            } else {
+              return _appRouter.pushAndPopUntil(const OnboardingRoute(),
+                  predicate: (route) => false);
+            }
+          },
         );
       },
     );
-    final appTheme = ref.watch(appThemeProvider);
+    final appTheme = ref.watch(appThemeProvider.notifier);
     return MaterialApp.router(
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
