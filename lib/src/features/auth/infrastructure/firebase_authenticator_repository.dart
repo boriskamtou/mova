@@ -18,8 +18,6 @@ class FirebaseAuthenticatorRepository {
     this._userPreferencesLocalService,
   );
 
-  final String _userEmail = '';
-
   Future<Either<AuthFailure, UserCredential>> signInWithEmailAndPassword(
       String email, String password) async {
     UserCredential userCredentials;
@@ -164,16 +162,12 @@ class FirebaseAuthenticatorRepository {
   }
 
   Future<bool?> hasFillProfile() async =>
-      await _userPreferencesLocalService.getHasFillProfile();
+      _userPreferencesLocalService.getHasFillProfile();
 
-  String get email => _userEmail;
-
-  Future<String?> userEmail() async {
-    return _credentialsStorage.getUserEmail();
-  }
-
-  Future<String?> userName() async => _credentialsStorage.getUserName();
-  Future<String?> imageUrl() async => _credentialsStorage.getUserPhotoUrl();
+  Future<String?> getUserEmail() async => _credentialsStorage.getUserEmail();
+  Future<String?> getUserName() async => _credentialsStorage.getUserName();
+  Future<String?> getUserImageUrl() async =>
+      _credentialsStorage.getUserPhotoUrl();
 
   Future<bool> isSigned() async {
     if (await _credentialsStorage.getUserEmail() != null) {

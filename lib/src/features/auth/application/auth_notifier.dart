@@ -66,14 +66,10 @@ class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
         : const AuthState.unauthenticated();
   }
 
-  Future<String?> getUserEmail() async =>
-      await _signUpAuthenticator.userEmail();
-
-  Future<String?> getUsername() async => await _signUpAuthenticator.userName();
+  Future<String?> getUserEmail() async => _signUpAuthenticator.getUserEmail();
+  Future<String?> getUsername() async => _signUpAuthenticator.getUserName();
   Future<String?> getUserImageUrl() async =>
-      await _signUpAuthenticator.imageUrl();
-
-  // String get userEmail => _signUpAuthenticator.email;
+      _signUpAuthenticator.getUserImageUrl();
 
   Future<bool?> hasFillProfile() async =>
       await _signUpAuthenticator.hasFillProfile();
@@ -83,9 +79,5 @@ class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
 
   // void toggleRemeberMe(bool value) {
   //   _signUpAuthenticator.toggleRememberMe(value);
-  // }
-
-  // void toggleHasSeenOnboarding() {
-  //   _signUpAuthenticator.toggleHasSeenOnboarding();
   // }
 }

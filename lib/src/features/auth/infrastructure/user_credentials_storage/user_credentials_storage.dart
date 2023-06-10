@@ -10,11 +10,12 @@ class UserCredentialsStorage {
 
   final FlutterSecureStorage _storage;
 
-  Future<void> upsertUserInfo(
-          {required String? userName,
-          required String? userEmail,
-          String? photoUrl,
-          String? phoneNumber}) =>
+  Future<void> upsertUserInfo({
+    required String? userName,
+    required String? userEmail,
+    String? photoUrl,
+    String? phoneNumber,
+  }) =>
       Future.wait([
         _storage.write(key: _userEmail, value: userEmail),
         _storage.write(key: _userName, value: userName),
@@ -29,7 +30,8 @@ class UserCredentialsStorage {
         _storage.delete(key: _userName)
       ]);
 
-  Future<String?> getUserPhotoUrl() => _storage.read(key: _photoUrl);
-  Future<String?> getUserEmail() => _storage.read(key: _userEmail);
-  Future<String?> getUserName() => _storage.read(key: _userName);
+  Future<String?> getUserPhotoUrl() async =>
+      await _storage.read(key: _photoUrl);
+  Future<String?> getUserEmail() async => await _storage.read(key: _userEmail);
+  Future<String?> getUserName() async => await _storage.read(key: _userName);
 }

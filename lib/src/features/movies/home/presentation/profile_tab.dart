@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
@@ -60,12 +61,21 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
+            Container(
+              height: 100,
+              width: 100,
+              margin: const EdgeInsets.only(bottom: 4),
               padding: const EdgeInsets.symmetric(vertical: AppSizes.p20),
-              child: CircleAvatar(
-                backgroundColor: AppColors.grey,
-                radius: 50,
-                backgroundImage: CachedNetworkImageProvider(_imageUrl!),
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: _imageUrl == null
+                      ? const AssetImage('assets/images/empty_pp.png')
+                          as ImageProvider
+                      : CachedNetworkImageProvider(_imageUrl!),
+                ),
               ),
             ),
             Text(
@@ -155,6 +165,36 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
               ),
             ),
             ListTile(
+              onTap: () {
+                showModal(
+                  context: context,
+                  configuration: const FadeScaleTransitionConfiguration(),
+                  builder: (context) => AlertDialog(
+                    title: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: Image.asset(
+                            'assets/images/logo.png',
+                            width: 60,
+                          ),
+                          title: const Text('Mova - Streaming App'),
+                          subtitle: const Text('0.1.0'),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Made by WS',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
               leading: Image.asset(
                 'assets/icons/about.png',
                 color: Theme.of(context).iconTheme.color,
