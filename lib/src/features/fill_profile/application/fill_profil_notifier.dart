@@ -7,18 +7,27 @@ import 'package:mova/src/features/fill_profile/infrastructure/fill_profile_repos
 part 'fill_profil_notifier.freezed.dart';
 
 @freezed
-class FillProfileState with _$FillProfileState {
+class FillProfileState<T> with _$FillProfileState<T> {
   const FillProfileState._();
   const factory FillProfileState.intial() = _Initial;
   const factory FillProfileState.loading() = _Loading;
   const factory FillProfileState.failure([String? message]) = _Failure;
-  const factory FillProfileState.success() = _Success;
+  const factory FillProfileState.success([T? data]) = _Success;
 }
 
 class FillProfileNotifier extends StateNotifier<FillProfileState> {
-  final FillProfileRepository _fillProfile;
-  FillProfileNotifier(this._fillProfile)
+  final FillProfileRepository _fillProfileRepository;
+  FillProfileNotifier(this._fillProfileRepository)
       : super(const FillProfileState.intial());
+
+  Future<void> getUserProfile() async {
+    final failureOrSuccess = await _fillProfileRepository.getUserProfile();
+
+    state = failureOrSuccess.fold(
+      (l) => FillProfileState.failure(l.message),
+      (r) => FillProfileState.success(r),
+    );
+  }
 
   Future<void> createProfile(
     File imageUrl,
@@ -29,7 +38,7 @@ class FillProfileNotifier extends StateNotifier<FillProfileState> {
     String gender,
   ) async {
     state = const FillProfileState.loading();
-    final failureOrSuccess = await _fillProfile.createProfile(
+    final failureOrSuccess = await _fillProfileRepository.createProfile(
       imageUrl,
       fullName,
       nickName,

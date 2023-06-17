@@ -1,8 +1,10 @@
 import 'package:animations/animations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
 import 'package:mova/src/features/core/shared/providers.dart';
+import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
 
 import '../../../theme/application/app_theme_notifier.dart';
@@ -20,19 +22,25 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _imageUrl = '';
   bool? _isDarkMode = false;
 
-  void _initialize() async {
-    _userEmail = await ref.read(authNotifier.notifier).getUserEmail();
-    _username = await ref.read(authNotifier.notifier).getUsername();
-    _imageUrl = await ref.read(authNotifier.notifier).getUserImageUrl();
+  Future<void> _initializeInfos() async {
+    final userEmail =
+        await ref.read(userDataNotifierProvider.notifier).getUserEmail();
+    final userName =
+        await ref.read(userDataNotifierProvider.notifier).getUserName();
+    final photoUrl =
+        await ref.read(userDataNotifierProvider.notifier).getUserPhotoUrl();
 
-    _isDarkMode =
-        await ref.read(userPreferenceLocalServiceProvider).getUserThemeMode();
-    setState(() {});
+    setState(() {
+      _userEmail = userEmail;
+      _username = userName;
+      _imageUrl = photoUrl;
+    });
   }
 
   @override
   void initState() {
-    _initialize();
+    _initializeInfos();
+
     super.initState();
   }
 
@@ -71,7 +79,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: _imageUrl == null
+                  image: _imageUrl == null || _imageUrl!.isEmpty
                       ? const AssetImage('assets/images/empty_pp.png')
                           as ImageProvider
                       : CachedNetworkImageProvider(_imageUrl!),
@@ -96,6 +104,9 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
             gapH16,
             const Divider(),
             ListTile(
+              onTap: () {
+                AutoRouter.of(context).push(const FillProfileRoute());
+              },
               leading: Image.asset(
                 'assets/icons/profil.png',
                 color: Theme.of(context).iconTheme.color,

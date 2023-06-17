@@ -6,7 +6,7 @@ import 'package:mova/src/features/auth/infrastructure/user_credentials_storage/u
 
 import '../../core/shared/providers.dart';
 import '../application/auth_notifier.dart';
-import '../application/user_data_notifier.dart';
+import '../application/user_credentials_notifier.dart';
 
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
   return FirebaseAuth.instance;
@@ -37,6 +37,6 @@ final authNotifier =
 });
 
 final userDataNotifierProvider =
-    StateNotifierProvider<UserDataNotifier, AsyncValue>((ref) {
+    StateNotifierProvider<UserDataNotifier, AsyncValue<void>>((ref) {
   return UserDataNotifier(ref.watch(userSecureStorageProvider));
 });

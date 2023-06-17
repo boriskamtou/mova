@@ -35,6 +35,13 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => ref.read(fillProfileNotifier.notifier).getUserProfile());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userNameController = useTextEditingController();
     final nicknameController = useTextEditingController();
@@ -44,11 +51,19 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
       fillProfileNotifier,
       (previous, next) {
         next.maybeWhen(
-          orElse: () {},
-          failure: (message) {
-            EasyLoading.showError(message!);
-          },
-        );
+            orElse: () {},
+            failure: (message) {
+              EasyLoading.showError(message!);
+            },
+            success: (data) {
+              if (data != null) {
+                emailController.text = data['email'];
+                nicknameController.text = data['nickName'];
+                userNameController.text = data['fullName'];
+                phoneController.text = data['phoneNumber'];
+                _image = File(data['imageUrl']);
+              }
+            });
       },
     );
     return Scaffold(

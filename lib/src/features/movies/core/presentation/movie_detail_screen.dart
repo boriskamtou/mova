@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_youtube_downloader/flutter_youtube_downloader.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
@@ -43,11 +42,11 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
   final ScrollController _scrollController = ScrollController();
 
   Future<void> downloadVideo() async {
-    final result = await FlutterYoutubeDownloader.downloadVideo(
-      "_extractedLink",
-      "Video Title goes Here",
-      18,
-    );
+    // final result = await FlutterYoutubeDownloader.downloadVideo(
+    //   "_extractedLink",
+    //   "Video Title goes Here",
+    //   18,
+    // );
   }
 
   @override

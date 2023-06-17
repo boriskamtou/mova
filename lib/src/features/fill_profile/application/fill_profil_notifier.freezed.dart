@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$FillProfileState {
+mixin _$FillProfileState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() intial,
     required TResult Function() loading,
     required TResult Function(String? message) failure,
-    required TResult Function() success,
+    required TResult Function(T? data) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$FillProfileState {
     TResult? Function()? intial,
     TResult? Function()? loading,
     TResult? Function(String? message)? failure,
-    TResult? Function()? success,
+    TResult? Function(T? data)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,47 +37,47 @@ mixin _$FillProfileState {
     TResult Function()? intial,
     TResult Function()? loading,
     TResult Function(String? message)? failure,
-    TResult Function()? success,
+    TResult Function(T? data)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) intial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial<T> value) intial,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Failure<T> value) failure,
+    required TResult Function(_Success<T> value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? intial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Initial<T> value)? intial,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Failure<T> value)? failure,
+    TResult? Function(_Success<T> value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? intial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial<T> value)? intial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Failure<T> value)? failure,
+    TResult Function(_Success<T> value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FillProfileStateCopyWith<$Res> {
+abstract class $FillProfileStateCopyWith<T, $Res> {
   factory $FillProfileStateCopyWith(
-          FillProfileState value, $Res Function(FillProfileState) then) =
-      _$FillProfileStateCopyWithImpl<$Res, FillProfileState>;
+          FillProfileState<T> value, $Res Function(FillProfileState<T>) then) =
+      _$FillProfileStateCopyWithImpl<T, $Res, FillProfileState<T>>;
 }
 
 /// @nodoc
-class _$FillProfileStateCopyWithImpl<$Res, $Val extends FillProfileState>
-    implements $FillProfileStateCopyWith<$Res> {
+class _$FillProfileStateCopyWithImpl<T, $Res, $Val extends FillProfileState<T>>
+    implements $FillProfileStateCopyWith<T, $Res> {
   _$FillProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -87,34 +87,35 @@ class _$FillProfileStateCopyWithImpl<$Res, $Val extends FillProfileState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
+abstract class _$$_InitialCopyWith<T, $Res> {
   factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+          _$_Initial<T> value, $Res Function(_$_Initial<T>) then) =
+      __$$_InitialCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$FillProfileStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_InitialCopyWithImpl<T, $Res>
+    extends _$FillProfileStateCopyWithImpl<T, $Res, _$_Initial<T>>
+    implements _$$_InitialCopyWith<T, $Res> {
+  __$$_InitialCopyWithImpl(
+      _$_Initial<T> _value, $Res Function(_$_Initial<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial extends _Initial {
+class _$_Initial<T> extends _Initial<T> {
   const _$_Initial() : super._();
 
   @override
   String toString() {
-    return 'FillProfileState.intial()';
+    return 'FillProfileState<$T>.intial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial<T>);
   }
 
   @override
@@ -126,7 +127,7 @@ class _$_Initial extends _Initial {
     required TResult Function() intial,
     required TResult Function() loading,
     required TResult Function(String? message) failure,
-    required TResult Function() success,
+    required TResult Function(T? data) success,
   }) {
     return intial();
   }
@@ -137,7 +138,7 @@ class _$_Initial extends _Initial {
     TResult? Function()? intial,
     TResult? Function()? loading,
     TResult? Function(String? message)? failure,
-    TResult? Function()? success,
+    TResult? Function(T? data)? success,
   }) {
     return intial?.call();
   }
@@ -148,7 +149,7 @@ class _$_Initial extends _Initial {
     TResult Function()? intial,
     TResult Function()? loading,
     TResult Function(String? message)? failure,
-    TResult Function()? success,
+    TResult Function(T? data)? success,
     required TResult orElse(),
   }) {
     if (intial != null) {
@@ -160,10 +161,10 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) intial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial<T> value) intial,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Failure<T> value) failure,
+    required TResult Function(_Success<T> value) success,
   }) {
     return intial(this);
   }
@@ -171,10 +172,10 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? intial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Initial<T> value)? intial,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Failure<T> value)? failure,
+    TResult? Function(_Success<T> value)? success,
   }) {
     return intial?.call(this);
   }
@@ -182,10 +183,10 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? intial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial<T> value)? intial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Failure<T> value)? failure,
+    TResult Function(_Success<T> value)? success,
     required TResult orElse(),
   }) {
     if (intial != null) {
@@ -195,40 +196,41 @@ class _$_Initial extends _Initial {
   }
 }
 
-abstract class _Initial extends FillProfileState {
-  const factory _Initial() = _$_Initial;
+abstract class _Initial<T> extends FillProfileState<T> {
+  const factory _Initial() = _$_Initial<T>;
   const _Initial._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
+abstract class _$$_LoadingCopyWith<T, $Res> {
   factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+          _$_Loading<T> value, $Res Function(_$_Loading<T>) then) =
+      __$$_LoadingCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$FillProfileStateCopyWithImpl<$Res, _$_Loading>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+class __$$_LoadingCopyWithImpl<T, $Res>
+    extends _$FillProfileStateCopyWithImpl<T, $Res, _$_Loading<T>>
+    implements _$$_LoadingCopyWith<T, $Res> {
+  __$$_LoadingCopyWithImpl(
+      _$_Loading<T> _value, $Res Function(_$_Loading<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Loading extends _Loading {
+class _$_Loading<T> extends _Loading<T> {
   const _$_Loading() : super._();
 
   @override
   String toString() {
-    return 'FillProfileState.loading()';
+    return 'FillProfileState<$T>.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading<T>);
   }
 
   @override
@@ -240,7 +242,7 @@ class _$_Loading extends _Loading {
     required TResult Function() intial,
     required TResult Function() loading,
     required TResult Function(String? message) failure,
-    required TResult Function() success,
+    required TResult Function(T? data) success,
   }) {
     return loading();
   }
@@ -251,7 +253,7 @@ class _$_Loading extends _Loading {
     TResult? Function()? intial,
     TResult? Function()? loading,
     TResult? Function(String? message)? failure,
-    TResult? Function()? success,
+    TResult? Function(T? data)? success,
   }) {
     return loading?.call();
   }
@@ -262,7 +264,7 @@ class _$_Loading extends _Loading {
     TResult Function()? intial,
     TResult Function()? loading,
     TResult Function(String? message)? failure,
-    TResult Function()? success,
+    TResult Function(T? data)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -274,10 +276,10 @@ class _$_Loading extends _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) intial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial<T> value) intial,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Failure<T> value) failure,
+    required TResult Function(_Success<T> value) success,
   }) {
     return loading(this);
   }
@@ -285,10 +287,10 @@ class _$_Loading extends _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? intial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Initial<T> value)? intial,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Failure<T> value)? failure,
+    TResult? Function(_Success<T> value)? success,
   }) {
     return loading?.call(this);
   }
@@ -296,10 +298,10 @@ class _$_Loading extends _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? intial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial<T> value)? intial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Failure<T> value)? failure,
+    TResult Function(_Success<T> value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -309,25 +311,26 @@ class _$_Loading extends _Loading {
   }
 }
 
-abstract class _Loading extends FillProfileState {
-  const factory _Loading() = _$_Loading;
+abstract class _Loading<T> extends FillProfileState<T> {
+  const factory _Loading() = _$_Loading<T>;
   const _Loading._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_FailureCopyWith<$Res> {
+abstract class _$$_FailureCopyWith<T, $Res> {
   factory _$$_FailureCopyWith(
-          _$_Failure value, $Res Function(_$_Failure) then) =
-      __$$_FailureCopyWithImpl<$Res>;
+          _$_Failure<T> value, $Res Function(_$_Failure<T>) then) =
+      __$$_FailureCopyWithImpl<T, $Res>;
   @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res>
-    extends _$FillProfileStateCopyWithImpl<$Res, _$_Failure>
-    implements _$$_FailureCopyWith<$Res> {
-  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+class __$$_FailureCopyWithImpl<T, $Res>
+    extends _$FillProfileStateCopyWithImpl<T, $Res, _$_Failure<T>>
+    implements _$$_FailureCopyWith<T, $Res> {
+  __$$_FailureCopyWithImpl(
+      _$_Failure<T> _value, $Res Function(_$_Failure<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +338,7 @@ class __$$_FailureCopyWithImpl<$Res>
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_$_Failure(
+    return _then(_$_Failure<T>(
       freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -346,7 +349,7 @@ class __$$_FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure extends _Failure {
+class _$_Failure<T> extends _Failure<T> {
   const _$_Failure([this.message]) : super._();
 
   @override
@@ -354,14 +357,14 @@ class _$_Failure extends _Failure {
 
   @override
   String toString() {
-    return 'FillProfileState.failure(message: $message)';
+    return 'FillProfileState<$T>.failure(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Failure &&
+            other is _$_Failure<T> &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -371,8 +374,8 @@ class _$_Failure extends _Failure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FailureCopyWith<_$_Failure> get copyWith =>
-      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
+  _$$_FailureCopyWith<T, _$_Failure<T>> get copyWith =>
+      __$$_FailureCopyWithImpl<T, _$_Failure<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -380,7 +383,7 @@ class _$_Failure extends _Failure {
     required TResult Function() intial,
     required TResult Function() loading,
     required TResult Function(String? message) failure,
-    required TResult Function() success,
+    required TResult Function(T? data) success,
   }) {
     return failure(message);
   }
@@ -391,7 +394,7 @@ class _$_Failure extends _Failure {
     TResult? Function()? intial,
     TResult? Function()? loading,
     TResult? Function(String? message)? failure,
-    TResult? Function()? success,
+    TResult? Function(T? data)? success,
   }) {
     return failure?.call(message);
   }
@@ -402,7 +405,7 @@ class _$_Failure extends _Failure {
     TResult Function()? intial,
     TResult Function()? loading,
     TResult Function(String? message)? failure,
-    TResult Function()? success,
+    TResult Function(T? data)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -414,10 +417,10 @@ class _$_Failure extends _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) intial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial<T> value) intial,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Failure<T> value) failure,
+    required TResult Function(_Success<T> value) success,
   }) {
     return failure(this);
   }
@@ -425,10 +428,10 @@ class _$_Failure extends _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? intial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Initial<T> value)? intial,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Failure<T> value)? failure,
+    TResult? Function(_Success<T> value)? success,
   }) {
     return failure?.call(this);
   }
@@ -436,10 +439,10 @@ class _$_Failure extends _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? intial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial<T> value)? intial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Failure<T> value)? failure,
+    TResult Function(_Success<T> value)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -449,49 +452,77 @@ class _$_Failure extends _Failure {
   }
 }
 
-abstract class _Failure extends FillProfileState {
-  const factory _Failure([final String? message]) = _$_Failure;
+abstract class _Failure<T> extends FillProfileState<T> {
+  const factory _Failure([final String? message]) = _$_Failure<T>;
   const _Failure._() : super._();
 
   String? get message;
   @JsonKey(ignore: true)
-  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+  _$$_FailureCopyWith<T, _$_Failure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
+abstract class _$$_SuccessCopyWith<T, $Res> {
   factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
+          _$_Success<T> value, $Res Function(_$_Success<T>) then) =
+      __$$_SuccessCopyWithImpl<T, $Res>;
+  @useResult
+  $Res call({T? data});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res>
-    extends _$FillProfileStateCopyWithImpl<$Res, _$_Success>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+class __$$_SuccessCopyWithImpl<T, $Res>
+    extends _$FillProfileStateCopyWithImpl<T, $Res, _$_Success<T>>
+    implements _$$_SuccessCopyWith<T, $Res> {
+  __$$_SuccessCopyWithImpl(
+      _$_Success<T> _value, $Res Function(_$_Success<T>) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_$_Success<T>(
+      freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as T?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Success extends _Success {
-  const _$_Success() : super._();
+class _$_Success<T> extends _Success<T> {
+  const _$_Success([this.data]) : super._();
+
+  @override
+  final T? data;
 
   @override
   String toString() {
-    return 'FillProfileState.success()';
+    return 'FillProfileState<$T>.success(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Success<T> &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SuccessCopyWith<T, _$_Success<T>> get copyWith =>
+      __$$_SuccessCopyWithImpl<T, _$_Success<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -499,9 +530,9 @@ class _$_Success extends _Success {
     required TResult Function() intial,
     required TResult Function() loading,
     required TResult Function(String? message) failure,
-    required TResult Function() success,
+    required TResult Function(T? data) success,
   }) {
-    return success();
+    return success(data);
   }
 
   @override
@@ -510,9 +541,9 @@ class _$_Success extends _Success {
     TResult? Function()? intial,
     TResult? Function()? loading,
     TResult? Function(String? message)? failure,
-    TResult? Function()? success,
+    TResult? Function(T? data)? success,
   }) {
-    return success?.call();
+    return success?.call(data);
   }
 
   @override
@@ -521,11 +552,11 @@ class _$_Success extends _Success {
     TResult Function()? intial,
     TResult Function()? loading,
     TResult Function(String? message)? failure,
-    TResult Function()? success,
+    TResult Function(T? data)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(data);
     }
     return orElse();
   }
@@ -533,10 +564,10 @@ class _$_Success extends _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) intial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Initial<T> value) intial,
+    required TResult Function(_Loading<T> value) loading,
+    required TResult Function(_Failure<T> value) failure,
+    required TResult Function(_Success<T> value) success,
   }) {
     return success(this);
   }
@@ -544,10 +575,10 @@ class _$_Success extends _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? intial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Initial<T> value)? intial,
+    TResult? Function(_Loading<T> value)? loading,
+    TResult? Function(_Failure<T> value)? failure,
+    TResult? Function(_Success<T> value)? success,
   }) {
     return success?.call(this);
   }
@@ -555,10 +586,10 @@ class _$_Success extends _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? intial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Success value)? success,
+    TResult Function(_Initial<T> value)? intial,
+    TResult Function(_Loading<T> value)? loading,
+    TResult Function(_Failure<T> value)? failure,
+    TResult Function(_Success<T> value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -568,7 +599,12 @@ class _$_Success extends _Success {
   }
 }
 
-abstract class _Success extends FillProfileState {
-  const factory _Success() = _$_Success;
+abstract class _Success<T> extends FillProfileState<T> {
+  const factory _Success([final T? data]) = _$_Success<T>;
   const _Success._() : super._();
+
+  T? get data;
+  @JsonKey(ignore: true)
+  _$$_SuccessCopyWith<T, _$_Success<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }

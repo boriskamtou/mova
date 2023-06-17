@@ -19,6 +19,7 @@ final fillProfileProvider = Provider((ref) {
   return FillProfileRepository(
       ref.watch(firestoreProvider),
       ref.watch(firebaseStorageProvider),
+      ref.watch(firebaseAuthProvider),
       ref.watch(userPreferenceLocalServiceProvider),
       ref.watch(userSecureStorageProvider));
 });
