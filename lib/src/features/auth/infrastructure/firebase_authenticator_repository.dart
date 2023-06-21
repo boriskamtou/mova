@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
@@ -114,6 +115,7 @@ class FirebaseAuthenticatorRepository {
     try {
       final GoogleSignInAccount? googleUserAccount =
           await GoogleSignIn().signIn();
+
       final GoogleSignInAuthentication? googleAuth =
           await googleUserAccount?.authentication;
 
@@ -136,6 +138,7 @@ class FirebaseAuthenticatorRepository {
 
       return right(userCredentials);
     } on PlatformException catch (e) {
+      debugPrint(e.message!);
       return left(
         AuthFailure.failure(e.message!),
       );

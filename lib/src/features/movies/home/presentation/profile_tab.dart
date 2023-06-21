@@ -78,7 +78,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: AppColors.grey,
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   image: _imageUrl == null || _imageUrl!.isEmpty
                       ? const AssetImage('assets/images/empty_pp.png')
                           as ImageProvider

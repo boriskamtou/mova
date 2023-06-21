@@ -55,15 +55,7 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
             failure: (message) {
               EasyLoading.showError(message!);
             },
-            success: (data) {
-              if (data != null) {
-                emailController.text = data['email'];
-                nicknameController.text = data['nickName'];
-                userNameController.text = data['fullName'];
-                phoneController.text = data['phoneNumber'];
-                _image = File(data['imageUrl']);
-              }
-            });
+            success: (data) {});
       },
     );
     return Scaffold(

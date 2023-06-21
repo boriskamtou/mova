@@ -75,6 +75,7 @@ class _SignUpWithPasswordScreenState
     );
     return ProgressHUD(
       barrierEnabled: true,
+      borderWidth: 0,
       child: Builder(builder: (ctx) {
         return Scaffold(
           appBar: AppBar(),
@@ -158,6 +159,7 @@ class _SignUpWithPasswordScreenState
                           if (_formKey.currentState!.validate()) {
                             final progress = ProgressHUD.of(ctx);
                             progress?.show();
+
                             _isLoggedIn
                                 ? await ref
                                     .read(authNotifier.notifier)
@@ -199,19 +201,24 @@ class _SignUpWithPasswordScreenState
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           _SocialIconSignUp(
-                            onTap: () {},
+                            onTap: () {
+                              debugPrint('Log in with Facebook');
+                            },
                             imageUrl: 'assets/icons/facebook.png',
                           ),
                           _SocialIconSignUp(
-                            onTap: () {
-                              ref
+                            onTap: () async {
+                              debugPrint('Log in with Google');
+                              await ref
                                   .read(authNotifier.notifier)
                                   .signUpWithGoogle();
                             },
                             imageUrl: 'assets/icons/google.png',
                           ),
                           _SocialIconSignUp(
-                            onTap: () {},
+                            onTap: () {
+                              debugPrint('Log in with Apple');
+                            },
                             imageUrl: 'assets/icons/apple-dark.png',
                           ),
                         ],
@@ -280,10 +287,10 @@ class _SocialIconSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      splashColor: Colors.transparent,
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
@@ -291,12 +298,7 @@ class _SocialIconSignUp extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: IconButton(
-          onPressed: () {},
-          splashColor: Colors.transparent,
-          padding: EdgeInsets.zero,
-          icon: Image.asset(imageUrl),
-        ),
+        child: Image.asset(imageUrl),
       ),
     );
   }
