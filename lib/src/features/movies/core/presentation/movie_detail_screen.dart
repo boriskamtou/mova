@@ -133,7 +133,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
               SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    gapH20,
+                    gapH16,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(

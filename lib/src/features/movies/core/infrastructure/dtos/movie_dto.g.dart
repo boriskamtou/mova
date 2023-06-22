@@ -10,18 +10,20 @@ _$_MovieDTO _$$_MovieDTOFromJson(Map<String, dynamic> json) => _$_MovieDTO(
       id: json['id'] as int,
       adult: json['adult'] as bool? ?? false,
       backdropPath: json['backdrop_path'] as String? ?? "",
-      genreIds:
-          (json['genre_ids'] as List<dynamic>).map((e) => e as int).toList(),
+      genreIds: (json['genre_ids'] as List<dynamic>?)
+              ?.map((e) => e as int)
+              .toList() ??
+          const [],
       originalLanguage: json['original_language'] as String,
       originalTitle: json['original_title'] as String,
       overview: json['overview'] as String,
-      popularity: (json['popularity'] as num).toDouble(),
+      popularity: (json['popularity'] as num?)?.toDouble() ?? 0,
       posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String?,
       title: json['title'] as String,
       video: json['video'] as bool? ?? false,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
+      voteAverage: (json['vote_average'] as num?)?.toDouble() ?? 0,
+      voteCount: json['vote_count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_MovieDTOToJson(_$_MovieDTO instance) =>

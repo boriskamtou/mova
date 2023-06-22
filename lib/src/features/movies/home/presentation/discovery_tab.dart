@@ -96,15 +96,14 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 .getFirstSearchedMoviePage(_controller.query.trim());
           },
           transition: CircularFloatingSearchBarTransition(),
-          onSubmitted: (String searchedMovie) {
-            pushPageAndAddToHistory(searchedMovie);
-
+          onSubmitted: (String searchedMovie) async {
             setState(() {
               _controller.query = searchedMovie;
-              ref
-                  .read(searchMovieNotifierProvider.notifier)
-                  .getFirstSearchedMoviePage(searchedMovie);
             });
+            pushPageAndAddToHistory(searchedMovie);
+            await ref
+                .read(searchMovieNotifierProvider.notifier)
+                .getFirstSearchedMoviePage(searchedMovie);
           },
           builder: (context, transaition) => Consumer(
             builder: (context, ref, child) {
@@ -160,12 +159,9 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                               .toList(),
                         ),
                 ),
-                loading: (_) => const ListTile(
-                  title: LinearProgressIndicator(),
-                ),
-                error: (_) => const Center(
-                  child: Text('Error'),
-                ),
+                loading: (_) =>
+                    const ListTile(title: LinearProgressIndicator()),
+                error: (_) => const Center(child: Text('Error')),
               );
             },
           ),

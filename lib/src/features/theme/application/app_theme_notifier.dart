@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
@@ -6,21 +5,26 @@ import 'package:mova/src/features/core/shared/providers.dart';
 import 'package:mova/src/features/theme/presentation/app_themes.dart';
 
 class AppThemeNotifier extends StateNotifier<ThemeData> {
-  final UserPreferencesRepository _userPreferencesLocalService;
+  final UserPreferencesRepository _userPreferenceRepository;
 
-  AppThemeNotifier(this._userPreferencesLocalService)
+  AppThemeNotifier(this._userPreferenceRepository)
       : super(AppTheme.darkTheme());
 
-  ThemeData get theme => state;
+  Future<bool?> getPreferedThemeMode() async =>
+      await _userPreferenceRepository.getUserThemeMode();
 
-  Future<void> toggleTheme(bool value) async {
-    final userMode =
-        await _userPreferencesLocalService.getUserThemeMode() ?? false;
-    if (value) {
+  Future<void> storeUserPreferedThemeMode(bool value) async =>
+      await _userPreferenceRepository.storeUserPreferedThemeMode(value);
+
+  Future<void> toggleTheme() async {
+    final userMode = await getPreferedThemeMode() ?? true;
+    if (userMode) {
       state = AppTheme.darkTheme();
     } else {
       state = AppTheme.lightTheme();
     }
+
+    debugPrint('User Prefered Dark Mode: $userMode');
   }
 }
 

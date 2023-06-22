@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
@@ -23,7 +22,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    playIntroSound();
+    //  playIntroSound();
   }
 
   @override
@@ -34,10 +33,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         child: Image.asset(
           'assets/images/logo.png',
           height: 70,
-        ).animate().scale(
-              duration: const Duration(milliseconds: 300),
-            ),
+        ),
       ),
+      // .animate().scale(duration: const Duration(milliseconds: 300))
     );
   }
 }

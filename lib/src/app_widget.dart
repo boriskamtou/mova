@@ -19,6 +19,7 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
       // connectTimeout: const Duration(seconds: 30),
       // sendTimeout: const Duration(seconds: 30),
       );
+  await ref.read(appThemeProvider.notifier).toggleTheme();
   final auth = ref.watch(authNotifier.notifier);
   auth.checkAuthStatus();
   return unit;
@@ -83,7 +84,7 @@ class AppWidget extends ConsumerWidget {
         );
       },
     );
-    final appTheme = ref.watch(appThemeProvider.notifier);
+    final appTheme = ref.watch(appThemeProvider);
     return MaterialApp.router(
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
@@ -104,7 +105,7 @@ class AppWidget extends ConsumerWidget {
       ],
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context)!.appTitle,
-      theme: appTheme.theme,
+      theme: appTheme,
       builder: EasyLoading.init(),
     );
   }

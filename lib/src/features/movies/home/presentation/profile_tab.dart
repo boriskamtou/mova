@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
-import 'package:mova/src/features/core/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
 
@@ -20,7 +19,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _userEmail = '';
   String? _username = '';
   String? _imageUrl = '';
-  bool? _isDarkMode = false;
+  bool? _isDarkMode = true;
 
   Future<void> _initializeInfos() async {
     final userEmail =
@@ -30,10 +29,13 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
     final photoUrl =
         await ref.read(userDataNotifierProvider.notifier).getUserPhotoUrl();
 
+    final isDarkMode =
+        await ref.read(appThemeProvider.notifier).getPreferedThemeMode();
     setState(() {
       _userEmail = userEmail;
       _username = userName;
       _imageUrl = photoUrl;
+      _isDarkMode = isDarkMode;
     });
   }
 
@@ -161,17 +163,16 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                     ),
               ),
               trailing: Switch.adaptive(
-                value: _isDarkMode ?? false,
+                value: _isDarkMode!,
                 activeColor: Theme.of(context).primaryColor,
                 onChanged: (value) async {
-                  ref
-                      .read(userPreferenceLocalServiceProvider)
-                      .storePrefMode(value);
-                  _isDarkMode = await ref
-                      .read(userPreferenceLocalServiceProvider)
-                      .getUserThemeMode();
-                  await ref.read(appThemeProvider.notifier).toggleTheme(value);
-                  setState(() {});
+                  await ref
+                      .read(appThemeProvider.notifier)
+                      .storeUserPreferedThemeMode(value);
+                  setState(() {
+                    _isDarkMode = value;
+                    ref.read(appThemeProvider.notifier).toggleTheme();
+                  });
                 },
               ),
             ),

@@ -46,9 +46,7 @@ class SearchMovieRepository {
         ),
       );
     } on MovieException catch (e) {
-      return left(
-        MovieFailure.api(e.errorMessage),
-      );
+      return left(MovieFailure.api(e.errorMessage));
     }
   }
 }

@@ -13,8 +13,7 @@ class SearchMovieNotifier extends PaginatedMoviesNotifier {
   }
 
   Future<void> getSearchMovies(String searchTerm) async {
-    super.getNextPaginatedMoviePage((page) {
-      return _repository.getSearchMovies(searchTerm, page);
-    });
+    super.getNextPaginatedMoviePage(
+        (page) => _repository.getSearchMovies(searchTerm, page));
   }
 }

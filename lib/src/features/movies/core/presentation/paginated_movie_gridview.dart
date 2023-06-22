@@ -182,7 +182,6 @@ class _PaginatedGridViewState extends State<_PaginatedGridView> {
           }
         },
         loaded: (_) {
-          debugPrint('Is The List Empty: ${_.movies.entity.isNotEmpty}');
           return MovieItem(
             scrollController: widget.scrollController,
             isAlreadyInDetail: widget.isAlreadyInDetailScreen,

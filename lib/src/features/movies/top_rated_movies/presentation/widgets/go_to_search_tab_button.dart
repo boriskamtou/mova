@@ -27,7 +27,7 @@ class GoToSearchTabButton extends StatelessWidget {
         },
         icon: Image.asset(
           'assets/icons/search.png',
-          color: AppColors.white,
+          color: Theme.of(context).textTheme.headlineMedium!.color,
           width: 24,
         ),
       ),

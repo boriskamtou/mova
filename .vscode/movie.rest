@@ -5,7 +5,7 @@
 @movie_id = 502356
 @review_id = 64440771cee2f667e736c55d
 
-@searchedMovie = Black
+@searchedMovie = AVATAR
 
 @page = 1
 

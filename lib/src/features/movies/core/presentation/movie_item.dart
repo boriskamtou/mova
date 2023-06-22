@@ -66,7 +66,7 @@ class MovieItem extends StatelessWidget {
               child: FittedBox(
                 child: Center(
                   child: Text(
-                    movie.voteAverage.toString(),
+                    movie.voteAverage.toStringAsFixed(1).toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: AppColors.white,
