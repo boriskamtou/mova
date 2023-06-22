@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mova/src/constants/local_storage_constants.dart';
 import 'package:mova/src/features/core/infrastructure/remote_response.dart';
 import 'package:mova/src/features/movies/core/infrastructure/local/total_results_cache.dart';
@@ -14,6 +15,7 @@ class SearchMovieRemoteService extends MovieRemoteService {
   Future<RemoteResponse<MovieResponseDTO>> searchMovie(
       int page, String searchTerm) {
     final url = UrlBuilder().buildSearchMovie(searchTerm, page);
+    debugPrint(url);
     return super
         .getMoviesPage(url, LocalStorageConstants.searchMovieTotalResults);
   }

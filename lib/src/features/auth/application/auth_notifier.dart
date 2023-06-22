@@ -52,6 +52,15 @@ class FirebaseAuthenticatorNotifier extends StateNotifier<AuthState> {
     );
   }
 
+  Future<void> signInWithFacebook() async {
+    state = const AuthState.loading();
+    final failureOrSuccess = await _signUpAuthenticator.signInWithFacebook();
+    state = failureOrSuccess.fold(
+      (l) => AuthState.failure(l),
+      (r) => const AuthState.authenticated(),
+    );
+  }
+
   Future<void> signOut() async {
     final failureOrSuccess = await _signUpAuthenticator.signOut();
     state = failureOrSuccess.fold(

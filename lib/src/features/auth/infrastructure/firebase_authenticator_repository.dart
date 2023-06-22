@@ -2,11 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 
 import '../domain/failures/auth_failure.dart';
 import 'user_credentials_storage/user_credentials_storage.dart';
+
+typedef FailureOrCredential = Either<AuthFailure, UserCredential>;
 
 class FirebaseAuthenticatorRepository {
   final FirebaseAuth _auth;
@@ -19,7 +22,7 @@ class FirebaseAuthenticatorRepository {
     this._userPreferencesLocalService,
   );
 
-  Future<Either<AuthFailure, UserCredential>> signInWithEmailAndPassword(
+  Future<FailureOrCredential> signInWithEmailAndPassword(
       String email, String password) async {
     UserCredential userCredentials;
     try {
@@ -59,7 +62,7 @@ class FirebaseAuthenticatorRepository {
     }
   }
 
-  Future<Either<AuthFailure, UserCredential>> signUpWithEmailAndPassword(
+  Future<FailureOrCredential> signUpWithEmailAndPassword(
       String email, String password) async {
     UserCredential userCredentials;
 
@@ -111,7 +114,7 @@ class FirebaseAuthenticatorRepository {
     }
   }
 
-  Future<Either<AuthFailure, UserCredential>> signUpWithGoogle() async {
+  Future<FailureOrCredential> signUpWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUserAccount =
           await GoogleSignIn().signIn();
@@ -127,6 +130,52 @@ class FirebaseAuthenticatorRepository {
       final userCredentials =
           await FirebaseAuth.instance.signInWithCredential(credential);
 
+      if (userCredentials.user != null) {
+        _credentialsStorage.upsertUserInfo(
+          userName: userCredentials.user!.displayName,
+          userEmail: userCredentials.user!.email,
+          photoUrl: userCredentials.user!.photoURL,
+          phoneNumber: userCredentials.user!.phoneNumber,
+        );
+      }
+
+      return right(userCredentials);
+    } on PlatformException catch (e) {
+      debugPrint(e.message!);
+      return left(
+        AuthFailure.failure(e.message!),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return left(
+          const AuthFailure.failure('The password provided is too weak.'),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        return left(
+          const AuthFailure.failure(
+              'The account already exists for that email.'),
+        );
+      } else if (e.code == 'network-request-failed') {
+        return left(
+          const AuthFailure.failure('You do not have internet connexion'),
+        );
+      } else {
+        return left(
+          AuthFailure.failure('Failed with error code: ${e.code}'),
+        );
+      }
+    }
+  }
+
+  Future<FailureOrCredential> signInWithFacebook() async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      final userCredentials = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
       if (userCredentials.user != null) {
         _credentialsStorage.upsertUserInfo(
           userName: userCredentials.user!.displayName,

@@ -55,6 +55,7 @@ dependencies:
   firebase_storage: ^11.2.2
   flutter_progress_hud: ^2.0.2
   animations: ^2.0.7
+  flutter_facebook_auth: ^5.0.11
 
 dev_dependencies:
   flutter_test:

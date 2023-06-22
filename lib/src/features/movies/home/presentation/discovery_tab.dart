@@ -14,12 +14,25 @@ class DiscoveryTab extends ConsumerStatefulWidget {
 
 class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
   late FloatingSearchBarController _controller;
-  String searchTerm = '';
 
   @override
   void initState() {
     _controller = FloatingSearchBarController();
+    Future.microtask(
+      () => ref.read(searchHistoryNotifier.notifier).watchSearchTerms(),
+    );
     super.initState();
+  }
+
+  void pushPageAndPutFirstInHistory(String searchTerm) {
+    ref.read(searchHistoryNotifier.notifier).putSearchTermFirst(searchTerm);
+
+    _controller.close();
+  }
+
+  void pushPageAndAddToHistory(String searchTerm) async {
+    await ref.read(searchHistoryNotifier.notifier).addSearchTerm(searchTerm);
+    _controller.close();
   }
 
   @override
@@ -30,7 +43,8 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
         child: FloatingSearchBar(
           controller: _controller,
           automaticallyImplyBackButton: false,
-          hint: 'Search...',
+          hint: 'Search movie...',
+          clearQueryOnClose: false,
           elevation: 0,
           actions: [
             IconButton(
@@ -38,7 +52,8 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 FocusScope.of(context).unfocus();
                 ref
                     .read(searchMovieNotifierProvider.notifier)
-                    .getSearchMovies(_controller.query);
+                    .getFirstSearchedMoviePage(_controller.query);
+                _controller.close();
               },
               splashRadius: 20,
               icon: Image.asset(
@@ -54,16 +69,86 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
           physics: const BouncingScrollPhysics(),
           onQueryChanged: (query) {
             setState(() {
-              _controller.query = query;
-              ref
-                  .read(searchMovieNotifierProvider.notifier)
-                  .getSearchMovies(_controller.query);
+              _controller.query = query.trim();
             });
+            ref
+                .read(searchMovieNotifierProvider.notifier)
+                .getFirstSearchedMoviePage(_controller.query.trim());
           },
           transition: CircularFloatingSearchBarTransition(),
-          builder: (context, transition) {
-            return Container();
+          onSubmitted: (String searchedMovie) {
+            pushPageAndAddToHistory(searchedMovie);
+
+            setState(() {
+              _controller.query = searchedMovie;
+              ref
+                  .read(searchMovieNotifierProvider.notifier)
+                  .getFirstSearchedMoviePage(searchedMovie);
+            });
           },
+          builder: (context, transaition) => Consumer(
+            builder: (context, ref, child) {
+              final searchHistoryState = ref.watch(searchHistoryNotifier);
+              return searchHistoryState.map(
+                data: (data) => Material(
+                  color: Theme.of(context).cardColor,
+                  elevation: 4,
+                  borderRadius: BorderRadius.circular(8),
+                  clipBehavior: Clip.hardEdge,
+                  child: _controller.query.isEmpty && data.value.isEmpty
+                      ? Container(
+                          height: 56,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'No rencent searchs found!',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: data.value
+                              .map(
+                                (searchedMovie) => ListTile(
+                                  onTap: () {
+                                    setState(() {
+                                      _controller.query = searchedMovie;
+                                    });
+                                    pushPageAndPutFirstInHistory(searchedMovie);
+                                    ref
+                                        .read(searchMovieNotifierProvider
+                                            .notifier)
+                                        .getFirstSearchedMoviePage(
+                                            _controller.query.trim());
+                                  },
+                                  title: Text(
+                                    searchedMovie,
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  leading: const Icon(Icons.history),
+                                  trailing: IconButton(
+                                    splashRadius: 18,
+                                    onPressed: () => ref
+                                        .read(searchHistoryNotifier.notifier)
+                                        .deleteSearchTerm(searchedMovie),
+                                    icon: const Icon(Icons.close),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                ),
+                loading: (_) => const ListTile(
+                  title: LinearProgressIndicator(),
+                ),
+                error: (_) => const Center(
+                  child: Text('Error'),
+                ),
+              );
+            },
+          ),
           body: Padding(
             padding: const EdgeInsets.only(top: 100),
             child: PaginatedMoviesGridView(
@@ -73,6 +158,28 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                   .read(searchMovieNotifierProvider.notifier)
                   .getSearchMovies(_controller.query),
               noDataMessage: 'No movies found',
+              useWidgetToDisplayEmptyList: true,
+              showEmptyList: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'No movie found!',
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
+                    gapH10,
+                    Text(
+                      "It seems that you haven't found\nyet the movie your're looking for",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

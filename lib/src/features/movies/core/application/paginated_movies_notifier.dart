@@ -34,6 +34,12 @@ class PaginatedMoviesNotifier extends StateNotifier<PaginatedMoviesState> {
   int _page = 1;
 
   @protected
+  void resetState() {
+    _page = 1;
+    state = PaginatedMoviesState.initial(Fresh.yes([]));
+  }
+
+  @protected
   Future<void> getNextPaginatedMoviePage(RepositoryGetter getter) async {
     state = PaginatedMoviesState.loading(
       state.movies,

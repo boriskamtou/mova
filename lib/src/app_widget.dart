@@ -16,9 +16,9 @@ import 'features/theme/application/app_theme_notifier.dart';
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).database;
   ref.read(dioProvider).options = BaseOptions(
-    connectTimeout: const Duration(seconds: 30),
-    sendTimeout: const Duration(seconds: 30),
-  );
+      // connectTimeout: const Duration(seconds: 30),
+      // sendTimeout: const Duration(seconds: 30),
+      );
   final auth = ref.watch(authNotifier.notifier);
   auth.checkAuthStatus();
   return unit;

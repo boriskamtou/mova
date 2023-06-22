@@ -20,15 +20,19 @@ class PaginatedMoviesGridView extends ConsumerStatefulWidget {
 
   final ScrollController? scrollController;
   final bool? appliedPaddingTop;
+  final bool useWidgetToDisplayEmptyList;
+  final Widget showEmptyList;
 
   const PaginatedMoviesGridView({
     super.key,
     required this.paginatedMoviesNotifier,
     required this.getNextPage,
     required this.noDataMessage,
+    this.showEmptyList = const SizedBox.shrink(),
     this.scrollController,
     this.isAlreadyInDetail = false,
     this.appliedPaddingTop = false,
+    this.useWidgetToDisplayEmptyList = false,
   });
 
   @override
@@ -99,12 +103,22 @@ class _PaginatedMoviesGridViewState
 
             return false;
           },
-          child: _PaginatedGridView(
-            state: state,
-            isAlreadyInDetailScreen: widget.isAlreadyInDetail,
-            scrollController: widget.scrollController,
-            appliedPadding: widget.appliedPaddingTop,
-          ),
+          child: state.maybeWhen(
+            orElse: () => false,
+            loaded: (movies, _) => movies.entity.isNotEmpty,
+          )
+              ? _PaginatedGridView(
+                  state: state,
+                  isAlreadyInDetailScreen: widget.isAlreadyInDetail,
+                  scrollController: widget.scrollController,
+                  appliedPadding: widget.appliedPaddingTop,
+                  noDataMessage: widget.noDataMessage,
+                )
+              : widget.useWidgetToDisplayEmptyList
+                  ? widget.showEmptyList
+                  : NoData(
+                      message: widget.noDataMessage,
+                    ),
         );
       },
     );
@@ -116,6 +130,7 @@ class _PaginatedGridView extends StatefulWidget {
   final bool isAlreadyInDetailScreen;
   final ScrollController? scrollController;
   final bool? appliedPadding;
+  final String noDataMessage;
 
   const _PaginatedGridView({
     Key? key,
@@ -123,6 +138,7 @@ class _PaginatedGridView extends StatefulWidget {
     this.isAlreadyInDetailScreen = false,
     this.scrollController,
     this.appliedPadding = false,
+    required this.noDataMessage,
   }) : super(key: key);
 
   @override
@@ -153,7 +169,7 @@ class _PaginatedGridViewState extends State<_PaginatedGridView> {
         failure: (_) => _.movies.entity.length + 1,
       ),
       itemBuilder: (context, i) => widget.state.map(
-        initial: (_) => Container(),
+        initial: (_) => const SizedBox.shrink(),
         loading: (_) {
           if (i < _.movies.entity.length) {
             return MovieItem(
@@ -166,6 +182,7 @@ class _PaginatedGridViewState extends State<_PaginatedGridView> {
           }
         },
         loaded: (_) {
+          debugPrint('Is The List Empty: ${_.movies.entity.isNotEmpty}');
           return MovieItem(
             scrollController: widget.scrollController,
             isAlreadyInDetail: widget.isAlreadyInDetailScreen,

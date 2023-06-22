@@ -40,8 +40,8 @@ final popularMoviesStateNotifierProvider = StateNotifierProvider.autoDispose<
   return PopularMoviesNotifier(ref.watch(popularMoviesRepositoryProvider));
 });
 
-final paginatedMovieNotifier =
-    StateNotifierProvider<PaginatedMoviesNotifier, PaginatedMoviesState>((ref) {
+final paginatedMovieNotifier = StateNotifierProvider.autoDispose<
+    PaginatedMoviesNotifier, PaginatedMoviesState>((ref) {
   return PaginatedMoviesNotifier();
 });
 

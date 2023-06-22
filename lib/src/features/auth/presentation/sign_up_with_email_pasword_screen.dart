@@ -201,17 +201,22 @@ class _SignUpWithPasswordScreenState
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           _SocialIconSignUp(
-                            onTap: () {
+                            onTap: () async {
                               debugPrint('Log in with Facebook');
+                              await ref
+                                  .read(authNotifier.notifier)
+                                  .signInWithFacebook();
                             },
                             imageUrl: 'assets/icons/facebook.png',
                           ),
                           _SocialIconSignUp(
                             onTap: () async {
-                              debugPrint('Log in with Google');
+                              final progress = ProgressHUD.of(ctx);
+                              progress?.show();
                               await ref
                                   .read(authNotifier.notifier)
-                                  .signUpWithGoogle();
+                                  .signUpWithGoogle()
+                                  .then((value) => progress!.dismiss());
                             },
                             imageUrl: 'assets/icons/google.png',
                           ),
