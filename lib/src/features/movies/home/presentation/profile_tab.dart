@@ -196,7 +196,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                         ),
                         const SizedBox(height: 6),
                         const Text(
-                          'Made by WS',
+                          'Made by WCS',
                           style: TextStyle(
                             fontSize: 18,
                           ),
@@ -224,8 +224,8 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
             ),
             ListTile(
               onTap: () => ref.read(authNotifier.notifier).signOut(),
-              leading: Icon(
-                Icons.logout_outlined,
+              leading: Image.asset(
+                'assets/icons/logout.png',
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(

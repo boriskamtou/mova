@@ -1,5 +1,5 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/core/shared/providers.dart';
@@ -47,14 +47,27 @@ class _HomeTabState extends ConsumerState<HomeTab> {
     final topRatedMoviesState = ref.watch(topRatedMoviesStateNotifierProvider);
     final upComingMoviesState = ref.watch(upComingMoviesStateNotifierProvider);
 
-    ref.listen(bookmarkNotifierProvider, (prev, next) {
-      next.maybeWhen(
-        orElse: () {},
-        saveLoading: () => EasyLoading.show(),
-        saveComplete: (movie) =>
-            EasyLoading.showSuccess('${movie.title} has been add to your list'),
-      );
-    });
+    ref.listen(
+      bookmarkNotifierProvider,
+      (prev, next) {
+        next.maybeWhen(
+          orElse: () {},
+          saveLoading: () => Container(),
+          saveComplete: (movie) => Flushbar(
+            message: '${movie.title} has been add to your list',
+            icon: const Icon(
+              Icons.info,
+              color: AppColors.alertSuccess,
+            ),
+            borderRadius: BorderRadius.circular(10),
+            backgroundColor: AppColors.bgGreen,
+            messageColor: AppColors.alertSuccess,
+            margin: const EdgeInsets.all(16),
+            duration: const Duration(seconds: 2),
+          ).show(context),
+        );
+      },
+    );
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),

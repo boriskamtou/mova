@@ -83,6 +83,7 @@ class AppTheme {
   static ThemeData lightTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      cardColor: AppColors.white,
       scaffoldBackgroundColor: AppColors.white,
       primaryColor: AppColors.primary,
       canvasColor: AppColors.white,
@@ -240,6 +241,7 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.scafoldBackgroundBlack,
       primaryColor: AppColors.primary,
+      cardColor: const Color(0xFF1F222A),
       canvasColor: const Color(0xFF1F222A),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.dark,

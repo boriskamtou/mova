@@ -28,13 +28,11 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
 
   Future<void> saveMovieToMyList(Movie movie) async {
     try {
-      state = const BookmarkState.saveLoading();
       await _repository.addMovie(MovieDTO.fromDomain(movie));
       state = BookmarkState.saveComplete(movie);
     } catch (e) {
       state = BookmarkState.saveFailed(e.toString());
     }
-    debugPrint("State is: $state");
   }
 
   void getAllBookmarkMovies() {
@@ -51,7 +49,6 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
   }
 
   Future<void> deleteMovieFromBookMark(Movie movie) async {
-    state = const BookmarkState.loading();
     await _repository.deleteMovie(MovieDTO.fromDomain(movie));
     state = const BookmarkState.deleted();
   }

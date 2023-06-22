@@ -17,7 +17,7 @@ class PlayAndDownloadVideoButtons extends StatelessWidget {
           Expanded(
             child: ElevatedButton.icon(
               onPressed: onPlayPressed,
-              icon: const Icon(Icons.play_circle),
+              icon: Image.asset('assets/icons/play.png'),
               label: const Text('Play'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: AppSizes.p8),

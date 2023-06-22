@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readmore/readmore.dart';
 
@@ -13,7 +11,7 @@ import 'package:mova/src/features/movies/similar_movies/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:social_share/social_share.dart';
 
-import '../../../../constants/app_sizes.dart';
+import '../../../../utils/common_import.dart';
 import '../../../core/presentation/widgets/bottom_sheet_top_bar.dart';
 import '../../movie_detail/shared/providers.dart';
 import '../domain/entities/movie.dart';
@@ -86,9 +84,19 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
     ref.listen(bookmarkNotifierProvider, (prev, next) {
       next.maybeWhen(
         orElse: () {},
-        saveLoading: () => EasyLoading.show(),
-        saveComplete: (movie) =>
-            EasyLoading.showSuccess('${movie.title} has been add to your list'),
+        saveLoading: () => Container(),
+        saveComplete: (movie) => Flushbar(
+          message: '${movie.title} has been add to your list',
+          icon: const Icon(
+            Icons.info,
+            color: AppColors.alertSuccess,
+          ),
+          borderRadius: BorderRadius.circular(10),
+          backgroundColor: AppColors.bgGreen,
+          messageColor: AppColors.alertSuccess,
+          margin: const EdgeInsets.all(16),
+          duration: const Duration(seconds: 2),
+        ).show(context),
       );
     });
     return Scaffold(

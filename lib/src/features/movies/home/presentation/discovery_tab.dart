@@ -47,7 +47,27 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
           clearQueryOnClose: false,
           elevation: 0,
           actions: [
-            IconButton(
+            FloatingSearchBarAction.searchToClear(
+              showIfClosed: false,
+              searchButtonSemanticLabel: 'Search Movie',
+              clearButtonSemanticLabel: 'Delete Searched Movie',
+              color: Theme.of(context).textTheme.headlineMedium!.color,
+            ),
+            FloatingSearchBarAction.icon(
+              icon: Image.asset(
+                'assets/icons/search.png',
+                width: 20,
+                color: Theme.of(context).textTheme.headlineMedium!.color,
+              ),
+              onTap: () async {
+                FocusScope.of(context).unfocus();
+                ref
+                    .read(searchMovieNotifierProvider.notifier)
+                    .getFirstSearchedMoviePage(_controller.query);
+                _controller.close();
+              },
+            ),
+            /*    IconButton(
               onPressed: () async {
                 FocusScope.of(context).unfocus();
                 ref
@@ -61,7 +81,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 width: 20,
                 color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
-            ),
+            ), */
           ],
           backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
           scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),

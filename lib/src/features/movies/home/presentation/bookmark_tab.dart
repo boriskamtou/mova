@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -36,7 +37,18 @@ class _MyListTabState extends ConsumerState<MyListTab> {
           loading: () => EasyLoading.show(),
           deleted: () {
             ref.watch(bookmarkNotifierProvider.notifier).getAllBookmarkMovies();
-            return EasyLoading.showSuccess('Movie deleted successfully');
+            return Flushbar(
+              message: 'Movie deleted successfully',
+              icon: const Icon(
+                Icons.info,
+                color: AppColors.alertSuccess,
+              ),
+              borderRadius: BorderRadius.circular(10),
+              backgroundColor: AppColors.bgGreen,
+              messageColor: AppColors.alertSuccess,
+              margin: const EdgeInsets.all(16),
+              duration: const Duration(seconds: 2),
+            ).show(context);
           },
         );
       },

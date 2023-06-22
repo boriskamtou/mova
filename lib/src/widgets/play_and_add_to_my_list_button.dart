@@ -27,11 +27,7 @@ class PlayAndAddToMyListButtons extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(
-                  Icons.play_circle,
-                  color: AppColors.white,
-                  size: 13,
-                ),
+                Image.asset('assets/icons/play.png'),
                 const SizedBox(width: 4),
                 Text(
                   'Play',
