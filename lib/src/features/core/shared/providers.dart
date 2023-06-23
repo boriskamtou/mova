@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
@@ -11,6 +13,14 @@ final dioProvider = Provider<Dio>((ref) {
 
 final sembastProvider = Provider<SembastDatabase>((ref) {
   return SembastDatabase.instance;
+});
+
+final firebaseStorageProvider = Provider((ref) {
+  return FirebaseStorage.instance;
+});
+
+final firestoreProvider = Provider<FirebaseFirestore>((ref) {
+  return FirebaseFirestore.instance;
 });
 
 final urlBuilderProvider = Provider<UrlBuilder>((ref) {

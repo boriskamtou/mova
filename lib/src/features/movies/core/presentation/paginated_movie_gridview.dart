@@ -67,6 +67,7 @@ class _PaginatedMoviesGridViewState
                 margin: const EdgeInsets.all(16),
               ).show(context);
             }
+
             return canLoadNextPage = _.isNextPageAvailable;
           },
           failure: (_) {

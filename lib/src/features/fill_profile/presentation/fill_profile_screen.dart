@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mova/src/features/fill_profile/presentation/skip_or_continue_button.dart';
 import 'package:mova/src/features/fill_profile/presentation/user_image.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -38,8 +35,6 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => ref.read(fillProfileNotifier.notifier).getUserProfile());
   }
 
   @override

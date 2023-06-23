@@ -6,6 +6,7 @@ import '../features/fill_profile/presentation/fill_profile_screen.dart';
 import '../features/movies/core/domain/entities/movie.dart';
 import '../features/movies/core/presentation/movie_detail_screen.dart';
 import '../features/movies/core/presentation/video_player.dart';
+import '../features/movies/edit_profile/presentation/edit_profile_screen.dart';
 import '../features/movies/home/presentation/home_screen.dart';
 import '../features/movies/popular_movies/presentation/popular_movies_screen.dart';
 import '../features/movies/top_rated_movies/presentation/top_rated_movies_screen.dart';
@@ -34,5 +35,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: VideoPlayerRoute.page),
         AutoRoute(page: TopRatedMoviesRoute.page),
         AutoRoute(page: UpcomingMoviesRoute.page),
+        AutoRoute(page: EditProfileRoute.page),
       ];
 }

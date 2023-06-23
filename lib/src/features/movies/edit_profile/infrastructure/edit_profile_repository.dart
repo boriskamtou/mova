@@ -6,53 +6,41 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:mova/src/features/auth/infrastructure/user_credentials_storage/user_credentials_storage.dart';
-import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 
-import '../domain/fill_profil_failure.dart';
+import '../../../auth/infrastructure/user_credentials_storage/user_credentials_storage.dart';
+import '../../../fill_profile/domain/fill_profil_failure.dart';
 
-class FillProfileRepository {
+class EditProfileRepository {
   final FirebaseFirestore _firebaseFirestore;
   final FirebaseStorage _firebaseStorage;
   final FirebaseAuth _firebaseAuth;
-  final UserPreferencesRepository _userPreferencesLocalService;
   final UserCredentialsStorage _userCredentialsStorage;
 
-  FillProfileRepository(
+  EditProfileRepository(
     this._firebaseFirestore,
     this._firebaseStorage,
     this._firebaseAuth,
-    this._userPreferencesLocalService,
     this._userCredentialsStorage,
   );
 
-  Future<Either<FillProfileFailure, QueryDocumentSnapshot>>
-      getUserProfile() async {
-    try {
-      final currentUser = _firebaseAuth.currentUser;
+  Future<String> getUserDocumentId() async {
+    var collection = _firebaseFirestore.collection('users');
+    var querySnapshots = await collection.get();
+    final usersStream = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
 
-      late QueryDocumentSnapshot data;
-
-      await _firebaseFirestore
-          .collection('users')
-          .get()
-          .then((QuerySnapshot querySnapshot) {
-        for (var doc in querySnapshot.docs) {
-          if (doc['email'] == currentUser!.email) {
-            data = doc;
-          }
-        }
-      });
-
-      debugPrint(
-          '********************** ${data['email']} ********************');
-      return right(data);
-    } catch (e) {
-      return left(FillProfileFailure.failure(e.toString()));
-    }
+    usersStream.listen(
+      (event) {
+        debugPrint('User Document Id By User ID: ${event.id}');
+      },
+    );
+    debugPrint('User Document Id: ${querySnapshots.docs.first.id}');
+    return querySnapshots.docs.first.id;
   }
 
-  Future<Either<FillProfileFailure, Unit>> createProfile(
+  Future<Either<FillProfileFailure, Unit>> editProfile(
     File imageUrl,
     String fullName,
     String nickName,
@@ -78,15 +66,12 @@ class FillProfileRepository {
           "phoneNumber": phoneNumber,
         },
       );
-      await _userPreferencesLocalService.hasFillProfile(true);
       _userCredentialsStorage.upsertUserInfo(
-        userEmail: email,
-        userName: fullName,
-        photoUrl: url,
-        phoneNumber: phoneNumber,
-        nickName: nickName,
-        gender: gender,
-      );
+          userEmail: email,
+          userName: fullName,
+          photoUrl: url,
+          phoneNumber: phoneNumber,
+          gender: gender);
       return right(unit);
     } on SocketException catch (e) {
       return left(FillProfileFailure.failure(e.message));

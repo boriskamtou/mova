@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
@@ -18,7 +17,10 @@ class ProfileTab extends ConsumerStatefulWidget {
 class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _userEmail = '';
   String? _username = '';
+  String? _nickName = '';
   String? _imageUrl = '';
+  String? _phoneNumber = '';
+  String? _gender = '';
   bool? _isDarkMode = true;
 
   Future<void> _initializeInfos() async {
@@ -26,9 +28,16 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         await ref.read(userDataNotifierProvider.notifier).getUserEmail();
     final userName =
         await ref.read(userDataNotifierProvider.notifier).getUserName();
+
+    final nickName =
+        await ref.read(userDataNotifierProvider.notifier).getUserNickName();
     final photoUrl =
         await ref.read(userDataNotifierProvider.notifier).getUserPhotoUrl();
 
+    final phoneNumber =
+        await ref.read(userDataNotifierProvider.notifier).getUserPhoneNumber();
+    final gender =
+        await ref.read(userDataNotifierProvider.notifier).getUserGender();
     final isDarkMode =
         await ref.read(appThemeProvider.notifier).getPreferedThemeMode();
     setState(() {
@@ -36,6 +45,9 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
       _username = userName;
       _imageUrl = photoUrl;
       _isDarkMode = isDarkMode;
+      _phoneNumber = phoneNumber;
+      _nickName = nickName;
+      _gender = gender;
     });
   }
 
@@ -50,19 +62,17 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(
-          child: IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/images/logo.png',
-              width: 30,
-            ),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Image.asset(
+            'assets/images/logo.png',
+            width: 28,
           ),
         ),
         title: Text(
           'Profile',
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 18,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
         ),
@@ -107,7 +117,15 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
             const Divider(),
             ListTile(
               onTap: () {
-                AutoRouter.of(context).push(const FillProfileRoute());
+                AutoRouter.of(context).push(
+                  EditProfileRoute(
+                    fullName: _username,
+                    phoneNumber: _phoneNumber,
+                    email: _userEmail,
+                    gender: _gender,
+                    nickName: _nickName,
+                  ),
+                );
               },
               leading: Image.asset(
                 'assets/icons/profil.png',

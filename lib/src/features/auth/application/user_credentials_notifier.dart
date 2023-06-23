@@ -8,8 +8,13 @@ class UserDataNotifier extends StateNotifier<AsyncValue<void>> {
 
   Future<String?> getUserName() async => _credentialsStorage.getUserName();
   Future<String?> getUserEmail() async => _credentialsStorage.getUserEmail();
+  Future<String?> getUserNickName() async =>
+      _credentialsStorage.getUserNickName();
+  Future<String?> getUserPhoneNumber() async =>
+      _credentialsStorage.getUserPhoneNumber();
   Future<String?> getUserPhotoUrl() async =>
       _credentialsStorage.getUserPhotoUrl();
 
+  Future<String?> getUserGender() async => _credentialsStorage.getUserGender();
   Future<void> deleteUserInfos() async => _credentialsStorage.deleteUserInfo();
 }

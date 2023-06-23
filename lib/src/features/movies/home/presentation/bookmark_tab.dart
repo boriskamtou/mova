@@ -55,19 +55,17 @@ class _MyListTabState extends ConsumerState<MyListTab> {
     );
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(
-          child: IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/images/logo.png',
-              width: 30,
-            ),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Image.asset(
+            'assets/images/logo.png',
+            width: 28,
           ),
         ),
         title: Text(
           'My List',
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 18,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
         ),

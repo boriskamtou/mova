@@ -24,13 +24,12 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
     super.initState();
   }
 
-  void pushPageAndPutFirstInHistory(String searchTerm) {
+  void putSearchTermFirst(String searchTerm) {
     ref.read(searchHistoryNotifier.notifier).putSearchTermFirst(searchTerm);
-
     _controller.close();
   }
 
-  void pushPageAndAddToHistory(String searchTerm) async {
+  void addSearchTerm(String searchTerm) async {
     await ref.read(searchHistoryNotifier.notifier).addSearchTerm(searchTerm);
     _controller.close();
   }
@@ -85,7 +84,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
             setState(() {
               _controller.query = searchedMovie;
             });
-            pushPageAndAddToHistory(searchedMovie);
+            addSearchTerm(searchedMovie);
             await ref
                 .read(searchMovieNotifierProvider.notifier)
                 .getFirstSearchedMoviePage(searchedMovie);
@@ -117,7 +116,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                                     setState(() {
                                       _controller.query = searchedMovie;
                                     });
-                                    pushPageAndPutFirstInHistory(searchedMovie);
+                                    putSearchTermFirst(searchedMovie);
                                     ref
                                         .read(searchMovieNotifierProvider
                                             .notifier)
