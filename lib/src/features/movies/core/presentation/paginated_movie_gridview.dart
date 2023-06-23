@@ -1,5 +1,5 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
@@ -53,8 +53,19 @@ class _PaginatedMoviesGridViewState
           loading: (_) => canLoadNextPage = false,
           loaded: (_) {
             if (!_.movies.isFresh) {
-              EasyLoading.showInfo(
-                  'You are not connected. Please check your network connexion');
+              Flushbar(
+                message:
+                    'You are not connected. Please check your network connexion',
+                icon: const Icon(
+                  Icons.info,
+                  color: AppColors.alertError,
+                ),
+                borderRadius: BorderRadius.circular(10),
+                backgroundColor: AppColors.bgRed,
+                messageColor: AppColors.alertError,
+                duration: const Duration(seconds: 2),
+                margin: const EdgeInsets.all(16),
+              ).show(context);
             }
             return canLoadNextPage = _.isNextPageAvailable;
           },
@@ -103,22 +114,13 @@ class _PaginatedMoviesGridViewState
 
             return false;
           },
-          child: state.maybeWhen(
-            orElse: () => false,
-            loaded: (movies, _) => movies.entity.isNotEmpty,
-          )
-              ? _PaginatedGridView(
-                  state: state,
-                  isAlreadyInDetailScreen: widget.isAlreadyInDetail,
-                  scrollController: widget.scrollController,
-                  appliedPadding: widget.appliedPaddingTop,
-                  noDataMessage: widget.noDataMessage,
-                )
-              : widget.useWidgetToDisplayEmptyList
-                  ? widget.showEmptyList
-                  : NoData(
-                      message: widget.noDataMessage,
-                    ),
+          child: _PaginatedGridView(
+            state: state,
+            isAlreadyInDetailScreen: widget.isAlreadyInDetail,
+            scrollController: widget.scrollController,
+            appliedPadding: widget.appliedPaddingTop,
+            noDataMessage: widget.noDataMessage,
+          ),
         );
       },
     );

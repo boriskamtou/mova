@@ -59,7 +59,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 width: 20,
                 color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
-              onTap: () async {
+              onTap: () {
                 FocusScope.of(context).unfocus();
                 ref
                     .read(searchMovieNotifierProvider.notifier)
@@ -67,21 +67,6 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 _controller.close();
               },
             ),
-            /*    IconButton(
-              onPressed: () async {
-                FocusScope.of(context).unfocus();
-                ref
-                    .read(searchMovieNotifierProvider.notifier)
-                    .getFirstSearchedMoviePage(_controller.query);
-                _controller.close();
-              },
-              splashRadius: 20,
-              icon: Image.asset(
-                'assets/icons/search.png',
-                width: 20,
-                color: Theme.of(context).textTheme.headlineMedium!.color,
-              ),
-            ), */
           ],
           backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
           scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mova/src/features/core/infrastructure/extension/dio_extension.dart';
 
-import '../../../../../constants/contants.dart';
 import '../../../../core/infrastructure/exceptions/movie_exception.dart';
 import '../../../../core/infrastructure/remote_response.dart';
 import '../dtos/movie_response_dto.dart';
@@ -36,7 +35,7 @@ abstract class MovieRemoteService {
         if (movieResponseData.totalResults == previousTotalResults) {
           return RemoteResponse.notModified(
             movieResponseData,
-            maxPage: Contants.maxPage,
+            maxPage: movieResponseData.totalPages,
           );
         } else {
           await _totalResultsCache.saveTotalMoviesResults(
@@ -45,7 +44,7 @@ abstract class MovieRemoteService {
           );
           return RemoteResponse.withNewData(
             movieResponseData,
-            maxPage: Contants.maxPage,
+            maxPage: movieResponseData.totalPages,
           );
         }
       } else {

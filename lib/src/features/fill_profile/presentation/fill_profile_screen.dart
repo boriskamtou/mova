@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -159,19 +160,18 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                       onContinuePressed: () {
                         FocusScope.of(context).unfocus();
                         if (_image == null) {
-                          EasyLoading.showInfo('Please provide an image');
-                          /*  Flushbar(
-                                  message: 'Please provide an image',
-                                  icon: const Icon(
-                                    Icons.info,
-                                    color: AppColors.alertError,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                  backgroundColor: AppColors.bgRed,
-                                  messageColor: AppColors.alertError,
-                                  duration: const Duration(seconds: 2),
-                                  margin: const EdgeInsets.all(16),
-                                ).show(context); */
+                          Flushbar(
+                            message: 'Please provide an image',
+                            icon: const Icon(
+                              Icons.info,
+                              color: AppColors.alertError,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            backgroundColor: AppColors.bgRed,
+                            messageColor: AppColors.alertError,
+                            duration: const Duration(seconds: 2),
+                            margin: const EdgeInsets.all(16),
+                          ).show(context);
                         } else {
                           if (_formkey.currentState!.validate()) {
                             final progress = ProgressHUD.of(ctx);
@@ -190,20 +190,6 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                               progress.dismiss();
                               context.pushRoute(const HomeRoute());
                             });
-                            /* final progress = ProgressHUD.of(ctx);
-        
-                                  progress?.show();
-                                  ref
-                                      .read(fillProfileNotifier.notifier)
-                                      .createProfile(
-                                        _image!,
-                                        _userNameController.text,
-                                        _nicknameController.text,
-                                        _emailController.text,
-                                        _phoneController.text,
-                                        _genderValue,
-                                      )
-                                      .then((_) => progress?.dismiss()); */
                           }
                         }
                       },

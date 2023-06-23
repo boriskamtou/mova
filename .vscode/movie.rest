@@ -41,4 +41,4 @@ GET {{baseUrl}}/movie/upcoming/?api_key={{api_key}}&page={{page}}
 ### Get [Similar] movies
 GET {{baseUrl}}/movie/{{movie_id}}/similar?api_key={{api_key}}
 ### GET [Search] Movies
-GET {{baseUrl}}/search/movie?query={{searchedMovie}}&api_key={{api_key}}&page=3
+GET {{baseUrl}}/search/movie?query={{searchedMovie}}&api_key={{api_key}}&page=4
