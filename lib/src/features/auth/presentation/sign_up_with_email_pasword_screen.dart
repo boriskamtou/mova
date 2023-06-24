@@ -3,10 +3,8 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:mova/src/features/auth/shared/providers.dart';
-import 'package:mova/src/features/theme/presentation/app_themes.dart';
 
 import '../../../utils/common_import.dart';
-import '../../theme/application/app_theme_notifier.dart';
 import '../application/auth_notifier.dart';
 import '../infrastructure/validation_service.dart';
 import 'widgets/common_textfield.dart';
@@ -201,6 +199,17 @@ class _SignUpWithPasswordScreenState
                           ],
                         ),
                       ),
+                      ElevatedButton.icon(
+                        onPressed: () {},
+                        icon: Image.asset('assets/icons/google.png'),
+                        label: const Text(''),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context)
+                                .inputDecorationTheme
+                                .fillColor!),
+                      ),
+
+                      /*     
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -240,6 +249,8 @@ class _SignUpWithPasswordScreenState
                           ),
                         ],
                       ),
+                      */
+
                       const SizedBox(height: 20),
                       _AlreadyHaveAnAccount(
                         isLoggedIn: _isLoggedIn,
