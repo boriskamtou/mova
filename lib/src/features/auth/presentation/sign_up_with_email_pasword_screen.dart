@@ -200,7 +200,14 @@ class _SignUpWithPasswordScreenState
                         ),
                       ),
                       ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () async {
+                          final progress = ProgressHUD.of(ctx);
+                          progress?.show();
+                          await ref
+                              .read(authNotifier.notifier)
+                              .signUpWithGoogle()
+                              .then((value) => progress!.dismiss());
+                        },
                         icon: Image.asset('assets/icons/google.png'),
                         label: const Text(''),
                         style: ElevatedButton.styleFrom(
