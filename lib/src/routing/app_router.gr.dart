@@ -54,6 +54,22 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    EditProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<EditProfileRouteArgs>(
+          orElse: () => const EditProfileRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditProfileScreen(
+          key: args.key,
+          imageUrl: args.imageUrl,
+          fullName: args.fullName,
+          nickName: args.nickName,
+          email: args.email,
+          phoneNumber: args.phoneNumber,
+          gender: args.gender,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -88,22 +104,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashScreen(),
-      );
-    },
-    EditProfileRoute.name: (routeData) {
-      final args = routeData.argsAs<EditProfileRouteArgs>(
-          orElse: () => const EditProfileRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: EditProfileScreen(
-          key: args.key,
-          imageUrl: args.imageUrl,
-          fullName: args.fullName,
-          nickName: args.nickName,
-          email: args.email,
-          phoneNumber: args.phoneNumber,
-          gender: args.gender,
-        ),
       );
     },
   };
@@ -228,6 +228,69 @@ class VideoPlayerRouteArgs {
 }
 
 /// generated route for
+/// [EditProfileScreen]
+class EditProfileRoute extends PageRouteInfo<EditProfileRouteArgs> {
+  EditProfileRoute({
+    Key? key,
+    String? imageUrl,
+    String? fullName,
+    String? nickName,
+    String? email,
+    String? phoneNumber,
+    String? gender,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditProfileRoute.name,
+          args: EditProfileRouteArgs(
+            key: key,
+            imageUrl: imageUrl,
+            fullName: fullName,
+            nickName: nickName,
+            email: email,
+            phoneNumber: phoneNumber,
+            gender: gender,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditProfileRoute';
+
+  static const PageInfo<EditProfileRouteArgs> page =
+      PageInfo<EditProfileRouteArgs>(name);
+}
+
+class EditProfileRouteArgs {
+  const EditProfileRouteArgs({
+    this.key,
+    this.imageUrl,
+    this.fullName,
+    this.nickName,
+    this.email,
+    this.phoneNumber,
+    this.gender,
+  });
+
+  final Key? key;
+
+  final String? imageUrl;
+
+  final String? fullName;
+
+  final String? nickName;
+
+  final String? email;
+
+  final String? phoneNumber;
+
+  final String? gender;
+
+  @override
+  String toString() {
+    return 'EditProfileRouteArgs{key: $key, imageUrl: $imageUrl, fullName: $fullName, nickName: $nickName, email: $email, phoneNumber: $phoneNumber, gender: $gender}';
+  }
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -309,67 +372,4 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [EditProfileScreen]
-class EditProfileRoute extends PageRouteInfo<EditProfileRouteArgs> {
-  EditProfileRoute({
-    Key? key,
-    String? imageUrl,
-    String? fullName,
-    String? nickName,
-    String? email,
-    String? phoneNumber,
-    String? gender,
-    List<PageRouteInfo>? children,
-  }) : super(
-          EditProfileRoute.name,
-          args: EditProfileRouteArgs(
-            key: key,
-            imageUrl: imageUrl,
-            fullName: fullName,
-            nickName: nickName,
-            email: email,
-            phoneNumber: phoneNumber,
-            gender: gender,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'EditProfileRoute';
-
-  static const PageInfo<EditProfileRouteArgs> page =
-      PageInfo<EditProfileRouteArgs>(name);
-}
-
-class EditProfileRouteArgs {
-  const EditProfileRouteArgs({
-    this.key,
-    this.imageUrl,
-    this.fullName,
-    this.nickName,
-    this.email,
-    this.phoneNumber,
-    this.gender,
-  });
-
-  final Key? key;
-
-  final String? imageUrl;
-
-  final String? fullName;
-
-  final String? nickName;
-
-  final String? email;
-
-  final String? phoneNumber;
-
-  final String? gender;
-
-  @override
-  String toString() {
-    return 'EditProfileRouteArgs{key: $key, imageUrl: $imageUrl, fullName: $fullName, nickName: $nickName, email: $email, phoneNumber: $phoneNumber, gender: $gender}';
-  }
 }

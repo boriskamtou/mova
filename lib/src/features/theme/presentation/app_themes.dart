@@ -181,7 +181,7 @@ class AppTheme {
           fontWeight: FontWeight.w400,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(30),
         ),
       ),
       dividerTheme: DividerThemeData(
@@ -337,7 +337,7 @@ class AppTheme {
           fontWeight: FontWeight.w400,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(30),
         ),
       ),
       dividerTheme: DividerThemeData(

@@ -7,9 +7,6 @@ class EditProfileNotifier extends StateNotifier<AsyncValue<void>> {
   final EditProfileRepository _repository;
   EditProfileNotifier(this._repository) : super(const AsyncValue.loading());
 
-  Future<String> getUserDocumentId() async =>
-      await _repository.getUserDocumentId();
-
   Future<void> editProfile(
     File imageUrl,
     String email,

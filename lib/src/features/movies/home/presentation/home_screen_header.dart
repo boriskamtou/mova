@@ -38,13 +38,13 @@ class HomeScreenHeader extends ConsumerWidget {
                   color: AppColors.white,
                 ),
               ),
-              IconButton(
+              /*        IconButton(
                 onPressed: () {},
                 icon: Image.asset(
                   'assets/icons/notification.png',
                   color: AppColors.white,
                 ),
-              ),
+              ), */
             ],
           )
         ],

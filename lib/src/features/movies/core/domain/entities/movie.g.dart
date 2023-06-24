@@ -9,13 +9,13 @@ part of 'movie.dart';
 _$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
       id: json['id'] as int,
       adult: json['adult'] as bool,
-      backdropPath: json['backdropPath'] as String,
+      backdropPath: json['backdropPath'] as String?,
       genreIds:
           (json['genreIds'] as List<dynamic>).map((e) => e as int).toList(),
       originalLanguage: json['originalLanguage'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['posterPath'] as String? ?? '',
+      posterPath: json['posterPath'] as String?,
       releaseDate: json['releaseDate'] as String,
       title: json['title'] as String,
       video: json['video'] as bool,

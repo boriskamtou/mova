@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/core/application/user_preference_notifier.dart';
 import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
 import 'package:mova/src/features/movies/core/infrastructure/local/total_results_cache.dart';
@@ -34,4 +35,9 @@ final totalMoviesCacheProvider = Provider<TotalResultsCache>((ref) {
 final userPreferenceLocalServiceProvider =
     Provider<UserPreferencesRepository>((ref) {
   return UserPreferencesRepository(ref.watch(sembastProvider));
+});
+
+final userPreferenceNotifierProvider =
+    StateNotifierProvider<UserPreferenceNotifier, AsyncValue<void>>((ref) {
+  return UserPreferenceNotifier(ref.watch(userPreferenceLocalServiceProvider));
 });

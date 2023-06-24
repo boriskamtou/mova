@@ -10,12 +10,12 @@ _$_MovieDetailDTO _$$_MovieDetailDTOFromJson(Map<String, dynamic> json) =>
     _$_MovieDetailDTO(
       id: json['id'] as int,
       adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String? ?? '',
+      backdropPath: json['backdrop_path'] as String?,
       genresDto: (json['genres'] as List<dynamic>)
           .map((e) => GenreDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
       homePage: json['homepage'] as String?,
-      imdbId: json['imdb_id'] as String,
+      imdbId: json['imdb_id'] as String?,
       originalLanguage: json['original_language'] as String,
       originalTitle: json['original_title'] as String,
       overview: json['overview'] as String,
@@ -29,23 +29,32 @@ _$_MovieDetailDTO _$$_MovieDetailDTOFromJson(Map<String, dynamic> json) =>
       voteCount: (json['vote_count'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_MovieDetailDTOToJson(_$_MovieDetailDTO instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'adult': instance.adult,
-      'backdrop_path': instance.backdropPath,
-      'genres': instance.genresDto.map((e) => e.toJson()).toList(),
-      'homepage': instance.homePage,
-      'imdb_id': instance.imdbId,
-      'original_language': instance.originalLanguage,
-      'original_title': instance.originalTitle,
-      'overview': instance.overview,
-      'popularity': instance.popularity,
-      'poster_path': instance.posterPath,
-      'release_date': instance.releaseDate,
-      'revenue': instance.revenue,
-      'status': instance.status,
-      'title': instance.title,
-      'vote_average': instance.voteAverage,
-      'vote_count': instance.voteCount,
-    };
+Map<String, dynamic> _$$_MovieDetailDTOToJson(_$_MovieDetailDTO instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'adult': instance.adult,
+    'backdrop_path': instance.backdropPath,
+    'genres': instance.genresDto.map((e) => e.toJson()).toList(),
+    'homepage': instance.homePage,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('imdb_id', instance.imdbId);
+  val['original_language'] = instance.originalLanguage;
+  val['original_title'] = instance.originalTitle;
+  val['overview'] = instance.overview;
+  val['popularity'] = instance.popularity;
+  val['poster_path'] = instance.posterPath;
+  val['release_date'] = instance.releaseDate;
+  val['revenue'] = instance.revenue;
+  val['status'] = instance.status;
+  val['title'] = instance.title;
+  val['vote_average'] = instance.voteAverage;
+  val['vote_count'] = instance.voteCount;
+  return val;
+}

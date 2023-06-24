@@ -1,6 +1,5 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mova/src/features/auth/application/auth_notifier.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -21,18 +20,25 @@ class _LetYouInScreenState extends ConsumerState<LetYouInScreen> {
 
     ref.listen<AuthState>(
       authNotifier,
-      (prev, next) {
+      (previous, next) {
         next.maybeWhen(
           orElse: () {},
-          loading: () => EasyLoading.show(),
-          authenticated: () => EasyLoading.dismiss(),
-          failure: (_) {
-            _.maybeMap(
+          failure: (authFailure) {
+            authFailure.maybeMap(
               orElse: () {},
               failure: (value) {
-                EasyLoading.dismiss();
-                EasyLoading.showError(_.message,
-                    duration: const Duration(seconds: 3));
+                Flushbar(
+                  message: value.message,
+                  icon: const Icon(
+                    Icons.info,
+                    color: AppColors.alertError,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  backgroundColor: AppColors.bgRed,
+                  messageColor: AppColors.alertError,
+                  duration: const Duration(seconds: 2),
+                  margin: const EdgeInsets.all(16),
+                ).show(context);
               },
             );
           },
@@ -41,6 +47,7 @@ class _LetYouInScreenState extends ConsumerState<LetYouInScreen> {
     );
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(

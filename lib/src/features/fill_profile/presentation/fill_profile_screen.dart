@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mova/src/features/fill_profile/presentation/skip_or_continue_button.dart';
 import 'package:mova/src/features/fill_profile/presentation/user_image.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -47,11 +46,23 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
       fillProfileNotifier,
       (previous, next) {
         next.maybeWhen(
-            orElse: () {},
-            failure: (message) {
-              EasyLoading.showError(message!);
-            },
-            success: (data) {});
+          orElse: () {},
+          failure: (message) {
+            Flushbar(
+              message: message,
+              icon: const Icon(
+                Icons.info,
+                color: AppColors.alertError,
+              ),
+              borderRadius: BorderRadius.circular(10),
+              backgroundColor: AppColors.bgRed,
+              messageColor: AppColors.alertError,
+              duration: const Duration(seconds: 2),
+              margin: const EdgeInsets.all(16),
+            ).show(context);
+          },
+          success: (data) {},
+        );
       },
     );
     return Scaffold(

@@ -51,8 +51,13 @@ class EditProfileRepository {
     try {
       final ref =
           _firebaseStorage.ref().child('user_images').child('$fullName.jpg');
-      await ref.putFile(imageUrl);
+
+      debugPrint('Print Create File: $imageUrl');
+
+      await ref.putFile(await imageUrl.create());
+
       final url = await ref.getDownloadURL();
+
       await _firebaseFirestore
           .collection('users')
           .doc(_firebaseAuth.currentUser!.uid)
@@ -67,11 +72,13 @@ class EditProfileRepository {
         },
       );
       _userCredentialsStorage.upsertUserInfo(
-          userEmail: email,
-          userName: fullName,
-          photoUrl: url,
-          phoneNumber: phoneNumber,
-          gender: gender);
+        userEmail: email,
+        userName: fullName,
+        photoUrl: url,
+        nickName: nickName,
+        phoneNumber: phoneNumber,
+        gender: gender,
+      );
       return right(unit);
     } on SocketException catch (e) {
       return left(FillProfileFailure.failure(e.message));

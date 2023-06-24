@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/presentation/paginated_movie_gridview.dart';
 import 'package:mova/src/features/movies/search/shared/providers.dart';
 import 'package:mova/src/utils/common_import.dart';
@@ -14,24 +13,40 @@ class DiscoveryTab extends ConsumerStatefulWidget {
 
 class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
   late FloatingSearchBarController _controller;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     _controller = FloatingSearchBarController();
+    _scrollController = ScrollController();
     Future.microtask(
       () => ref.read(searchHistoryNotifier.notifier).watchSearchTerms(),
     );
     super.initState();
   }
 
-  void putSearchTermFirst(String searchTerm) {
+  void _putSearchTermFirst(String searchTerm) {
     ref.read(searchHistoryNotifier.notifier).putSearchTermFirst(searchTerm);
     _controller.close();
   }
 
-  void addSearchTerm(String searchTerm) async {
+  void _addSearchTerm(String searchTerm) async {
     await ref.read(searchHistoryNotifier.notifier).addSearchTerm(searchTerm);
     _controller.close();
+  }
+
+  void _moveToTop() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(0.0,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,6 +78,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 ref
                     .read(searchMovieNotifierProvider.notifier)
                     .getFirstSearchedMoviePage(_controller.query);
+                _moveToTop();
                 _controller.close();
               },
             ),
@@ -84,7 +100,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
             setState(() {
               _controller.query = searchedMovie;
             });
-            addSearchTerm(searchedMovie);
+            _addSearchTerm(searchedMovie);
             await ref
                 .read(searchMovieNotifierProvider.notifier)
                 .getFirstSearchedMoviePage(searchedMovie);
@@ -116,12 +132,13 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                                     setState(() {
                                       _controller.query = searchedMovie;
                                     });
-                                    putSearchTermFirst(searchedMovie);
+                                    _putSearchTermFirst(searchedMovie);
                                     ref
                                         .read(searchMovieNotifierProvider
                                             .notifier)
                                         .getFirstSearchedMoviePage(
                                             _controller.query.trim());
+                                    _moveToTop();
                                   },
                                   title: Text(
                                     searchedMovie,
@@ -153,6 +170,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
             padding: const EdgeInsets.only(top: 100),
             child: PaginatedMoviesGridView(
               appliedPaddingTop: true,
+              scrollController: _scrollController,
               paginatedMoviesNotifier: searchMovieNotifierProvider,
               getNextPage: (ref) => ref
                   .read(searchMovieNotifierProvider.notifier)

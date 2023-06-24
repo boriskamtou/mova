@@ -2,7 +2,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
@@ -121,10 +120,15 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                         .animate(onPlay: (controller) => controller.repeat())
                         .shimmer(delay: 900.ms, duration: 400.ms),
                     loaded: (data) {
-                      return CachedNetworkImage(
-                        imageUrl: data.movieDetail.fullBackDropUrl,
-                        fit: BoxFit.cover,
-                      );
+                      return data.movieDetail.backdropPath != null &&
+                              data.movieDetail.fullBackDropUrl != null
+                          ? CachedNetworkImage(
+                              imageUrl: data.movieDetail.fullBackDropUrl!,
+                              fit: BoxFit.cover,
+                            )
+                          : Center(
+                              child: Image.asset('assets/images/logo.png'),
+                            );
                     },
                     failed: (_) => NoData(message: _.message!),
                   ),
@@ -248,7 +252,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                                     await SocialShare
                                                         .shareWhatsapp(widget
                                                             .movie
-                                                            .fullImageUrl);
+                                                            .fullImageUrl!);
                                                   },
                                                 ),
                                                 ShareWithSocial(

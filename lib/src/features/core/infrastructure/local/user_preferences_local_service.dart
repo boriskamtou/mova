@@ -13,8 +13,24 @@ class UserPreferencesRepository {
   final _hasFillProfile = 'hasFillProfile';
   final _appTheme = 'appTheme';
   final _hasSeenOnboarding = 'hasSeenOnboarding';
+  final _storeVersion = 'storeVersion';
 
   final _storeUserPreferences = StoreRef.main();
+
+  // ------------------------------- Stored version
+  Future<void> saveUserAppVersion(String? installedVersion) async {
+    await _storeUserPreferences
+        .record(_storeVersion)
+        .put(await _db.then((db) => db!), installedVersion);
+  }
+
+  Future<String?> getUserAppVersion() async {
+    final appVersion = await _storeUserPreferences
+        .record(_storeVersion)
+        .get(await _db.then((db) => db!)) as String;
+
+    return appVersion;
+  }
 
   // ----------------------------- Has Fill Profile Preferences
   Future<void> hasFillProfile(bool status) async {

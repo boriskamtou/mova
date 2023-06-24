@@ -94,7 +94,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ref
                               .read(userPreferenceLocalServiceProvider)
                               .storeHasSeenOnboarding(true);
-                          context.pushRoute(const LetYouInRoute());
+                          AutoRouter.of(context).pushAndPopUntil(
+                              const SignUpWithPasswordRoute(),
+                              predicate: (_) => false);
                         },
                         child: const Text('Get Started'),
                       );

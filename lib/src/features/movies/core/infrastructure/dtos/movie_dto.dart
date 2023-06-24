@@ -11,7 +11,7 @@ class MovieDTO with _$MovieDTO {
   const factory MovieDTO({
     required int id,
     @Default(false) bool adult,
-    @JsonKey(name: 'backdrop_path') @Default("") String? backdropPath,
+    @JsonKey(name: 'backdrop_path') String? backdropPath,
     @JsonKey(name: 'genre_ids', includeIfNull: false)
     @Default([])
         List<int> genreIds,

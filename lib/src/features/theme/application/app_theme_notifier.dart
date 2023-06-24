@@ -23,8 +23,6 @@ class AppThemeNotifier extends StateNotifier<ThemeData> {
     } else {
       state = AppTheme.lightTheme();
     }
-
-    debugPrint('User Prefered Dark Mode: $userMode');
   }
 }
 

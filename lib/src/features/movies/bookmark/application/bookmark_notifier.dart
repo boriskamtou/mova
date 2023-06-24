@@ -44,8 +44,6 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
         state = BookmarkState.loadedFailed(error);
       },
     );
-
-    debugPrint("State is: $state");
   }
 
   Future<void> deleteMovieFromBookMark(Movie movie) async {

@@ -2,7 +2,6 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 
@@ -153,7 +152,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                                     borderRadius: BorderRadius.circular(10),
                                     image: (data.bookmarkMovies[i].posterPath ==
                                                 '' ||
-                                            data.bookmarkMovies[i].posterPath
+                                            data.bookmarkMovies[i].posterPath!
                                                 .isNotEmpty)
                                         ? DecorationImage(
                                             fit: BoxFit.cover,

@@ -9,10 +9,10 @@ class MovieDetail with _$MovieDetail {
   const factory MovieDetail({
     required int id,
     required bool adult,
-    @Default('') String backdropPath,
+    String? backdropPath,
     required List<Genre> genresDto,
     String? homePage,
-    required String imdbId,
+    String? imdbId,
     required String originalLanguage,
     required String originalTitle,
     required String overview,
@@ -27,7 +27,9 @@ class MovieDetail with _$MovieDetail {
   }) = _MovieDetail;
 
   String get fullImageUrl => 'https://image.tmdb.org/t/p/w200/$posterPath';
-  String get fullBackDropUrl => 'https://image.tmdb.org/t/p/w400/$backdropPath';
+  String? get fullBackDropUrl => backdropPath != null
+      ? 'https://image.tmdb.org/t/p/w400/$backdropPath'
+      : null;
 
   String stringGenres() {
     List<Genre> genres = genresDto;

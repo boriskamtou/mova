@@ -9,12 +9,12 @@ class Movie with _$Movie {
   const factory Movie({
     required int id,
     required bool adult,
-    required String backdropPath,
+    String? backdropPath,
     required List<int> genreIds,
     required String originalLanguage,
     required String overview,
     required double popularity,
-    @Default('') String posterPath,
+    String? posterPath,
     required String releaseDate,
     required String title,
     required bool video,
@@ -22,7 +22,8 @@ class Movie with _$Movie {
     required int voteCount,
   }) = _Movie;
 
-  String get fullImageUrl => 'https://image.tmdb.org/t/p/w200/$posterPath';
+  String? get fullImageUrl =>
+      posterPath != null ? 'https://image.tmdb.org/t/p/w200/$posterPath' : null;
   String get fullBackDropUrl => 'https://image.tmdb.org/t/p/w400/$backdropPath';
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);

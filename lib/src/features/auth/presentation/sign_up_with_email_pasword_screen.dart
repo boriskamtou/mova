@@ -3,8 +3,10 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:mova/src/features/auth/shared/providers.dart';
+import 'package:mova/src/features/theme/presentation/app_themes.dart';
 
 import '../../../utils/common_import.dart';
+import '../../theme/application/app_theme_notifier.dart';
 import '../application/auth_notifier.dart';
 import '../infrastructure/validation_service.dart';
 import 'widgets/common_textfield.dart';
@@ -27,7 +29,7 @@ class _SignUpWithPasswordScreenState
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  bool _showPassword = false;
+  bool _showPassword = true;
   bool _isLoggedIn = false;
 
   @override
@@ -152,7 +154,6 @@ class _SignUpWithPasswordScreenState
                       gapH20,
                       ElevatedButton(
                         onPressed: () async {
-                          // context.go('/sign_up_with_password');*
                           FocusScope.of(context).unfocus();
                           if (_formKey.currentState!.validate()) {
                             final progress = ProgressHUD.of(ctx);
@@ -188,7 +189,12 @@ class _SignUpWithPasswordScreenState
                                   const EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
                                 'Or continue with',
-                                style: Theme.of(context).textTheme.titleSmall,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(
+                                      fontSize: 16,
+                                    ),
                               ),
                             ),
                             const Divider(),
@@ -218,11 +224,19 @@ class _SignUpWithPasswordScreenState
                             },
                             imageUrl: 'assets/icons/google.png',
                           ),
-                          _SocialIconSignUp(
-                            onTap: () {
-                              debugPrint('Log in with Apple');
+                          Consumer(
+                            builder: (context, ref, _) {
+                              final state = ref.watch(appThemeProvider);
+
+                              return _SocialIconSignUp(
+                                onTap: () {
+                                  debugPrint('Log in with Apple: $state');
+                                },
+                                imageUrl: state == AppTheme.darkTheme()
+                                    ? 'assets/icons/apple.png'
+                                    : 'assets/icons/apple-dark.png',
+                              );
                             },
-                            imageUrl: 'assets/icons/apple-dark.png',
                           ),
                         ],
                       ),
@@ -297,11 +311,14 @@ class _SocialIconSignUp extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
-            color: const Color(0xFFEEEEEE),
+            color: Theme.of(context).inputDecorationTheme.fillColor!,
           ),
+          color: Theme.of(context).inputDecorationTheme.fillColor,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Image.asset(imageUrl),
+        child: Image.asset(
+          imageUrl,
+        ),
       ),
     );
   }

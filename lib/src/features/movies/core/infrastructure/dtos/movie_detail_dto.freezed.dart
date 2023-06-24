@@ -23,13 +23,13 @@ mixin _$MovieDetailDTO {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'genres')
   List<GenreDTO> get genresDto => throw _privateConstructorUsedError;
   @JsonKey(name: 'homepage')
   String? get homePage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'imdb_id')
-  String get imdbId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'imdb_id', includeIfNull: false)
+  String? get imdbId => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_language')
   String get originalLanguage => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_title')
@@ -63,10 +63,10 @@ abstract class $MovieDetailDTOCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genres') List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') String? homePage,
-      @JsonKey(name: 'imdb_id') String imdbId,
+      @JsonKey(name: 'imdb_id', includeIfNull: false) String? imdbId,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
@@ -95,10 +95,10 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genresDto = null,
     Object? homePage = freezed,
-    Object? imdbId = null,
+    Object? imdbId = freezed,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
@@ -120,10 +120,10 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genresDto: null == genresDto
           ? _value.genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -132,10 +132,10 @@ class _$MovieDetailDTOCopyWithImpl<$Res, $Val extends MovieDetailDTO>
           ? _value.homePage
           : homePage // ignore: cast_nullable_to_non_nullable
               as String?,
-      imdbId: null == imdbId
+      imdbId: freezed == imdbId
           ? _value.imdbId
           : imdbId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalLanguage: null == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -195,10 +195,10 @@ abstract class _$$_MovieDetailDTOCopyWith<$Res>
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genres') List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') String? homePage,
-      @JsonKey(name: 'imdb_id') String imdbId,
+      @JsonKey(name: 'imdb_id', includeIfNull: false) String? imdbId,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
@@ -225,10 +225,10 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genresDto = null,
     Object? homePage = freezed,
-    Object? imdbId = null,
+    Object? imdbId = freezed,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
@@ -250,10 +250,10 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genresDto: null == genresDto
           ? _value._genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -262,10 +262,10 @@ class __$$_MovieDetailDTOCopyWithImpl<$Res>
           ? _value.homePage
           : homePage // ignore: cast_nullable_to_non_nullable
               as String?,
-      imdbId: null == imdbId
+      imdbId: freezed == imdbId
           ? _value.imdbId
           : imdbId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalLanguage: null == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -320,10 +320,10 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   const _$_MovieDetailDTO(
       {required this.id,
       required this.adult,
-      @JsonKey(name: 'backdrop_path') this.backdropPath = '',
+      @JsonKey(name: 'backdrop_path') this.backdropPath,
       @JsonKey(name: 'genres') required final List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage') this.homePage,
-      @JsonKey(name: 'imdb_id') required this.imdbId,
+      @JsonKey(name: 'imdb_id', includeIfNull: false) this.imdbId,
       @JsonKey(name: 'original_language') required this.originalLanguage,
       @JsonKey(name: 'original_title') required this.originalTitle,
       required this.overview,
@@ -347,7 +347,7 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   final bool adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   final List<GenreDTO> _genresDto;
   @override
   @JsonKey(name: 'genres')
@@ -361,8 +361,8 @@ class _$_MovieDetailDTO extends _MovieDetailDTO {
   @JsonKey(name: 'homepage')
   final String? homePage;
   @override
-  @JsonKey(name: 'imdb_id')
-  final String imdbId;
+  @JsonKey(name: 'imdb_id', includeIfNull: false)
+  final String? imdbId;
   @override
   @JsonKey(name: 'original_language')
   final String originalLanguage;
@@ -473,13 +473,13 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
       {required final int id,
       required final bool adult,
       @JsonKey(name: 'backdrop_path')
-          final String backdropPath,
+          final String? backdropPath,
       @JsonKey(name: 'genres')
           required final List<GenreDTO> genresDto,
       @JsonKey(name: 'homepage')
           final String? homePage,
-      @JsonKey(name: 'imdb_id')
-          required final String imdbId,
+      @JsonKey(name: 'imdb_id', includeIfNull: false)
+          final String? imdbId,
       @JsonKey(name: 'original_language')
           required final String originalLanguage,
       @JsonKey(name: 'original_title')
@@ -508,7 +508,7 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
   bool get adult;
   @override
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath;
+  String? get backdropPath;
   @override
   @JsonKey(name: 'genres')
   List<GenreDTO> get genresDto;
@@ -516,8 +516,8 @@ abstract class _MovieDetailDTO extends MovieDetailDTO {
   @JsonKey(name: 'homepage')
   String? get homePage;
   @override
-  @JsonKey(name: 'imdb_id')
-  String get imdbId;
+  @JsonKey(name: 'imdb_id', includeIfNull: false)
+  String? get imdbId;
   @override
   @JsonKey(name: 'original_language')
   String get originalLanguage;

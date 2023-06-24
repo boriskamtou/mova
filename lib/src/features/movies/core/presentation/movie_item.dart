@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -26,7 +24,7 @@ class MovieItem extends StatelessWidget {
       onTap: () {
         if (isAlreadyInDetail) {
           // TODO: Gérer le scroll de la page de détail
-          debugPrint('On movie tap: $isAlreadyInDetail');
+
           if (scrollController != null && scrollController!.hasClients) {
             scrollController!.animateTo(0.0,
                 duration: const Duration(milliseconds: 300),
@@ -43,10 +41,12 @@ class MovieItem extends StatelessWidget {
             width: isHome ? 100 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: (movie.posterPath == '' || movie.posterPath.isNotEmpty)
+              image: (movie.posterPath != null &&
+                      movie.fullImageUrl != null &&
+                      movie.posterPath!.isNotEmpty)
                   ? DecorationImage(
                       fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(movie.fullImageUrl),
+                      image: CachedNetworkImageProvider(movie.fullImageUrl!),
                     )
                   : const DecorationImage(
                       image: AssetImage('assets/images/logo.png')),
@@ -111,7 +111,7 @@ class MovieDetailItem extends ConsumerWidget {
             width: isHome ? 100 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: (movie.posterPath == '' || movie.posterPath.isNotEmpty)
+              image: (movie.posterPath == '' || movie.posterPath!.isNotEmpty)
                   ? DecorationImage(
                       fit: BoxFit.cover,
                       image: CachedNetworkImageProvider(movie.fullBackDropUrl),

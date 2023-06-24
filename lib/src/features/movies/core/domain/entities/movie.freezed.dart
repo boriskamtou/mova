@@ -22,12 +22,12 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
 mixin _$Movie {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   List<int> get genreIds => throw _privateConstructorUsedError;
   String get originalLanguage => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   String get releaseDate => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get video => throw _privateConstructorUsedError;
@@ -47,12 +47,12 @@ abstract class $MovieCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      String backdropPath,
+      String? backdropPath,
       List<int> genreIds,
       String originalLanguage,
       String overview,
       double popularity,
-      String posterPath,
+      String? posterPath,
       String releaseDate,
       String title,
       bool video,
@@ -75,12 +75,12 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? originalLanguage = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -96,10 +96,10 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: null == genreIds
           ? _value.genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -116,10 +116,10 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -153,12 +153,12 @@ abstract class _$$_MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      String backdropPath,
+      String? backdropPath,
       List<int> genreIds,
       String originalLanguage,
       String overview,
       double popularity,
-      String posterPath,
+      String? posterPath,
       String releaseDate,
       String title,
       bool video,
@@ -177,12 +177,12 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genreIds = null,
     Object? originalLanguage = null,
     Object? overview = null,
     Object? popularity = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? releaseDate = null,
     Object? title = null,
     Object? video = null,
@@ -198,10 +198,10 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: null == genreIds
           ? _value._genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -218,10 +218,10 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as double,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -252,12 +252,12 @@ class _$_Movie extends _Movie {
   const _$_Movie(
       {required this.id,
       required this.adult,
-      required this.backdropPath,
+      this.backdropPath,
       required final List<int> genreIds,
       required this.originalLanguage,
       required this.overview,
       required this.popularity,
-      this.posterPath = '',
+      this.posterPath,
       required this.releaseDate,
       required this.title,
       required this.video,
@@ -274,7 +274,7 @@ class _$_Movie extends _Movie {
   @override
   final bool adult;
   @override
-  final String backdropPath;
+  final String? backdropPath;
   final List<int> _genreIds;
   @override
   List<int> get genreIds {
@@ -290,8 +290,7 @@ class _$_Movie extends _Movie {
   @override
   final double popularity;
   @override
-  @JsonKey()
-  final String posterPath;
+  final String? posterPath;
   @override
   final String releaseDate;
   @override
@@ -372,12 +371,12 @@ abstract class _Movie extends Movie {
   const factory _Movie(
       {required final int id,
       required final bool adult,
-      required final String backdropPath,
+      final String? backdropPath,
       required final List<int> genreIds,
       required final String originalLanguage,
       required final String overview,
       required final double popularity,
-      final String posterPath,
+      final String? posterPath,
       required final String releaseDate,
       required final String title,
       required final bool video,
@@ -392,7 +391,7 @@ abstract class _Movie extends Movie {
   @override
   bool get adult;
   @override
-  String get backdropPath;
+  String? get backdropPath;
   @override
   List<int> get genreIds;
   @override
@@ -402,7 +401,7 @@ abstract class _Movie extends Movie {
   @override
   double get popularity;
   @override
-  String get posterPath;
+  String? get posterPath;
   @override
   String get releaseDate;
   @override

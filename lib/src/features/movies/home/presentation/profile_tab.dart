@@ -5,6 +5,7 @@ import 'package:mova/src/features/auth/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
 
+import '../../../core/shared/providers.dart';
 import '../../../theme/application/app_theme_notifier.dart';
 
 class ProfileTab extends ConsumerStatefulWidget {
@@ -21,6 +22,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _imageUrl = '';
   String? _phoneNumber = '';
   String? _gender = '';
+  String? _appVersion = '';
   bool? _isDarkMode = true;
 
   Future<void> _initializeInfos() async {
@@ -40,6 +42,10 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         await ref.read(userDataNotifierProvider.notifier).getUserGender();
     final isDarkMode =
         await ref.read(appThemeProvider.notifier).getPreferedThemeMode();
+
+    final appVersion = await ref
+        .read(userPreferenceNotifierProvider.notifier)
+        .getUserAppVersion();
     setState(() {
       _userEmail = userEmail;
       _username = userName;
@@ -48,13 +54,13 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
       _phoneNumber = phoneNumber;
       _nickName = nickName;
       _gender = gender;
+      _appVersion = appVersion;
     });
   }
 
   @override
   void initState() {
     _initializeInfos();
-
     super.initState();
   }
 
@@ -91,7 +97,9 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: _imageUrl == null || _imageUrl!.isEmpty
+                  image: _imageUrl == null ||
+                          _imageUrl!.isEmpty ||
+                          _imageUrl! == ''
                       ? const AssetImage('assets/images/empty_pp.png')
                           as ImageProvider
                       : CachedNetworkImageProvider(_imageUrl!),
@@ -124,6 +132,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                     email: _userEmail,
                     gender: _gender,
                     nickName: _nickName,
+                    imageUrl: _imageUrl,
                   ),
                 );
               },
@@ -211,7 +220,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                             width: 60,
                           ),
                           title: const Text('Mova - Streaming App'),
-                          subtitle: const Text('0.1.0'),
+                          subtitle: Text(_appVersion!),
                         ),
                         const SizedBox(height: 6),
                         const Text(

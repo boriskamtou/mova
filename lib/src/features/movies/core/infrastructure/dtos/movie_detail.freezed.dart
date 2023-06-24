@@ -18,10 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MovieDetail {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   List<Genre> get genresDto => throw _privateConstructorUsedError;
   String? get homePage => throw _privateConstructorUsedError;
-  String get imdbId => throw _privateConstructorUsedError;
+  String? get imdbId => throw _privateConstructorUsedError;
   String get originalLanguage => throw _privateConstructorUsedError;
   String get originalTitle => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
@@ -48,10 +48,10 @@ abstract class $MovieDetailCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      String backdropPath,
+      String? backdropPath,
       List<Genre> genresDto,
       String? homePage,
-      String imdbId,
+      String? imdbId,
       String originalLanguage,
       String originalTitle,
       String overview,
@@ -80,10 +80,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genresDto = null,
     Object? homePage = freezed,
-    Object? imdbId = null,
+    Object? imdbId = freezed,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
@@ -105,10 +105,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genresDto: null == genresDto
           ? _value.genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -117,10 +117,10 @@ class _$MovieDetailCopyWithImpl<$Res, $Val extends MovieDetail>
           ? _value.homePage
           : homePage // ignore: cast_nullable_to_non_nullable
               as String?,
-      imdbId: null == imdbId
+      imdbId: freezed == imdbId
           ? _value.imdbId
           : imdbId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalLanguage: null == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -180,10 +180,10 @@ abstract class _$$_MovieDetailCopyWith<$Res>
   $Res call(
       {int id,
       bool adult,
-      String backdropPath,
+      String? backdropPath,
       List<Genre> genresDto,
       String? homePage,
-      String imdbId,
+      String? imdbId,
       String originalLanguage,
       String originalTitle,
       String overview,
@@ -210,10 +210,10 @@ class __$$_MovieDetailCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? genresDto = null,
     Object? homePage = freezed,
-    Object? imdbId = null,
+    Object? imdbId = freezed,
     Object? originalLanguage = null,
     Object? originalTitle = null,
     Object? overview = null,
@@ -235,10 +235,10 @@ class __$$_MovieDetailCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genresDto: null == genresDto
           ? _value._genresDto
           : genresDto // ignore: cast_nullable_to_non_nullable
@@ -247,10 +247,10 @@ class __$$_MovieDetailCopyWithImpl<$Res>
           ? _value.homePage
           : homePage // ignore: cast_nullable_to_non_nullable
               as String?,
-      imdbId: null == imdbId
+      imdbId: freezed == imdbId
           ? _value.imdbId
           : imdbId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalLanguage: null == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -305,10 +305,10 @@ class _$_MovieDetail extends _MovieDetail {
   const _$_MovieDetail(
       {required this.id,
       required this.adult,
-      this.backdropPath = '',
+      this.backdropPath,
       required final List<Genre> genresDto,
       this.homePage,
-      required this.imdbId,
+      this.imdbId,
       required this.originalLanguage,
       required this.originalTitle,
       required this.overview,
@@ -328,8 +328,7 @@ class _$_MovieDetail extends _MovieDetail {
   @override
   final bool adult;
   @override
-  @JsonKey()
-  final String backdropPath;
+  final String? backdropPath;
   final List<Genre> _genresDto;
   @override
   List<Genre> get genresDto {
@@ -341,7 +340,7 @@ class _$_MovieDetail extends _MovieDetail {
   @override
   final String? homePage;
   @override
-  final String imdbId;
+  final String? imdbId;
   @override
   final String originalLanguage;
   @override
@@ -438,10 +437,10 @@ abstract class _MovieDetail extends MovieDetail {
   const factory _MovieDetail(
       {required final int id,
       required final bool adult,
-      final String backdropPath,
+      final String? backdropPath,
       required final List<Genre> genresDto,
       final String? homePage,
-      required final String imdbId,
+      final String? imdbId,
       required final String originalLanguage,
       required final String originalTitle,
       required final String overview,
@@ -460,13 +459,13 @@ abstract class _MovieDetail extends MovieDetail {
   @override
   bool get adult;
   @override
-  String get backdropPath;
+  String? get backdropPath;
   @override
   List<Genre> get genresDto;
   @override
   String? get homePage;
   @override
-  String get imdbId;
+  String? get imdbId;
   @override
   String get originalLanguage;
   @override

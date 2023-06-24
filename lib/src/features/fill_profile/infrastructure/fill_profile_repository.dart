@@ -63,7 +63,9 @@ class FillProfileRepository {
     try {
       final ref =
           _firebaseStorage.ref().child('user_images').child('$fullName.jpg');
-      await ref.putFile(imageUrl);
+      await ref.putFile(
+        imageUrl,
+      );
       final url = await ref.getDownloadURL();
       await _firebaseFirestore
           .collection('users')

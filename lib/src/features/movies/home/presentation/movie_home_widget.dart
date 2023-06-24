@@ -23,7 +23,7 @@ class MovieItem extends StatelessWidget {
           margin: const EdgeInsets.only(right: 8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: CachedNetworkImage(imageUrl: movie.fullImageUrl),
+            child: CachedNetworkImage(imageUrl: movie.fullImageUrl!),
           ),
         ),
         Positioned(
@@ -73,7 +73,7 @@ class MovieDetailItem extends StatelessWidget {
           margin: const EdgeInsets.only(right: 8),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: CachedNetworkImage(imageUrl: movie.fullBackDropUrl),
+            child: CachedNetworkImage(imageUrl: movie.fullBackDropUrl!),
           ),
         ),
         Positioned(

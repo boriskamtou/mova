@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mova/src/features/core/shared/providers.dart';
 import 'package:mova/src/features/movies/home/presentation/profile_tab.dart';
+import 'package:upgrader/upgrader.dart';
 
 import '../../../../utils/common_import.dart';
 import '../shared/providers.dart';
@@ -20,7 +23,6 @@ class HomeScreen extends StatefulHookConsumerWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final autoSizeGroup = AutoSizeGroup();
-  final _bottomNavIndex = 0;
 
   final _iconOutlineList = <String>[
     'assets/icons/home.png',
@@ -65,54 +67,82 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final bottomNavigationRouter =
         ref.watch(bottomNavigationRouterNotifierProvider.notifier);
     final state = ref.watch(bottomNavigationRouterNotifierProvider);
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        itemCount: _iconOutlineList.length,
-        splashSpeedInMilliseconds: 0,
-        backgroundColor:
-            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-        tabBuilder: (int index, bool isActive) {
-          final color = isActive ? AppColors.primary : AppColors.inactiveColor;
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                isActive ? _iconSolidList[index] : _iconOutlineList[index],
-                color: color,
-              ),
-              gapH4,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: AutoSizeText(
-                  titleList[index],
-                  maxLines: 1,
-                  style: GoogleFonts.urbanist(
-                    color: color,
-                    fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                  group: autoSizeGroup,
-                ),
-              )
-            ],
-          );
+    return UpgradeAlert(
+      upgrader: Upgrader(
+        dialogStyle: Platform.isIOS
+            ? UpgradeDialogStyle.cupertino
+            : UpgradeDialogStyle.material,
+        shouldPopScope: () => true,
+        canDismissDialog: true,
+        showReleaseNotes: false,
+        willDisplayUpgrade: ({
+          String? appStoreVersion,
+          bool display = true,
+          String? installedVersion,
+          String? minAppVersion,
+        }) async {
+          ref
+              .read(userPreferenceNotifierProvider.notifier)
+              .saveUserAppVersion(installedVersion);
         },
-        activeIndex: bottomNavigationRouter.currentIndex,
-        gapLocation: GapLocation.none,
-        leftCornerRadius: 14,
-        rightCornerRadius: 14,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        onTap: (index) => bottomNavigationRouter.changeTab(index),
-        shadow: const BoxShadow(
-          offset: Offset(0, 1),
-          blurRadius: 1.5,
-          spreadRadius: 0,
-        ),
-        elevation: 2,
+        showIgnore: false,
+        durationUntilAlertAgain: const Duration(seconds: 30),
+        languageCode: 'en',
+        /*       messages: UpgraderMessages(
+          code: langCode,
+        ), */
       ),
-      body: _widgetOptions.elementAt(state),
+      child: Scaffold(
+        extendBody: true,
+        bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          itemCount: _iconOutlineList.length,
+          splashSpeedInMilliseconds: 0,
+          backgroundColor:
+              Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+          tabBuilder: (int index, bool isActive) {
+            final color =
+                isActive ? AppColors.primary : AppColors.inactiveColor;
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  isActive ? _iconSolidList[index] : _iconOutlineList[index],
+                  color: color,
+                ),
+                gapH4,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: AutoSizeText(
+                    titleList[index],
+                    maxLines: 1,
+                    style: GoogleFonts.urbanist(
+                      color: color,
+                      fontWeight:
+                          isActive ? FontWeight.w600 : FontWeight.normal,
+                      fontSize: 14,
+                    ),
+                    group: autoSizeGroup,
+                  ),
+                )
+              ],
+            );
+          },
+          activeIndex: bottomNavigationRouter.currentIndex,
+          gapLocation: GapLocation.none,
+          leftCornerRadius: 14,
+          rightCornerRadius: 14,
+          notchSmoothness: NotchSmoothness.verySmoothEdge,
+          onTap: (index) => bottomNavigationRouter.changeTab(index),
+          shadow: const BoxShadow(
+            offset: Offset(0, 1),
+            blurRadius: 1.5,
+            spreadRadius: 0,
+          ),
+          elevation: 2,
+        ),
+        body: _widgetOptions.elementAt(state),
+      ),
     );
   }
 }

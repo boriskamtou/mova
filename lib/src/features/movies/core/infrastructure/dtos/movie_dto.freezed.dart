@@ -278,7 +278,7 @@ class _$_MovieDTO extends _MovieDTO {
       {required this.id,
       this.adult = false,
       @JsonKey(name: 'backdrop_path')
-          this.backdropPath = "",
+          this.backdropPath,
       @JsonKey(name: 'genre_ids', includeIfNull: false)
           final List<int> genreIds = const [],
       @JsonKey(name: 'original_language')
