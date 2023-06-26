@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/constants/app_sizes.dart';
 import 'package:mova/src/features/core/shared/providers.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import '../../../widgets/custom_linear_gradient.dart';
@@ -30,6 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       child: Scaffold(
         body: Stack(
@@ -62,21 +64,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           currentIndex = index;
                         });
                       },
-                      children: const [
+                      children: [
                         OnboardingTextDescription(
-                          title: 'Welcome to Mova',
+                          title: l10n.onboardingScreenWelcomeToMovaTitleOne,
                           description:
-                              'The best movie streaming app of the century\nto make your days great!',
+                              l10n.onboardingScreenWelcomeToMovaDescriptionOne,
                         ),
                         OnboardingTextDescription(
-                          title: 'A new world of Movies',
+                          title: l10n.onboardingScreenWelcomeToMovaTitleTwo,
                           description:
-                              'Discover how you can stream\nin other way!',
+                              l10n.onboardingScreenWelcomeToMovaDescriptionTwo,
                         ),
                         OnboardingTextDescription(
-                          title: 'Movies, Shows & More',
-                          description:
-                              'We have a tons of movies, shows\nanimes, drame waiting for you!',
+                          title: l10n.onboardingScreenWelcomeToMovaTitleThree,
+                          description: l10n
+                              .onboardingScreenWelcomeToMovaDescriptionThree,
                         ),
                       ],
                     ),
@@ -98,7 +100,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               const SignUpWithPasswordRoute(),
                               predicate: (_) => false);
                         },
-                        child: const Text('Get Started'),
+                        child: Text(l10n.onboardingScreenGetStartedLabel),
                       );
                     }),
                   )

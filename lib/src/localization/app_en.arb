@@ -1,8 +1,0 @@
-{
-  "appTitle": "mova",
-  "@appTitle": {
-    "description": "The title of the application"
-  },
-  "signInButtonLabel":"Sign In",
-  "seeAllButtonLabel": "See all"
-}

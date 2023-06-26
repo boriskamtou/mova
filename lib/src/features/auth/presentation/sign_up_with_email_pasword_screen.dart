@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:mova/src/features/auth/shared/providers.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/common_import.dart';
 import '../application/auth_notifier.dart';
 import '../infrastructure/validation_service.dart';
@@ -28,7 +29,7 @@ class _SignUpWithPasswordScreenState
   final _passwordController = TextEditingController();
 
   bool _showPassword = true;
-  bool _isLoggedIn = false;
+  bool _isLoggedIn = true;
 
   @override
   void initState() {
@@ -44,6 +45,7 @@ class _SignUpWithPasswordScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     ref.listen<AuthState>(
       authNotifier,
       (previous, next) {
@@ -96,8 +98,8 @@ class _SignUpWithPasswordScreenState
                       gapH20,
                       Text(
                         _isLoggedIn
-                            ? 'Login to Your Account'
-                            : 'Create your account',
+                            ? l10n.signInScreenLoginLabel
+                            : l10n.signInScreenCreateAccountLabel,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
@@ -108,7 +110,7 @@ class _SignUpWithPasswordScreenState
                         focusNode: _focusNode,
                         prefixIcon: Image.asset('assets/icons/message.png'),
                         validator: ValidationService.validateEmail,
-                        hintText: 'Email',
+                        hintText: l10n.signInScreenEmailHintText,
                       ),
                       gapH20,
                       CommonTextFormField(
@@ -126,7 +128,7 @@ class _SignUpWithPasswordScreenState
                           borderRadius: BorderRadius.circular(8),
                           child: Image.asset('assets/icons/hide_close.png'),
                         ),
-                        hintText: 'Password',
+                        hintText: l10n.signInScreenPasswordHintText,
                       ),
                       /* Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -174,7 +176,11 @@ class _SignUpWithPasswordScreenState
                                     .then((value) => progress?.dismiss());
                           }
                         },
-                        child: Text(_isLoggedIn ? 'Sign in' : 'Sign up'),
+                        child: Text(
+                          _isLoggedIn
+                              ? l10n.signInScreenButtonSignInLabel
+                              : l10n.signInScreenButtonSignUpLabel,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 24),
@@ -186,7 +192,7 @@ class _SignUpWithPasswordScreenState
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
-                                'Or continue with',
+                                l10n.signInScreenOrContinueWithtLabel,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!
@@ -290,16 +296,20 @@ class _AlreadyHaveAnAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-            isLoggedIn ? "Don’t have an account?" : 'Already have an account?'),
+        Text(isLoggedIn
+            ? l10n.signInScreenDontHaveAnAccountLabel
+            : l10n.signInScreenAlreadyHaveAnAccountLabel),
         const SizedBox(width: 4),
         InkWell(
           onTap: onTap,
           child: Text(
-            isLoggedIn ? 'Sign up' : 'Sign In',
+            isLoggedIn
+                ? l10n.signInScreenButtonSignUpLabel
+                : l10n.signInScreenButtonSignUpLabel,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               color: AppColors.primary,
@@ -311,33 +321,33 @@ class _AlreadyHaveAnAccount extends StatelessWidget {
   }
 }
 
-class _SocialIconSignUp extends StatelessWidget {
-  final void Function() onTap;
-  final String imageUrl;
-  const _SocialIconSignUp({
-    Key? key,
-    required this.onTap,
-    required this.imageUrl,
-  }) : super(key: key);
+// class _SocialIconSignUp extends StatelessWidget {
+//   final void Function() onTap;
+//   final String imageUrl;
+//   const _SocialIconSignUp({
+//     Key? key,
+//     required this.onTap,
+//     required this.imageUrl,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 1,
-            color: Theme.of(context).inputDecorationTheme.fillColor!,
-          ),
-          color: Theme.of(context).inputDecorationTheme.fillColor,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Image.asset(
-          imageUrl,
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: onTap,
+//       child: Container(
+//         padding: const EdgeInsets.all(16),
+//         decoration: BoxDecoration(
+//           border: Border.all(
+//             width: 1,
+//             color: Theme.of(context).inputDecorationTheme.fillColor!,
+//           ),
+//           color: Theme.of(context).inputDecorationTheme.fillColor,
+//           borderRadius: BorderRadius.circular(16),
+//         ),
+//         child: Image.asset(
+//           imageUrl,
+//         ),
+//       ),
+//     );
+//   }
+// }

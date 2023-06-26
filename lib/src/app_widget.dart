@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/application/auth_notifier.dart';
@@ -12,6 +11,7 @@ import 'package:mova/src/routing/app_router.dart';
 import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
 import 'features/theme/application/app_theme_notifier.dart';
+import 'l10n/app_localizations.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).database;
@@ -102,9 +102,10 @@ class AppWidget extends ConsumerWidget {
       ],
       supportedLocales: const [
         Locale('en', ''),
+        Locale('fr', ''),
       ],
       onGenerateTitle: (BuildContext context) =>
-          AppLocalizations.of(context)!.appTitle,
+          AppLocalizations.of(context).appTitle,
       theme: appTheme,
       builder: EasyLoading.init(),
     );

@@ -1,0 +1,23 @@
+{
+  "appTitle": "Mova",
+  "@appTitle": {
+    "description": "App Title"
+  },
+  "onboardingScreenGetStartedLabel": "Get Started",
+  "onboardingScreenWelcomeToMovaTitleOne": "Welcome to Mova",
+  "onboardingScreenWelcomeToMovaTitleTwo": "A new world of Movies",
+  "onboardingScreenWelcomeToMovaDescriptionOne": "The best movie streaming app of the century\nto make your days great!",
+  "onboardingScreenWelcomeToMovaTitleThree": "Movies, Shows & More",
+  "onboardingScreenWelcomeToMovaDescriptionTwo": "Discover how you can stream\nin other way!",
+  "onboardingScreenWelcomeToMovaDescriptionThree": "We have a tons of movies, shows\nanimes, drame waiting for you!",
+  "signInScreenLoginLabel":"Login to Your Account",
+  "signInScreenCreateAccountLabel":"Create your account",
+  "signInScreenEmailHintText":"Email",
+  "signInScreenPasswordHintText":"Password",
+  "signInScreenOrContinueWithtLabel":"Or continue with",
+  "signInScreenButtonSignInLabel":"Sign In",
+  "signInScreenButtonSignUpLabel":"Sign Up",
+  "signInScreenDontHaveAnAccountLabel":"Don’t have an account?",
+  "signInScreenAlreadyHaveAnAccountLabel":"Already have an account?",
+  "homeScreenSeeAllButtonLabel": "See all"
+}
