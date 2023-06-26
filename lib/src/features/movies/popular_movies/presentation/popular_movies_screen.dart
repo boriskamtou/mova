@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 
 import '../../../../utils/common_import.dart';
 import '../../core/presentation/paginated_movie_gridview.dart';
@@ -27,9 +27,10 @@ class _PopularMoviesScreenState extends ConsumerState<PopularMoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Popular Movies'),
+        title: Text(l10n.popularMovieScreenTitleLabel),
         actions: [
           GoToSearchTabButton(ref: ref),
         ],
@@ -43,7 +44,7 @@ class _PopularMoviesScreenState extends ConsumerState<PopularMoviesScreen> {
           getNextPage: (ref) => ref
               .read(popularMoviesStateNotifierProvider.notifier)
               .getNextPopularMoviePage(),
-          noDataMessage: '',
+          noDataMessage: l10n.popularMoviesScreenNoMoviesFoundLabel,
         ),
       ),
     );

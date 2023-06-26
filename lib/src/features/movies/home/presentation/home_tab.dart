@@ -1,9 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/core/shared/providers.dart';
 import 'package:mova/src/features/movies/upcomming_movie/shared/providers.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import '../../../../utils/common_import.dart';
@@ -43,6 +43,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final popularMoviesState = ref.watch(popularMoviesStateNotifierProvider);
     final topRatedMoviesState = ref.watch(topRatedMoviesStateNotifierProvider);
     final upComingMoviesState = ref.watch(upComingMoviesStateNotifierProvider);
@@ -54,7 +55,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
           orElse: () {},
           saveLoading: () => Container(),
           saveComplete: (movie) => Flushbar(
-            message: '${movie.title} has been add to your list',
+            message: l10n.homeTabMovieAddToBookmarkLabel(movie.title),
             icon: const Icon(
               Icons.info,
               color: AppColors.alertSuccess,
@@ -108,7 +109,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
             ),
             gapH18,
             RowTitle(
-              title: 'Top 10 Popular Movies',
+              title: l10n.homeTabTopTenPopularMovies,
               onSeeAllTap: () {
                 context.navigateTo(const PopularMoviesRoute());
               },
@@ -120,7 +121,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               loaded: (data) {
                 return ListOfTopMovies(
                   movies: data.movies.entity,
-                  messageIfEmptyList: 'No Popular Movies found!',
+                  messageIfEmptyList: l10n.homeTabNoTopPopularMovieFoundLabel,
                 );
               },
               failure: (_) => NoData(
@@ -129,7 +130,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
             ),
             gapH18,
             RowTitle(
-              title: 'Top 10 Rated Movies',
+              title: l10n.homeTabTopTenRatedMovies,
               onSeeAllTap: () {
                 context.navigateTo(const TopRatedMoviesRoute());
               },
@@ -141,7 +142,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               loaded: (data) {
                 return ListOfTopMovies(
                   movies: data.movies.entity,
-                  messageIfEmptyList: 'No Top Rated Movies Found!',
+                  messageIfEmptyList: l10n.homeTabNoTopRatedMovieFoundLabel,
                 );
               },
               failure: (_) => NoData(
@@ -150,7 +151,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
             ),
             gapH18,
             RowTitle(
-              title: 'Trending Movies',
+              title: l10n.homeTabTopTenTrendingMovies,
               onSeeAllTap: () {
                 context.navigateTo(const UpcomingMoviesRoute());
               },
@@ -164,7 +165,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
               ) {
                 return ListOfTopMovies(
                   movies: data.movies.entity,
-                  messageIfEmptyList: 'No Up Coming Movies Found!',
+                  messageIfEmptyList: l10n.homeTabNoTopTrendingMovieFoundLabel,
                 );
               },
               failure: (_) => NoData(message: _.failure.message!),

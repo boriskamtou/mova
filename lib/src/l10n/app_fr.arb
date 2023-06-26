@@ -3,6 +3,10 @@
   "@appTitle": {
     "description": "Nom de l'application"
   },
+
+
+  "paginatedMoviesGridView":"Vous n'êtes pas connecté à internet. Veillez vérifier votre connection.",
+
   "onboardingScreenGetStartedLabel": "Commencer",
   "onboardingScreenWelcomeToMovaTitleOne": "Bienvenue sur Mova",
   "onboardingScreenWelcomeToMovaTitleTwo": "Un nouveau monde de films",
@@ -10,6 +14,7 @@
   "onboardingScreenWelcomeToMovaDescriptionOne": "The best movie streaming app of the century\nto make your days great!",
   "onboardingScreenWelcomeToMovaDescriptionTwo": "Discover how you can stream\nin other way!",
   "onboardingScreenWelcomeToMovaDescriptionThree": "We have a tons of movies, shows\nanimes, drame waiting for you!",
+
   "signInScreenLoginLabel":"Connectez-vous",
   "signInScreenCreateAccountLabel":"Creez un compte",
   "signInScreenEmailHintText":"Email",
@@ -19,5 +24,78 @@
   "signInScreenButtonSignUpLabel":"Créez un compte",
   "signInScreenDontHaveAnAccountLabel":"Vous n'avez pas de compte?",
   "signInScreenAlreadyHaveAnAccountLabel":"Vous avez déjà un compte?",
-  "homeScreenSeeAllButtonLabel": "Voir tout"
+
+  "homeTabSeeAllButtonLabel": "Voir tout",
+  "homeTabMovieAddToBookmarkLabel": "{movieTitle} a été ajouté à votre list",
+  "@homeTabMovieAddToBookmarkLabel": {
+    "placeholders": {
+      "movieTitle" : {
+        "type": "String"
+      }
+    }
+  },
+  "homeTabTopTenPopularMovies":"Top 10 Des Films Populaires",
+  "homeTabTopTenRatedMovies":"Top 10 Des Mieux Notés",
+  "homeTabTopTenTrendingMovies":"Films en vogue",
+  "homeTabNoTopPopularMovieFoundLabel": "Aucun Fiml Populaire Trouvé",
+  "homeTabNoTopRatedMovieFoundLabel": "Aucun Film Mieux Noté Trouvé",
+  "homeTabNoTopTrendingMovieFoundLabel": "Aucun Film Tendance Trouvé",
+
+  "bookmarkTabMovieDeleteSuccessfullyLabel":"Film supprimé avec succès",
+  "bookmarkTabMyListLabel":"Ma Liste",
+  "bookmarkTabMyDeleteLabel":"Supprimer",
+  "bookmarkTabAreYouSureYouWantToDeleteMovieLabel":"Êtes-vous sûr de vouloir supprimer ce\nfilm de votre list?",
+  "bookmarkTabCancelDeleteMovieLabel":"Annuler",
+  "bookmarkTabYesDeleteMovieLabel":"Oui, supprimer",
+
+  "searchTabSearchMovieLabel":"Rechercher un film...",
+  "searchTabSearchButtonSemanticLabel":"Rechercher un film",
+  "searchTabClearButtonSemanticLabel":"Supprimer la recherche",
+  "searchTabRecentSearchLabel":"Aucune recherche récente",
+  "searchTabNoMovieFoundLabel":"Aucun film trouvé!",
+  "searchTabNoMovieSearchTitleLabel":"Aucun film trouvé!",
+  "searchTabNoMovieSearchDesciptionLabel":"Il semble que vous n'avez pas \nencore trouvé le film que vous recherchez.",
+
+  "profileTabProfileLabel":"Profil",
+  "profileTabEditProfileLabel":"Mise à jour du profil",
+  "profileTabLanguageLabel":"Langue",
+  "profileTabThemeModeLabel":"Thème sombre",
+  "profileTabMovieDescriptionLabel":"Mova - Streaming App",
+  "profileTabMadeByLabel":"Développé par WCS",
+  "profileTabAboutLabel":"A propos",
+  "profileTabLogoutLabel":"Déconnexion",
+
+  "topRateMovieScreenTopRatedTitleLabel":"Films les mieux notés",
+  "topRateMovieScreenNoTopRatedMovieFoundLabel":"Aucun Film Trouvé!",
+
+  "popularMovieScreenTitleLabel": "Films populaires",
+  "popularMoviesScreenNoMoviesFoundLabel":"Aucun film populaire trouvé!",
+
+  "topRatedMovieScreenTitleLabel": "Films les mieux notés",
+  "topRatedMovieScreenNoMoviesFoundLabel":"Aucun film trouvé!",
+
+  "movieDetailScreenAddMovieToBookmarkLabel": "{movieTitle} a été ajouté à votre list",
+  "@movieDetailScreenAddMovieToBookmarkLabel": {
+    "placeholders": {
+      "movieTitle" : {
+        "type": "String"
+      }
+    }
+  },
+  "movieDetailScreenViewMoreLabel": "Voir plus",
+  "movieDetailScreenViewLessLabel": "Voir moins",
+  "movieDetailScreenTrailersTabLabel": "Trailers",
+  "movieDetailScreenSimilarsTabLabel": "Similaires",
+  "movieDetailScreenCommentsTabLabel": "Commentaires",
+  "movieDetailSharedWithLabel": "Partager Avec",
+  "movieDetailScreenNoSimilarMoviesFoundLabel": "Aucun film similaires trouvé",
+  "movieDetailScreenGenreLabel": "Genre: {genres}",
+  "@movieDetailScreenGenreLabel": {
+    "placeholders": {
+      "genres" : {
+        "type": "String"
+      }
+    }
+  }
+  
 }

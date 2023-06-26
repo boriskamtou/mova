@@ -2,6 +2,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
@@ -77,6 +78,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final videoState = ref.watch(movieVideoNotifierProvider);
     final reviewsState = ref.watch(reviewNotifierProvider);
     final movieDetailState = ref.watch(movieDetailNotifierProvider);
@@ -85,7 +87,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
         orElse: () {},
         saveLoading: () => Container(),
         saveComplete: (movie) => Flushbar(
-          message: '${movie.title} has been add to your list',
+          message: l10n.movieDetailScreenAddMovieToBookmarkLabel(movie.title),
           icon: const Icon(
             Icons.info,
             color: AppColors.alertSuccess,
@@ -231,10 +233,11 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                           const Center(
                                               child: BottomSheetTopBar()),
                                           gapH30,
-                                          const Padding(
-                                            padding: EdgeInsets.only(
+                                          Padding(
+                                            padding: const EdgeInsets.only(
                                                 left: AppSizes.p16),
-                                            child: Text('Share with'),
+                                            child: Text(l10n
+                                                .movieDetailSharedWithLabel),
                                           ),
                                           Expanded(
                                             child: GridView.count(
@@ -333,7 +336,8 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Text(
-                              'Genre: ${data.movieDetail.stringGenres()}',
+                              l10n.movieDetailScreenGenreLabel(
+                                  data.movieDetail.stringGenres()),
                               textAlign: TextAlign.left,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
@@ -362,8 +366,9 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                         child: ReadMoreText(
                           widget.movie.overview,
                           trimLines: 3,
-                          trimCollapsedText: 'View more',
-                          trimExpandedText: ' View less',
+                          trimCollapsedText:
+                              l10n.movieDetailScreenViewMoreLabel,
+                          trimExpandedText: l10n.movieDetailScreenViewLessLabel,
                           colorClickableText: Theme.of(context).primaryColor,
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
@@ -410,10 +415,10 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                 wordSpacing: 1,
                               ),
                           indicatorWeight: 3,
-                          tabs: const [
-                            Tab(text: "Trailers"),
-                            Tab(text: "Similars"),
-                            Tab(text: "Comments"),
+                          tabs: [
+                            Tab(text: l10n.movieDetailScreenTrailersTabLabel),
+                            Tab(text: l10n.movieDetailScreenSimilarsTabLabel),
+                            Tab(text: l10n.movieDetailScreenCommentsTabLabel),
                           ],
                         ),
                       ),
@@ -434,7 +439,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                 getNextPage: (ref) => ref
                     .read(similarMoviesNotifierProviderProvider.notifier)
                     .getSimilarMovies(widget.movie.id),
-                noDataMessage: 'No Similar movies found',
+                noDataMessage: l10n.movieDetailScreenNoSimilarMoviesFoundLabel,
               ),
               LoadedReview(reviewState: reviewsState),
             ],

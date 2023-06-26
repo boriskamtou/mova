@@ -1,5 +1,6 @@
 import 'package:mova/src/features/movies/core/presentation/paginated_movie_gridview.dart';
 import 'package:mova/src/features/movies/search/shared/providers.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/utils/common_import.dart';
 
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -51,20 +52,22 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: FloatingSearchBar(
           controller: _controller,
           automaticallyImplyBackButton: false,
-          hint: 'Search movie...',
+          hint: l10n.searchTabSearchMovieLabel,
           clearQueryOnClose: false,
           elevation: 0,
           actions: [
             FloatingSearchBarAction.searchToClear(
               showIfClosed: false,
-              searchButtonSemanticLabel: 'Search Movie',
-              clearButtonSemanticLabel: 'Delete Searched Movie',
+              searchButtonSemanticLabel:
+                  l10n.searchTabSearchButtonSemanticLabel,
+              clearButtonSemanticLabel: l10n.searchTabClearButtonSemanticLabel,
               color: Theme.of(context).textTheme.headlineMedium!.color,
             ),
             FloatingSearchBarAction.icon(
@@ -119,7 +122,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                           height: 56,
                           alignment: Alignment.center,
                           child: Text(
-                            'No rencent searchs found!',
+                            l10n.searchTabRecentSearchLabel,
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         )
@@ -175,14 +178,14 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
               getNextPage: (ref) => ref
                   .read(searchMovieNotifierProvider.notifier)
                   .getSearchMovies(_controller.query),
-              noDataMessage: 'No movies found',
+              noDataMessage: l10n.searchTabNoMovieFoundLabel,
               useWidgetToDisplayEmptyList: true,
               showEmptyList: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'No movie found!',
+                      l10n.searchTabNoMovieSearchTitleLabel,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontSize: 18,
@@ -191,7 +194,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                     ),
                     gapH10,
                     Text(
-                      "It seems that you haven't found\nyet the movie your're looking for",
+                      l10n.searchTabNoMovieSearchDesciptionLabel,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),

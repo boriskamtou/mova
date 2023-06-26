@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 
 import '../../../../utils/common_import.dart';
 import '../../../core/presentation/widgets/bottom_sheet_top_bar.dart';
@@ -27,6 +28,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final bookmarkState = ref.watch(bookmarkNotifierProvider);
     ref.listen(
       bookmarkNotifierProvider,
@@ -37,7 +39,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
           deleted: () {
             ref.watch(bookmarkNotifierProvider.notifier).getAllBookmarkMovies();
             return Flushbar(
-              message: 'Movie deleted successfully',
+              message: l10n.bookmarkTabMovieDeleteSuccessfullyLabel,
               icon: const Icon(
                 Icons.info,
                 color: AppColors.alertSuccess,
@@ -62,7 +64,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
           ),
         ),
         title: Text(
-          'My List',
+          l10n.bookmarkTabMyListLabel,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -114,7 +116,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                         const BottomSheetTopBar(),
                         gapH6,
                         Text(
-                          'Delete',
+                          l10n.bookmarkTabMyDeleteLabel,
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -129,7 +131,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                         const Divider(),
                         gapH10,
                         Text(
-                          "Are you sure you want to delete this\nmovie bookmark?",
+                          l10n.bookmarkTabAreYouSureYouWantToDeleteMovieLabel,
                           textAlign: TextAlign.center,
                           style:
                               Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -199,7 +201,7 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                                   context.popRoute();
                                 },
                                 child: Text(
-                                  'Cancel',
+                                  l10n.bookmarkTabCancelDeleteMovieLabel,
                                   style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                   ),
@@ -216,7 +218,8 @@ class _MyListTabState extends ConsumerState<MyListTab> {
                                       .deleteMovieFromBookMark(
                                           data.bookmarkMovies[i]);
                                 },
-                                child: const Text('Yes, delete'),
+                                child:
+                                    Text(l10n.bookmarkTabYesDeleteMovieLabel),
                               ),
                             )
                           ],

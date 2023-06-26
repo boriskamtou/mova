@@ -3,6 +3,10 @@
   "@appTitle": {
     "description": "App Title"
   },
+
+  "paginatedMoviesGridView":"You are not connected. Please check your network connexion.",
+
+
   "onboardingScreenGetStartedLabel": "Get Started",
   "onboardingScreenWelcomeToMovaTitleOne": "Welcome to Mova",
   "onboardingScreenWelcomeToMovaTitleTwo": "A new world of Movies",
@@ -10,6 +14,7 @@
   "onboardingScreenWelcomeToMovaTitleThree": "Movies, Shows & More",
   "onboardingScreenWelcomeToMovaDescriptionTwo": "Discover how you can stream\nin other way!",
   "onboardingScreenWelcomeToMovaDescriptionThree": "We have a tons of movies, shows\nanimes, drame waiting for you!",
+
   "signInScreenLoginLabel":"Login to Your Account",
   "signInScreenCreateAccountLabel":"Create your account",
   "signInScreenEmailHintText":"Email",
@@ -19,5 +24,80 @@
   "signInScreenButtonSignUpLabel":"Sign Up",
   "signInScreenDontHaveAnAccountLabel":"Don’t have an account?",
   "signInScreenAlreadyHaveAnAccountLabel":"Already have an account?",
-  "homeScreenSeeAllButtonLabel": "See all"
+
+  "homeTabSeeAllButtonLabel": "See all",
+  "homeTabMovieAddToBookmarkLabel": "{movieTitle} has been add to your list",
+  "@homeTabMovieAddToBookmarkLabel": {
+    "placeholders": {
+      "movieTitle" : {
+        "type": "String"
+      }
+    }
+  },
+  "homeTabTopTenPopularMovies":"Top 10 Popular Movies",
+  "homeTabTopTenRatedMovies":"Top 10 Rated Movies",
+  "homeTabTopTenTrendingMovies":"Trending Movies",
+  "homeTabNoTopPopularMovieFoundLabel": "No Top Popular Movies Found!",
+  "homeTabNoTopRatedMovieFoundLabel": "No Top Rated Movies Found!",
+  "homeTabNoTopTrendingMovieFoundLabel": "No Trending Movies Found!",
+
+  "bookmarkTabMovieDeleteSuccessfullyLabel":"Movie deleted successfully",
+  "bookmarkTabMyListLabel":"My List",
+  "bookmarkTabMyDeleteLabel":"Delete",
+  "bookmarkTabAreYouSureYouWantToDeleteMovieLabel":"Are you sure you want to delete this\nmovie bookmark?",
+  "bookmarkTabCancelDeleteMovieLabel":"Cancel",
+  "bookmarkTabYesDeleteMovieLabel":"Yes, delete",
+
+  "searchTabSearchMovieLabel":"Search movie...",
+  "searchTabSearchButtonSemanticLabel":"Search Movie",
+  "searchTabClearButtonSemanticLabel":"Delete Searched Movie",
+  "searchTabRecentSearchLabel":"No rencent searchs found!",
+  "searchTabNoMovieFoundLabel":"No movies found!",
+  "searchTabNoMovieSearchTitleLabel":"No movies found!",
+  "searchTabNoMovieSearchDesciptionLabel":"It seems that you haven't found\nyet the movie your're looking for",
+
+  "profileTabProfileLabel":"Profile",
+  "profileTabEditProfileLabel":"Edit Profile",
+  "profileTabLanguageLabel":"Language",
+  "profileTabThemeModeLabel":"Dark Mode",
+  "profileTabMovieDescriptionLabel":"Mova - Streaming App",
+  "profileTabMadeByLabel":"Made by WCS",
+  "profileTabAboutLabel":"About",
+  "profileTabLogoutLabel":"Logout",
+
+
+  "topRateMovieScreenTopRatedTitleLabel":"Top Rated Movies",
+  "topRateMovieScreenNoTopRatedMovieFoundLabel":"No Top Rated Movies!",
+
+  "popularMovieScreenTitleLabel": "Popular Movies",
+  "popularMoviesScreenNoMoviesFoundLabel":"No Popular Movies Found!",
+  
+  
+  "topRatedMovieScreenTitleLabel": "Top Rated Movies",
+  "topRatedMovieScreenNoMoviesFoundLabel":"No Top Rated Movies Found!",
+
+  "movieDetailScreenAddMovieToBookmarkLabel": "{movieTitle} has been add to your list",
+  "@movieDetailScreenAddMovieToBookmarkLabel": {
+    "placeholders": {
+      "movieTitle" : {
+        "type": "String"
+      }
+    }
+  },
+  "movieDetailScreenViewMoreLabel": "View more",
+  "movieDetailScreenViewLessLabel": "View more",
+  "movieDetailScreenTrailersTabLabel": "Trailers",
+  "movieDetailScreenSimilarsTabLabel": "Similars",
+  "movieDetailScreenCommentsTabLabel": "Comments",
+  "movieDetailSharedWithLabel": "Share with",
+  "movieDetailScreenNoSimilarMoviesFoundLabel": "No Similar movies found",
+  "movieDetailScreenGenreLabel": "Genre: {genres}",
+  "@movieDetailScreenGenreLabel": {
+    "placeholders": {
+      "genres" : {
+        "type": "String"
+      }
+    }
+  }
+  
 }

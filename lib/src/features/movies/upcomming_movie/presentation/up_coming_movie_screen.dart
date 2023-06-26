@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/presentation/paginated_movie_gridview.dart';
 import 'package:mova/src/features/movies/upcomming_movie/shared/providers.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/utils/common_import.dart';
 
 import '../../top_rated_movies/presentation/widgets/go_to_search_tab_button.dart';
@@ -27,9 +27,10 @@ class _UpcomingMoviesScreenState extends ConsumerState<UpcomingMoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top Rated Movies'),
+        title: Text(l10n.topRateMovieScreenTopRatedTitleLabel),
         actions: [
           GoToSearchTabButton(ref: ref),
         ],
@@ -43,7 +44,7 @@ class _UpcomingMoviesScreenState extends ConsumerState<UpcomingMoviesScreen> {
           getNextPage: (ref) => ref
               .read(upComingMoviesStateNotifierProvider.notifier)
               .getNextUpcomingMoviesPage(),
-          noDataMessage: 'No Upcoming Movies!',
+          noDataMessage: l10n.topRatedMovieScreenNoMoviesFoundLabel,
         ),
       ),
     );

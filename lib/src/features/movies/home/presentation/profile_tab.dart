@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
+import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
 
@@ -66,6 +67,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -76,7 +78,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
           ),
         ),
         title: Text(
-          'Profile',
+          l10n.profileTabProfileLabel,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -141,7 +143,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
-                'Edit Profile',
+                l10n.profileTabEditProfileLabel,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 16,
                     ),
@@ -157,7 +159,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
-                'Language',
+                l10n.profileTabLanguageLabel,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 16,
                     ),
@@ -184,7 +186,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
-                'Dark Mode',
+                l10n.profileTabThemeModeLabel,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 16,
                     ),
@@ -219,13 +221,13 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                             'assets/images/logo.png',
                             width: 60,
                           ),
-                          title: const Text('Mova - Streaming App'),
+                          title: Text(l10n.profileTabMovieDescriptionLabel),
                           subtitle: Text(_appVersion!),
                         ),
                         const SizedBox(height: 6),
-                        const Text(
-                          'Made by WCS',
-                          style: TextStyle(
+                        Text(
+                          l10n.profileTabMadeByLabel,
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -239,7 +241,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
-                'About',
+                l10n.profileTabAboutLabel,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 16,
                     ),
@@ -257,7 +259,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
-                'Logout',
+                l10n.profileTabLogoutLabel,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 16,
                     ),

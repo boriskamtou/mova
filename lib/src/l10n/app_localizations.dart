@@ -99,6 +99,12 @@ abstract class AppLocalizations {
   /// **'Mova'**
   String get appTitle;
 
+  /// No description provided for @paginatedMoviesGridView.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not connected. Please check your network connexion.'**
+  String get paginatedMoviesGridView;
+
   /// No description provided for @onboardingScreenGetStartedLabel.
   ///
   /// In en, this message translates to:
@@ -195,11 +201,269 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get signInScreenAlreadyHaveAnAccountLabel;
 
-  /// No description provided for @homeScreenSeeAllButtonLabel.
+  /// No description provided for @homeTabSeeAllButtonLabel.
   ///
   /// In en, this message translates to:
   /// **'See all'**
-  String get homeScreenSeeAllButtonLabel;
+  String get homeTabSeeAllButtonLabel;
+
+  /// No description provided for @homeTabMovieAddToBookmarkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{movieTitle} has been add to your list'**
+  String homeTabMovieAddToBookmarkLabel(String movieTitle);
+
+  /// No description provided for @homeTabTopTenPopularMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'Top 10 Popular Movies'**
+  String get homeTabTopTenPopularMovies;
+
+  /// No description provided for @homeTabTopTenRatedMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'Top 10 Rated Movies'**
+  String get homeTabTopTenRatedMovies;
+
+  /// No description provided for @homeTabTopTenTrendingMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'Trending Movies'**
+  String get homeTabTopTenTrendingMovies;
+
+  /// No description provided for @homeTabNoTopPopularMovieFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Top Popular Movies Found!'**
+  String get homeTabNoTopPopularMovieFoundLabel;
+
+  /// No description provided for @homeTabNoTopRatedMovieFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Top Rated Movies Found!'**
+  String get homeTabNoTopRatedMovieFoundLabel;
+
+  /// No description provided for @homeTabNoTopTrendingMovieFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Trending Movies Found!'**
+  String get homeTabNoTopTrendingMovieFoundLabel;
+
+  /// No description provided for @bookmarkTabMovieDeleteSuccessfullyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Movie deleted successfully'**
+  String get bookmarkTabMovieDeleteSuccessfullyLabel;
+
+  /// No description provided for @bookmarkTabMyListLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'My List'**
+  String get bookmarkTabMyListLabel;
+
+  /// No description provided for @bookmarkTabMyDeleteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get bookmarkTabMyDeleteLabel;
+
+  /// No description provided for @bookmarkTabAreYouSureYouWantToDeleteMovieLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this\nmovie bookmark?'**
+  String get bookmarkTabAreYouSureYouWantToDeleteMovieLabel;
+
+  /// No description provided for @bookmarkTabCancelDeleteMovieLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get bookmarkTabCancelDeleteMovieLabel;
+
+  /// No description provided for @bookmarkTabYesDeleteMovieLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, delete'**
+  String get bookmarkTabYesDeleteMovieLabel;
+
+  /// No description provided for @searchTabSearchMovieLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search movie...'**
+  String get searchTabSearchMovieLabel;
+
+  /// No description provided for @searchTabSearchButtonSemanticLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Movie'**
+  String get searchTabSearchButtonSemanticLabel;
+
+  /// No description provided for @searchTabClearButtonSemanticLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Searched Movie'**
+  String get searchTabClearButtonSemanticLabel;
+
+  /// No description provided for @searchTabRecentSearchLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No rencent searchs found!'**
+  String get searchTabRecentSearchLabel;
+
+  /// No description provided for @searchTabNoMovieFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No movies found!'**
+  String get searchTabNoMovieFoundLabel;
+
+  /// No description provided for @searchTabNoMovieSearchTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No movies found!'**
+  String get searchTabNoMovieSearchTitleLabel;
+
+  /// No description provided for @searchTabNoMovieSearchDesciptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'It seems that you haven\'t found\nyet the movie your\'re looking for'**
+  String get searchTabNoMovieSearchDesciptionLabel;
+
+  /// No description provided for @profileTabProfileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTabProfileLabel;
+
+  /// No description provided for @profileTabEditProfileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get profileTabEditProfileLabel;
+
+  /// No description provided for @profileTabLanguageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profileTabLanguageLabel;
+
+  /// No description provided for @profileTabThemeModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get profileTabThemeModeLabel;
+
+  /// No description provided for @profileTabMovieDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mova - Streaming App'**
+  String get profileTabMovieDescriptionLabel;
+
+  /// No description provided for @profileTabMadeByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Made by WCS'**
+  String get profileTabMadeByLabel;
+
+  /// No description provided for @profileTabAboutLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get profileTabAboutLabel;
+
+  /// No description provided for @profileTabLogoutLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get profileTabLogoutLabel;
+
+  /// No description provided for @topRateMovieScreenTopRatedTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Rated Movies'**
+  String get topRateMovieScreenTopRatedTitleLabel;
+
+  /// No description provided for @topRateMovieScreenNoTopRatedMovieFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Top Rated Movies!'**
+  String get topRateMovieScreenNoTopRatedMovieFoundLabel;
+
+  /// No description provided for @popularMovieScreenTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Movies'**
+  String get popularMovieScreenTitleLabel;
+
+  /// No description provided for @popularMoviesScreenNoMoviesFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Popular Movies Found!'**
+  String get popularMoviesScreenNoMoviesFoundLabel;
+
+  /// No description provided for @topRatedMovieScreenTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Rated Movies'**
+  String get topRatedMovieScreenTitleLabel;
+
+  /// No description provided for @topRatedMovieScreenNoMoviesFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Top Rated Movies Found!'**
+  String get topRatedMovieScreenNoMoviesFoundLabel;
+
+  /// No description provided for @movieDetailScreenAddMovieToBookmarkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{movieTitle} has been add to your list'**
+  String movieDetailScreenAddMovieToBookmarkLabel(String movieTitle);
+
+  /// No description provided for @movieDetailScreenViewMoreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'View more'**
+  String get movieDetailScreenViewMoreLabel;
+
+  /// No description provided for @movieDetailScreenViewLessLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'View more'**
+  String get movieDetailScreenViewLessLabel;
+
+  /// No description provided for @movieDetailScreenTrailersTabLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailers'**
+  String get movieDetailScreenTrailersTabLabel;
+
+  /// No description provided for @movieDetailScreenSimilarsTabLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Similars'**
+  String get movieDetailScreenSimilarsTabLabel;
+
+  /// No description provided for @movieDetailScreenCommentsTabLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get movieDetailScreenCommentsTabLabel;
+
+  /// No description provided for @movieDetailSharedWithLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with'**
+  String get movieDetailSharedWithLabel;
+
+  /// No description provided for @movieDetailScreenNoSimilarMoviesFoundLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No Similar movies found'**
+  String get movieDetailScreenNoSimilarMoviesFoundLabel;
+
+  /// No description provided for @movieDetailScreenGenreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Genre: {genres}'**
+  String movieDetailScreenGenreLabel(String genres);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

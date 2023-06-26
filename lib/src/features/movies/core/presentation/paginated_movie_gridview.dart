@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/movies/core/application/paginated_movies_notifier.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../theme/presentation/app_colors.dart';
 import 'loading_movie_item.dart';
 import 'movie_item.dart';
@@ -45,6 +46,7 @@ class _PaginatedMoviesGridViewState
   bool canLoadNextPage = false;
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     ref.listen<PaginatedMoviesState>(
       widget.paginatedMoviesNotifier,
       (prev, next) {
@@ -54,8 +56,7 @@ class _PaginatedMoviesGridViewState
           loaded: (_) {
             if (!_.movies.isFresh) {
               Flushbar(
-                message:
-                    'You are not connected. Please check your network connexion',
+                message: l10n.paginatedMoviesGridView,
                 icon: const Icon(
                   Icons.info,
                   color: AppColors.alertError,
