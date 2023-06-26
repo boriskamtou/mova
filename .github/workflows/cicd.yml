@@ -7,10 +7,23 @@ on:
     branches: ["main"]
 
 jobs:
-  example:
+  test:
+    name: Test
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Echo Test
-        run: echo This\ is\ the\ firt\ job
+      - name: Clone flutter repository
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Run flutter doctor
+        run: flutter doctor -v
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Clean projet and get dependencies
+        run: flutter clean && flutter pub get
+
+      - name: Run test
+        run: flutter test
