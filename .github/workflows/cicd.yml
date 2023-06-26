@@ -1,0 +1,19 @@
+name: Test, build and deploy mova app
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions: read-all
+
+jobs:
+  example:
+    name: Example of job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Text
+        run: Test my first Job
