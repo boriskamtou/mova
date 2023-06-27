@@ -56,7 +56,6 @@ dependencies:
   flutter_progress_hud: ^2.0.2
   animations: ^2.0.7
   flutter_facebook_auth: ^5.0.11
-  lecle_flutter_absolute_path: ^0.0.2+1
   upgrader: ^6.5.0
 
 dev_dependencies:

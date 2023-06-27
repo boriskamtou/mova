@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,10 +10,9 @@ import 'package:mova/src/features/movies/bookmark/shared/providers.dart';
 import 'package:mova/src/features/movies/core/presentation/widgets/no_data.dart';
 import 'package:mova/src/features/movies/similar_movies/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
-import 'package:social_share/social_share.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../utils/common_import.dart';
-import '../../../core/presentation/widgets/bottom_sheet_top_bar.dart';
 import '../../movie_detail/shared/providers.dart';
 import '../domain/entities/movie.dart';
 import '../shared/providers.dart';
@@ -217,6 +217,7 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                 ),
                                 MovieActionButton(
                                   onPressed: () async {
+                                    /*      
                                     showModalBottomSheet(
                                       context: context,
                                       shape: const RoundedRectangleBorder(
@@ -282,6 +283,26 @@ class _MovieDetailScreenState extends ConsumerState<MovieDetailScreen>
                                         ],
                                       ),
                                     );
+                                 
+                                  */
+
+                                    if (widget.movie.fullImageUrl != null) {
+                                      // Donwload Image
+                                      /*              final dir = await getTemporaryDirectory();
+                                      final imagePath =
+                                          '${dir.path}${widget.movie.title}.png';
+
+                                      await ref.read(dioProvider).download(
+                                            widget.movie.fullImageUrl!,
+                                            imagePath,
+                                          ); */
+
+                                      Share.share(
+                                          '${widget.movie.fullImageUrl}\n\n *${widget.movie.title}* \n\n ${widget.movie.overview}\n\n __Note: ${widget.movie.voteAverage.toStringAsFixed(1)}__');
+                                    } else {
+                                      Share.share(
+                                          '*${widget.movie.title}* \n\n ${widget.movie.overview}\n\n Note: ${widget.movie.voteAverage.toStringAsFixed(1)}');
+                                    }
                                   },
                                   imageUrl: 'assets/icons/send.png',
                                 ),
