@@ -13,6 +13,7 @@ class LanguageNotifier extends StateNotifier<AsyncValue<Locale>> {
       await _repository.savePreferedLanguage(locale);
 
   Future<void> toggleLanguage(String locale) async {
+    debugPrint('Selectable Lang: $locale');
     await savePreferedLanguage(locale);
     final currentPreferedLanguage = await getPreferedLanguage();
 

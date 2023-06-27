@@ -12,6 +12,7 @@ import '../features/movies/popular_movies/presentation/popular_movies_screen.dar
 import '../features/movies/top_rated_movies/presentation/top_rated_movies_screen.dart';
 import '../features/movies/upcomming_movie/presentation/up_coming_movie_screen.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
+import '../features/set_language/presentation/language_screen.dart';
 import '../features/splash/presentation/splash_screen.dart';
 import '../features/auth/presentation/let_you_in_screen.dart';
 
@@ -36,5 +37,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: TopRatedMoviesRoute.page),
         AutoRoute(page: UpcomingMoviesRoute.page),
         AutoRoute(page: EditProfileRoute.page),
+        AutoRoute(page: LanguageRoute.page),
       ];
 }

@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mova/src/features/auth/shared/providers.dart';
+import 'package:mova/src/features/set_language/shared/providers.dart';
 import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/routing/app_router.dart';
 import 'package:mova/src/utils/common_import.dart';
@@ -68,6 +69,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final languageState = ref.watch(languageNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -154,6 +156,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
               ),
             ),
             ListTile(
+              onTap: () => AutoRouter.of(context).push(const LanguageRoute()),
               leading: Image.asset(
                 'assets/icons/language.png',
                 color: Theme.of(context).iconTheme.color,
@@ -169,7 +172,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '(EN)',
+                    languageState.value == const Locale('en') ? '(EN)' : '(FR)',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   gapW10,

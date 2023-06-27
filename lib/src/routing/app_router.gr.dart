@@ -100,6 +100,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OnboardingScreen(),
       );
     },
+    LanguageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LanguageScreen(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -356,6 +362,20 @@ class OnboardingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'OnboardingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LanguageScreen]
+class LanguageRoute extends PageRouteInfo<void> {
+  const LanguageRoute({List<PageRouteInfo>? children})
+      : super(
+          LanguageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LanguageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

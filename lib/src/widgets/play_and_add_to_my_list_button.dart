@@ -1,3 +1,4 @@
+import 'package:mova/src/features/core/infrastructure/extension/localization_extension.dart';
 import 'package:mova/src/utils/common_import.dart';
 
 class PlayAndAddToMyListButtons extends StatelessWidget {
@@ -30,7 +31,7 @@ class PlayAndAddToMyListButtons extends StatelessWidget {
                 Image.asset('assets/icons/play.png'),
                 const SizedBox(width: 4),
                 Text(
-                  'Play',
+                  context.locale.homeTabPlayLabel,
                   style: GoogleFonts.urbanist(
                     color: AppColors.white,
                     fontSize: 13,
@@ -65,7 +66,7 @@ class PlayAndAddToMyListButtons extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'My List',
+                  context.locale.homeTabMyListLabel,
                   style: GoogleFonts.urbanist(
                     color: AppColors.white,
                     fontSize: 13,

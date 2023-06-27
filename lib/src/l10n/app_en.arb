@@ -6,6 +6,11 @@
 
   "paginatedMoviesGridView":"You are not connected. Please check your network connexion.",
 
+  "homeScreenHomeLabel":"Home",
+  "homeScreenDiscoveryLabel":"Discovery",
+  "homeScreenBookmarkLabel":"Bookmark",
+  "homeScreenDownloadLabel":"Download",
+  "homeScreenProfileLabel":"Profile",
 
   "onboardingScreenGetStartedLabel": "Get Started",
   "onboardingScreenWelcomeToMovaTitleOne": "Welcome to Mova",
@@ -40,6 +45,9 @@
   "homeTabNoTopPopularMovieFoundLabel": "No Top Popular Movies Found!",
   "homeTabNoTopRatedMovieFoundLabel": "No Top Rated Movies Found!",
   "homeTabNoTopTrendingMovieFoundLabel": "No Trending Movies Found!",
+  "homeTabMyListLabel": "My List",
+  "homeTabPlayLabel": "Play",
+
 
   "bookmarkTabMovieDeleteSuccessfullyLabel":"Movie deleted successfully",
   "bookmarkTabMyListLabel":"My List",
@@ -84,6 +92,7 @@
       }
     }
   },
+  "movieDetailScreenPlayLabel": "Play",
   "movieDetailScreenViewMoreLabel": "View more",
   "movieDetailScreenViewLessLabel": "View more",
   "movieDetailScreenTrailersTabLabel": "Trailers",

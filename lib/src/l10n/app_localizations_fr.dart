@@ -11,6 +11,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get paginatedMoviesGridView => 'Vous n\'êtes pas connecté à internet. Veillez vérifier votre connection.';
 
   @override
+  String get homeScreenHomeLabel => 'Accueil';
+
+  @override
+  String get homeScreenDiscoveryLabel => 'Rechercher';
+
+  @override
+  String get homeScreenBookmarkLabel => 'Favoris';
+
+  @override
+  String get homeScreenDownloadLabel => 'Téléchargement';
+
+  @override
+  String get homeScreenProfileLabel => 'Profil';
+
+  @override
   String get onboardingScreenGetStartedLabel => 'Commencer';
 
   @override
@@ -83,6 +98,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get homeTabNoTopTrendingMovieFoundLabel => 'Aucun Film Tendance Trouvé';
+
+  @override
+  String get homeTabMyListLabel => 'Ma Liste';
+
+  @override
+  String get homeTabPlayLabel => 'Jouer';
 
   @override
   String get bookmarkTabMovieDeleteSuccessfullyLabel => 'Film supprimé avec succès';
@@ -171,6 +192,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get movieDetailScreenPlayLabel => 'Jouer';
+
+  @override
   String get movieDetailScreenViewMoreLabel => 'Voir plus';
 
   @override
@@ -200,8 +224,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get languageScreenTitleLabel => 'Langues';
 
   @override
-  String get languageScreenFrenchLabel => 'French';
+  String get languageScreenFrenchLabel => 'Français';
 
   @override
-  String get languageScreenEnglishLabel => 'English';
+  String get languageScreenEnglishLabel => 'Anglais';
 }

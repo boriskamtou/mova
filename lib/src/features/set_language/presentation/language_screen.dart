@@ -15,12 +15,41 @@ class LanguageScreen extends ConsumerStatefulWidget {
 }
 
 class _LanguageScreenState extends ConsumerState<LanguageScreen> {
-  Languages? _lg = Languages.fr;
+  Languages? _lg = Languages.en;
+
+  Future<void> _initialiezValues() async {
+    final lang =
+        await ref.read(languageNotifierProvider.notifier).getPreferedLanguage();
+
+    if (lang == 'en') {
+      setState(() {
+        _lg = Languages.en;
+      });
+    } else {
+      setState(() {
+        _lg = Languages.fr;
+      });
+    }
+  }
+
+  void _onChangeLocale(Languages? value) {
+    setState(() {
+      _lg = value;
+    });
+    ref.read(languageNotifierProvider.notifier).toggleLanguage(_lg!.name);
+  }
+
+  @override
+  void initState() {
+    _initialiezValues();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.locale.languageScreenEnglishLabel),
+        title: Text(context.locale.languageScreenTitleLabel),
       ),
       body: Column(
         children: <Widget>[
@@ -29,31 +58,16 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
             leading: Radio<Languages>(
               value: Languages.fr,
               groupValue: _lg,
-              onChanged: (Languages? value) {
-                setState(() {
-                  _lg = value;
-                });
-                ref
-                    .read(languageNotifierProvider.notifier)
-                    .toggleLanguage(_lg.toString());
-              },
+              onChanged: _onChangeLocale,
             ),
           ),
           ListTile(
-            title: Text(context.locale.languageScreenEnglishLabel),
-            leading: Radio<Languages>(
-              value: Languages.en,
-              groupValue: _lg,
-              onChanged: (Languages? value) {
-                setState(() {
-                  _lg = value;
-                });
-                ref
-                    .read(languageNotifierProvider.notifier)
-                    .toggleLanguage(_lg.toString());
-              },
-            ),
-          ),
+              title: Text(context.locale.languageScreenEnglishLabel),
+              leading: Radio<Languages>(
+                value: Languages.en,
+                groupValue: _lg,
+                onChanged: _onChangeLocale,
+              )),
         ],
       ),
     );

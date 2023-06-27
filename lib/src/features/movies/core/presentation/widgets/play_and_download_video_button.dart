@@ -1,3 +1,5 @@
+import 'package:mova/src/features/core/infrastructure/extension/localization_extension.dart';
+
 import '../../../../../utils/common_import.dart';
 
 class PlayAndDownloadVideoButtons extends StatelessWidget {
@@ -18,7 +20,7 @@ class PlayAndDownloadVideoButtons extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: onPlayPressed,
               icon: Image.asset('assets/icons/play.png'),
-              label: const Text('Play'),
+              label: Text(context.locale.movieDetailScreenPlayLabel),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: AppSizes.p8),
               ),

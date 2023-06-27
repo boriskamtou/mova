@@ -4,8 +4,13 @@
     "description": "Nom de l'application"
   },
 
-
   "paginatedMoviesGridView":"Vous n'êtes pas connecté à internet. Veillez vérifier votre connection.",
+
+  "homeScreenHomeLabel":"Accueil",
+  "homeScreenDiscoveryLabel":"Rechercher",
+  "homeScreenBookmarkLabel":"Favoris",
+  "homeScreenDownloadLabel":"Téléchargement",
+  "homeScreenProfileLabel":"Profil",
 
   "onboardingScreenGetStartedLabel": "Commencer",
   "onboardingScreenWelcomeToMovaTitleOne": "Bienvenue sur Mova",
@@ -40,6 +45,8 @@
   "homeTabNoTopPopularMovieFoundLabel": "Aucun Fiml Populaire Trouvé",
   "homeTabNoTopRatedMovieFoundLabel": "Aucun Film Mieux Noté Trouvé",
   "homeTabNoTopTrendingMovieFoundLabel": "Aucun Film Tendance Trouvé",
+  "homeTabMyListLabel": "Ma Liste",
+  "homeTabPlayLabel": "Jouer",
 
   "bookmarkTabMovieDeleteSuccessfullyLabel":"Film supprimé avec succès",
   "bookmarkTabMyListLabel":"Ma Liste",
@@ -82,6 +89,7 @@
       }
     }
   },
+  "movieDetailScreenPlayLabel": "Jouer",
   "movieDetailScreenViewMoreLabel": "Voir plus",
   "movieDetailScreenViewLessLabel": "Voir moins",
   "movieDetailScreenTrailersTabLabel": "Trailers",
@@ -98,7 +106,7 @@
     }
   },
   "languageScreenTitleLabel": "Langues",
-  "languageScreenFrench": "Français",
-  "languageScreenEnglish": "Anglais"
+  "languageScreenFrenchLabel": "Français",
+  "languageScreenEnglishLabel": "Anglais"
   
 }

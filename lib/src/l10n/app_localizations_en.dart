@@ -11,6 +11,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paginatedMoviesGridView => 'You are not connected. Please check your network connexion.';
 
   @override
+  String get homeScreenHomeLabel => 'Home';
+
+  @override
+  String get homeScreenDiscoveryLabel => 'Discovery';
+
+  @override
+  String get homeScreenBookmarkLabel => 'Bookmark';
+
+  @override
+  String get homeScreenDownloadLabel => 'Download';
+
+  @override
+  String get homeScreenProfileLabel => 'Profile';
+
+  @override
   String get onboardingScreenGetStartedLabel => 'Get Started';
 
   @override
@@ -83,6 +98,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeTabNoTopTrendingMovieFoundLabel => 'No Trending Movies Found!';
+
+  @override
+  String get homeTabMyListLabel => 'My List';
+
+  @override
+  String get homeTabPlayLabel => 'Play';
 
   @override
   String get bookmarkTabMovieDeleteSuccessfullyLabel => 'Movie deleted successfully';
@@ -169,6 +190,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String movieDetailScreenAddMovieToBookmarkLabel(String movieTitle) {
     return '$movieTitle has been add to your list';
   }
+
+  @override
+  String get movieDetailScreenPlayLabel => 'Play';
 
   @override
   String get movieDetailScreenViewMoreLabel => 'View more';

@@ -105,6 +105,36 @@ abstract class AppLocalizations {
   /// **'You are not connected. Please check your network connexion.'**
   String get paginatedMoviesGridView;
 
+  /// No description provided for @homeScreenHomeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeScreenHomeLabel;
+
+  /// No description provided for @homeScreenDiscoveryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Discovery'**
+  String get homeScreenDiscoveryLabel;
+
+  /// No description provided for @homeScreenBookmarkLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark'**
+  String get homeScreenBookmarkLabel;
+
+  /// No description provided for @homeScreenDownloadLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get homeScreenDownloadLabel;
+
+  /// No description provided for @homeScreenProfileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get homeScreenProfileLabel;
+
   /// No description provided for @onboardingScreenGetStartedLabel.
   ///
   /// In en, this message translates to:
@@ -248,6 +278,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No Trending Movies Found!'**
   String get homeTabNoTopTrendingMovieFoundLabel;
+
+  /// No description provided for @homeTabMyListLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'My List'**
+  String get homeTabMyListLabel;
+
+  /// No description provided for @homeTabPlayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get homeTabPlayLabel;
 
   /// No description provided for @bookmarkTabMovieDeleteSuccessfullyLabel.
   ///
@@ -416,6 +458,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{movieTitle} has been add to your list'**
   String movieDetailScreenAddMovieToBookmarkLabel(String movieTitle);
+
+  /// No description provided for @movieDetailScreenPlayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get movieDetailScreenPlayLabel;
 
   /// No description provided for @movieDetailScreenViewMoreLabel.
   ///

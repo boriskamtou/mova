@@ -52,7 +52,15 @@ jobs:
           java-version: 11
 
       - name: Build apk
-        run: flutter build apk --split-per-abi
+        run: flutter build apk
 
       - name: Build appbundle
         run: flutter build appbundle
+
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          token: ${{ secrets.FIREBASE_CLI_TOKEN }}
+          groups: ${{ secrets.TESTERS_GROUPS }}
+          file: build/app/outputs/flutter-apk/app-release.apk
