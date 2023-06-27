@@ -1,3 +1,5 @@
+import 'package:mova/src/l10n/app_localizations.dart';
+
 import '../../../../utils/common_import.dart';
 
 class RowTitle extends StatelessWidget {
@@ -22,9 +24,9 @@ class RowTitle extends StatelessWidget {
           ),
           InkWell(
             onTap: onSeeAllTap,
-            child: const Text(
-              'See all',
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context).homeTabSeeAllButtonLabel,
+              style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 13,
                 color: AppColors.primary,

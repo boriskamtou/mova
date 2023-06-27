@@ -72,10 +72,14 @@ class _VideoPlayerState extends ConsumerState<VideoPlayerScreen> {
           onReady: () {},
         ),
         builder: (context, player) {
-          return Column(
-            children: [
-              player,
-            ],
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                player,
+              ],
+            ),
           );
         },
       ),

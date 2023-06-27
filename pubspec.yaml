@@ -1,5 +1,5 @@
 name: mova
-description: A new Flutter project.
+description: A streaming mobile app
 
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
@@ -49,7 +49,7 @@ dependencies:
   share_plus: ^7.0.0
   social_share: ^2.3.1
   flutter_easyloading: ^3.0.5
-  material_floating_search_bar: ^0.3.7
+  material_floating_search_bar_2: ^0.4.2
   image_picker: ^0.8.7+5
   cloud_firestore: ^4.8.0
   firebase_storage: ^11.2.2

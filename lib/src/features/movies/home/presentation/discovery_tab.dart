@@ -1,9 +1,8 @@
+import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 import 'package:mova/src/features/movies/core/presentation/paginated_movie_gridview.dart';
 import 'package:mova/src/features/movies/search/shared/providers.dart';
 import 'package:mova/src/l10n/app_localizations.dart';
 import 'package:mova/src/utils/common_import.dart';
-
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class DiscoveryTab extends ConsumerStatefulWidget {
   const DiscoveryTab({super.key});
