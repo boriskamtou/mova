@@ -195,4 +195,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String movieDetailScreenGenreLabel(String genres) {
     return 'Genre: $genres';
   }
+
+  @override
+  String get languageScreenTitleLabel => 'Languages';
+
+  @override
+  String get languageScreenFrenchLabel => 'French';
+
+  @override
+  String get languageScreenEnglishLabel => 'English';
 }

@@ -464,6 +464,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Genre: {genres}'**
   String movieDetailScreenGenreLabel(String genres);
+
+  /// No description provided for @languageScreenTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get languageScreenTitleLabel;
+
+  /// No description provided for @languageScreenFrenchLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get languageScreenFrenchLabel;
+
+  /// No description provided for @languageScreenEnglishLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageScreenEnglishLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

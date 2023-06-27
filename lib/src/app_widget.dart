@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/auth/application/auth_notifier.dart';
+import 'package:mova/src/features/set_language/shared/providers.dart';
 import 'package:mova/src/routing/app_router.dart';
 
 import 'features/auth/shared/providers.dart';
@@ -85,6 +86,7 @@ class AppWidget extends ConsumerWidget {
       },
     );
     final appTheme = ref.watch(appThemeProvider);
+    final locale = ref.watch(languageNotifierProvider);
     return MaterialApp.router(
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
@@ -100,6 +102,7 @@ class AppWidget extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: locale.value,
       supportedLocales: const [
         Locale('en', ''),
         Locale('fr', ''),

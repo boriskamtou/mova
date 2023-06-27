@@ -98,6 +98,9 @@
         "type": "String"
       }
     }
-  }
+  },
   
+  "languageScreenTitleLabel": "Languages",
+  "languageScreenFrenchLabel": "French",
+  "languageScreenEnglishLabel": "English"
 }

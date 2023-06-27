@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 
 import '../sembast_database.dart';
@@ -52,8 +51,6 @@ class UserPreferencesRepository {
     await _storeUserPreferences
         .record(_appTheme)
         .put(await _db.then((db) => db!), value);
-
-    debugPrint('Dark Theme Mode Stored: $value');
   }
 
   Future<bool?> getUserThemeMode() async {
