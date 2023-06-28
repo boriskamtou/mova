@@ -145,6 +145,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchTabNoMovieSearchDesciptionLabel => 'It seems that you haven\'t found\nyet the movie your\'re looking for';
 
   @override
+  String get searchTabCannotLoadRecentSearchsLabel => 'Can\'t load recent searchs';
+
+  @override
   String get profileTabProfileLabel => 'Profile';
 
   @override

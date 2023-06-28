@@ -369,6 +369,12 @@ abstract class AppLocalizations {
   /// **'It seems that you haven\'t found\nyet the movie your\'re looking for'**
   String get searchTabNoMovieSearchDesciptionLabel;
 
+  /// No description provided for @searchTabCannotLoadRecentSearchsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t load recent searchs'**
+  String get searchTabCannotLoadRecentSearchsLabel;
+
   /// No description provided for @profileTabProfileLabel.
   ///
   /// In en, this message translates to:

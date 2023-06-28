@@ -62,6 +62,7 @@
   "searchTabNoMovieFoundLabel":"Aucun film trouvé!",
   "searchTabNoMovieSearchTitleLabel":"Aucun film trouvé!",
   "searchTabNoMovieSearchDesciptionLabel":"Il semble que vous n'avez pas \nencore trouvé le film que vous recherchez.",
+  "searchTabCannotLoadRecentSearchsLabel":"Impossible de charger les recherches récentes",
 
   "profileTabProfileLabel":"Profil",
   "profileTabEditProfileLabel":"Mise à jour du profil",

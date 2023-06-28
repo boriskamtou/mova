@@ -63,6 +63,7 @@
   "searchTabNoMovieFoundLabel":"No movies found!",
   "searchTabNoMovieSearchTitleLabel":"No movies found!",
   "searchTabNoMovieSearchDesciptionLabel":"It seems that you haven't found\nyet the movie your're looking for",
+  "searchTabCannotLoadRecentSearchsLabel":"Can't load recent searchs",
 
   "profileTabProfileLabel":"Profile",
   "profileTabEditProfileLabel":"Edit Profile",
