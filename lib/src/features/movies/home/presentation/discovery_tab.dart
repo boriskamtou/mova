@@ -54,7 +54,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: AppSizes.p20),
         child: FloatingSearchBar(
           controller: _controller,
           automaticallyImplyBackButton: false,
@@ -86,7 +86,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
             ),
           ],
           backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
-          scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
+          scrollPadding: const EdgeInsets.only(top: AppSizes.p16, bottom: 56),
           transitionCurve: Curves.easeInOut,
           physics: const BouncingScrollPhysics(),
           onQueryChanged: (query) {
@@ -114,7 +114,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 data: (data) => Material(
                   color: Theme.of(context).cardColor,
                   elevation: 4,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(AppSizes.p8),
                   clipBehavior: Clip.hardEdge,
                   child: _controller.query.isEmpty && data.value.isEmpty
                       ? Container(
@@ -151,7 +151,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                                   ),
                                   leading: const Icon(Icons.history),
                                   trailing: IconButton(
-                                    splashRadius: 18,
+                                    splashRadius: AppSizes.p18,
                                     onPressed: () => ref
                                         .read(searchHistoryNotifier.notifier)
                                         .deleteSearchTerm(searchedMovie),
@@ -164,7 +164,8 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 ),
                 loading: (_) =>
                     const ListTile(title: LinearProgressIndicator()),
-                error: (_) => const Center(child: Text('Error')),
+                error: (_) =>
+                    const Center(child: Text("Can't load recent searchs")),
               );
             },
           ),
@@ -187,7 +188,7 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                       l10n.searchTabNoMovieSearchTitleLabel,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 18,
+                            fontSize: AppSizes.p18,
                             fontWeight: FontWeight.w700,
                           ),
                     ),
