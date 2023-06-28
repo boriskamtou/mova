@@ -164,8 +164,8 @@ class _DiscoveryTabState extends ConsumerState<DiscoveryTab> {
                 ),
                 loading: (_) =>
                     const ListTile(title: LinearProgressIndicator()),
-                error: (_) =>
-                    const Center(child: Text("Can't load recent searchs")),
+                error: (_) => Center(
+                    child: Text(l10n.searchTabCannotLoadRecentSearchsLabel)),
               );
             },
           ),
