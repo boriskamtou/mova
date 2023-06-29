@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'api_key.dart';
+
 class UrlBuilder {
-  static const tmdbApiKey = String.fromEnvironment('api_key');
+  static const tmdbApiKey = ApiKey.apiKey;
 
   static const baseUrl = "https://api.themoviedb.org/3";
 
@@ -15,13 +17,13 @@ class UrlBuilder {
   String buildUpCommingMovies(int page, [String language = 'en']) =>
       '$baseUrl/movie/upcoming?api_key=$tmdbApiKey&language=$language&page=$page';
 
-  String buildMoviesVideos(int movieId) =>
+  String buildMoviesVideos(int movieId, [String language = 'en']) =>
       '$baseUrl/movie/$movieId/videos?api_key=$tmdbApiKey';
 
-  String buildMoviesReviews(int movieId) =>
+  String buildMoviesReviews(int movieId, [String language = 'en']) =>
       '$baseUrl/movie/$movieId/reviews?api_key=$tmdbApiKey';
 
-  String buildMoviesDetail(int movieId) =>
+  String buildMoviesDetail(int movieId, [String language = 'en']) =>
       '$baseUrl/movie/$movieId?api_key=$tmdbApiKey';
 
   String buildSimilarMoviesReviews(int movieId, int page,
