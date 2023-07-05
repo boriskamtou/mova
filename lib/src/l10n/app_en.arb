@@ -112,5 +112,15 @@
   
   "languageScreenTitleLabel": "Languages",
   "languageScreenFrenchLabel": "French",
-  "languageScreenEnglishLabel": "English"
+  "languageScreenEnglishLabel": "English",
+
+  "fillProfileScreenTitleLabel":"Fill Your Profile",
+  "fillProfileSreenMaleLabel":"Male",
+  "fillProfileSreenFemaleLabel":"Female",
+  "fillProfileSreenfullNameLabel":"Full Name",
+  "fillProfileSreenNicknameLabel":"Nickname",
+  "fillProfileSreenEmailLabel":"Email",
+  "fillProfileSreenPhoneNumberLabel":"Phone Number",
+  "fillProfileSreenGenderLabel":"Gender",
+  "fillProfileSreenProvideImageLabel":"Please provide an image"
 }

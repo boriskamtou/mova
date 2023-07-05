@@ -536,6 +536,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get languageScreenEnglishLabel;
+
+  /// No description provided for @fillProfileScreenTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill Your Profile'**
+  String get fillProfileScreenTitleLabel;
+
+  /// No description provided for @fillProfileSreenMaleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get fillProfileSreenMaleLabel;
+
+  /// No description provided for @fillProfileSreenFemaleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get fillProfileSreenFemaleLabel;
+
+  /// No description provided for @fillProfileSreenfullNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fillProfileSreenfullNameLabel;
+
+  /// No description provided for @fillProfileSreenNicknameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname'**
+  String get fillProfileSreenNicknameLabel;
+
+  /// No description provided for @fillProfileSreenEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get fillProfileSreenEmailLabel;
+
+  /// No description provided for @fillProfileSreenPhoneNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get fillProfileSreenPhoneNumberLabel;
+
+  /// No description provided for @fillProfileSreenGenderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get fillProfileSreenGenderLabel;
+
+  /// No description provided for @fillProfileSreenProvideImageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide an image'**
+  String get fillProfileSreenProvideImageLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

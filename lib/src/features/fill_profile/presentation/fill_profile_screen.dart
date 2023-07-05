@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:mova/src/features/core/infrastructure/extension/localization_extension.dart';
 import 'package:mova/src/features/fill_profile/presentation/skip_or_continue_button.dart';
 import 'package:mova/src/features/fill_profile/presentation/user_image.dart';
 import 'package:mova/src/routing/app_router.dart';
@@ -67,7 +68,7 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fill Your Profile'),
+        title: Text(context.locale.fillProfileScreenTitleLabel),
       ),
       body: ProgressHUD(
         child: Builder(builder: (ctx) {
@@ -88,21 +89,21 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                     ),
                     const SizedBox(height: 24),
                     CommonTextFormField(
-                      hintText: 'Full Name',
+                      hintText: context.locale.fillProfileSreenfullNameLabel,
                       controller: userNameController,
                       validator: ValidationService.validateFullNaMe,
                       textInputType: TextInputType.text,
                     ),
                     const SizedBox(height: 15),
                     CommonTextFormField(
-                      hintText: 'Nickname',
+                      hintText: context.locale.fillProfileSreenNicknameLabel,
                       controller: nicknameController,
                       validator: ValidationService.validateNickName,
                       textInputType: TextInputType.text,
                     ),
                     const SizedBox(height: 15),
                     CommonTextFormField(
-                      hintText: 'Email',
+                      hintText: context.locale.fillProfileSreenEmailLabel,
                       controller: emailController,
                       validator: ValidationService.validateEmail,
                       suffixIcon: Image.asset('assets/icons/user_email.png'),
@@ -110,7 +111,7 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                     ),
                     const SizedBox(height: 15),
                     CommonTextFormField(
-                      hintText: 'Phone Number',
+                      hintText: context.locale.fillProfileSreenPhoneNumberLabel,
                       controller: phoneController,
                       validator: ValidationService.validatePhoneNumber,
                       textInputType: TextInputType.phone,
@@ -130,7 +131,7 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                         dropdownColor: Theme.of(context).canvasColor,
                         isExpanded: true,
                         hint: Text(
-                          'Gender',
+                          context.locale.fillProfileSreenGenderLabel,
                           style:
                               Theme.of(context).inputDecorationTheme.hintStyle,
                         ),
@@ -167,7 +168,8 @@ class _FillProfileScreenState extends ConsumerState<FillProfileScreen> {
                         FocusScope.of(context).unfocus();
                         if (_image == null) {
                           Flushbar(
-                            message: 'Please provide an image',
+                            message: context
+                                .locale.fillProfileSreenProvideImageLabel,
                             icon: const Icon(
                               Icons.info,
                               color: AppColors.alertError,

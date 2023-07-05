@@ -108,6 +108,16 @@
   },
   "languageScreenTitleLabel": "Langues",
   "languageScreenFrenchLabel": "Français",
-  "languageScreenEnglishLabel": "Anglais"
+  "languageScreenEnglishLabel": "Anglais",
+
+  "fillProfileScreenTitleLabel":"Completer votre profil",
+  "fillProfileSreenMaleLabel":"Homme",
+  "fillProfileSreenFemaleLabel":"Femme",
+  "fillProfileSreenfullNameLabel":"Nom Complet",
+  "fillProfileSreenNicknameLabel":"Pseudo",
+  "fillProfileSreenEmailLabel":"Email",
+  "fillProfileSreenPhoneNumberLabel":"Numéro de téléphone",
+  "fillProfileSreenGenderLabel":"Genre",
+  "fillProfileSreenProvideImageLabel":"Veillez fournir une image"
   
 }

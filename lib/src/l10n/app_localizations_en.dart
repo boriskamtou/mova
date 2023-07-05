@@ -231,4 +231,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageScreenEnglishLabel => 'English';
+
+  @override
+  String get fillProfileScreenTitleLabel => 'Fill Your Profile';
+
+  @override
+  String get fillProfileSreenMaleLabel => 'Male';
+
+  @override
+  String get fillProfileSreenFemaleLabel => 'Female';
+
+  @override
+  String get fillProfileSreenfullNameLabel => 'Full Name';
+
+  @override
+  String get fillProfileSreenNicknameLabel => 'Nickname';
+
+  @override
+  String get fillProfileSreenEmailLabel => 'Email';
+
+  @override
+  String get fillProfileSreenPhoneNumberLabel => 'Phone Number';
+
+  @override
+  String get fillProfileSreenGenderLabel => 'Gender';
+
+  @override
+  String get fillProfileSreenProvideImageLabel => 'Please provide an image';
 }
