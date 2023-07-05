@@ -47,7 +47,6 @@ class _VideoPlayerState extends ConsumerState<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: YoutubePlayerBuilder(
         player: YoutubePlayer(
           controller: _controller,

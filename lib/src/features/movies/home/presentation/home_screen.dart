@@ -8,6 +8,7 @@ import 'package:mova/src/features/movies/home/presentation/profile_tab.dart';
 import 'package:upgrader/upgrader.dart';
 
 import '../../../../utils/common_import.dart';
+import '../../../set_language/shared/providers.dart';
 import '../shared/providers.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
@@ -58,15 +59,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final bottomNavigationRouter =
         ref.watch(bottomNavigationRouterNotifierProvider.notifier);
     final state = ref.watch(bottomNavigationRouterNotifierProvider);
+    final locale = ref.watch(languageNotifierProvider);
     return UpgradeAlert(
       upgrader: Upgrader(
         dialogStyle: Platform.isIOS
@@ -87,10 +84,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         },
         showIgnore: false,
         durationUntilAlertAgain: const Duration(seconds: 30),
-        languageCode: 'en',
-        /*       messages: UpgraderMessages(
-          code: langCode,
-        ), */
+        languageCode: locale.value == const Locale('en') ? 'en' : 'fr',
+        messages: UpgraderMessages(
+          code: locale.value == const Locale('en') ? 'en' : 'fr',
+        ),
       ),
       child: Scaffold(
         extendBody: true,
@@ -141,7 +138,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           elevation: 2,
         ),
-        body: _widgetOptions.elementAt(state),
+        body: IndexedStack(
+          index: state,
+          children: _widgetOptions,
+        ),
       ),
     );
   }

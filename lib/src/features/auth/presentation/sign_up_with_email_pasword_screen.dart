@@ -309,7 +309,7 @@ class _AlreadyHaveAnAccount extends StatelessWidget {
           child: Text(
             isLoggedIn
                 ? l10n.signInScreenButtonSignUpLabel
-                : l10n.signInScreenButtonSignUpLabel,
+                : l10n.signInScreenButtonSignInLabel,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
               color: AppColors.primary,
