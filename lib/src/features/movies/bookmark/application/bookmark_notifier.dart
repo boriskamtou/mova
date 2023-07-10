@@ -30,6 +30,7 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     try {
       await _repository.addMovie(MovieDTO.fromDomain(movie));
       state = BookmarkState.saveComplete(movie);
+      getAllBookmarkMovies();
     } catch (e) {
       state = BookmarkState.saveFailed(e.toString());
     }

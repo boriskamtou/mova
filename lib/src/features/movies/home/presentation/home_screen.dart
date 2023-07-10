@@ -9,6 +9,7 @@ import 'package:upgrader/upgrader.dart';
 
 import '../../../../utils/common_import.dart';
 import '../../../set_language/shared/providers.dart';
+import '../../bookmark/shared/providers.dart';
 import '../shared/providers.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
@@ -59,6 +60,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    Future.microtask(() =>
+        ref.read(bookmarkNotifierProvider.notifier).getAllBookmarkMovies());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final bottomNavigationRouter =
         ref.watch(bottomNavigationRouterNotifierProvider.notifier);
@@ -93,6 +101,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         extendBody: true,
         bottomNavigationBar: AnimatedBottomNavigationBar.builder(
           itemCount: _iconOutlineList.length,
+          blurEffect: true,
+          backgroundGradient: LinearGradient(
+            colors: [
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(.2),
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(.3),
+            ],
+            stops: const [
+              .1,
+              .3,
+            ],
+          ),
           splashSpeedInMilliseconds: 0,
           backgroundColor:
               Theme.of(context).bottomNavigationBarTheme.backgroundColor,

@@ -20,9 +20,11 @@ class SkipOrContinueButtons extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 20), */
-        ElevatedButton(
-          onPressed: onContinuePressed,
-          child: const Text('Continue'),
+        Expanded(
+          child: ElevatedButton(
+            onPressed: onContinuePressed,
+            child: const Text('Continue'),
+          ),
         )
       ],
     );
