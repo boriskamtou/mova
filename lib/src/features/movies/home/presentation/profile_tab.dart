@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:mova/src/features/theme/shared/providers.dart';
 import '../../../auth/shared/providers.dart';
 import '../../../set_language/shared/providers.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -8,7 +9,6 @@ import '../../../../routing/app_router.dart';
 import '../../../../utils/common_import.dart';
 
 import '../../../core/shared/providers.dart';
-import '../../../theme/application/app_theme_notifier.dart';
 
 class ProfileTab extends ConsumerStatefulWidget {
   const ProfileTab({super.key});
@@ -25,7 +25,6 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
   String? _phoneNumber = '';
   String? _gender = '';
   String? _appVersion = '';
-  bool? _isDarkMode = true;
 
   Future<void> _initializeInfos() async {
     final userEmail =
@@ -42,8 +41,6 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
         await ref.read(userDataNotifierProvider.notifier).getUserPhoneNumber();
     final gender =
         await ref.read(userDataNotifierProvider.notifier).getUserGender();
-    final isDarkMode =
-        await ref.read(appThemeProvider.notifier).getPreferedThemeMode();
 
     final appVersion = await ref
         .read(userPreferenceNotifierProvider.notifier)
@@ -52,7 +49,6 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
       _userEmail = userEmail;
       _username = userName;
       _imageUrl = photoUrl;
-      _isDarkMode = isDarkMode;
       _phoneNumber = phoneNumber;
       _nickName = nickName;
       _gender = gender;
@@ -194,15 +190,13 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                     .copyWith(fontSize: 16),
               ),
               trailing: Switch.adaptive(
-                value: _isDarkMode!,
+                value: ref.read(toggleThemeProvider.notifier).isDarkMode,
                 activeColor: Theme.of(context).primaryColor,
-                onChanged: (value) async {
-                  await ref
-                      .read(appThemeProvider.notifier)
-                      .storeUserPreferedThemeMode(value);
+                onChanged: (value) {
                   setState(() {
-                    _isDarkMode = value;
-                    ref.read(appThemeProvider.notifier).toggleTheme();
+                    ref.read(toggleThemeProvider.notifier).toggleTheme(value);
+                    ref.read(themeProvider.notifier).themeMode();
+                    debugPrint("New State: ${ref.read(toggleThemeProvider)}");
                   });
                 },
               ),

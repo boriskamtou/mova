@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
-import 'package:mova/src/features/core/shared/providers.dart';
-import 'package:mova/src/features/theme/presentation/app_themes.dart';
+import 'package:mova/src/features/theme/infrastructure/theme_service.dart';
 
-class AppThemeNotifier extends StateNotifier<ThemeData> {
-  final UserPreferencesRepository _userPreferenceRepository;
+import 'theme_preferences.dart';
 
-  AppThemeNotifier(this._userPreferenceRepository)
-      : super(AppTheme.darkTheme());
+class ToggleThemeNotifier extends StateNotifier<bool> {
+  final ThemeService _themeService;
 
-  Future<bool?> getPreferedThemeMode() async =>
-      await _userPreferenceRepository.getUserThemeMode();
+  ToggleThemeNotifier(this._themeService) : super(false);
 
-  Future<void> storeUserPreferedThemeMode(bool value) async =>
-      await _userPreferenceRepository.storeUserPreferedThemeMode(value);
+  bool get isDarkMode => _themeService.isDarkMode;
 
-  Future<void> toggleTheme() async {
-    final userMode = await getPreferedThemeMode() ?? true;
-    if (userMode) {
-      state = AppTheme.darkTheme();
-    } else {
-      state = AppTheme.lightTheme();
-    }
+  void toggleTheme(bool newValue) {
+    state = newValue;
+    _themeService.toggleTheme(newValue);
   }
 }
 
-final appThemeProvider =
-    StateNotifierProvider<AppThemeNotifier, ThemeData>((ref) {
-  return AppThemeNotifier(ref.watch(userPreferenceLocalServiceProvider));
-});
+class AppThemeNotifiers extends StateNotifier<ThemeMode> {
+  final ThemeService _themeService;
+
+  AppThemeNotifiers(
+    this._themeService,
+  ) : super(ThemeMode.system);
+
+  void themeMode() {
+    _themeService.getThemeMode().listen((data) {
+      switch (data) {
+        case ThemePreferences.dark:
+          state = ThemeMode.dark;
+        case ThemePreferences.light:
+          state = ThemeMode.light;
+        default:
+          state = ThemeMode.system;
+      }
+    }, onError: (_) {
+      debugPrint('Error');
+    });
+  }
+}

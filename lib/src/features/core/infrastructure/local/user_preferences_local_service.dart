@@ -26,7 +26,7 @@ class UserPreferencesRepository {
   Future<String?> getUserAppVersion() async {
     final appVersion = await _storeUserPreferences
         .record(_storeVersion)
-        .get(await _db.then((db) => db!)) as String;
+        .get(await _db.then((db) => db!)) as String?;
 
     return appVersion;
   }

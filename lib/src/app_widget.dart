@@ -6,12 +6,12 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mova/src/features/theme/presentation/app_themes.dart';
+import 'package:mova/src/features/theme/shared/providers.dart';
 
 import 'features/auth/application/auth_notifier.dart';
 import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
 import 'features/set_language/shared/providers.dart';
-import 'features/theme/application/app_theme_notifier.dart';
 import 'l10n/app_localizations.dart';
 import 'routing/app_router.dart';
 
@@ -21,7 +21,7 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
       // connectTimeout: const Duration(seconds: 30),
       // sendTimeout: const Duration(seconds: 30),
       );
-  await ref.read(appThemeProvider.notifier).toggleTheme();
+  ref.read(themeProvider.notifier).themeMode();
   await ref.read(languageNotifierProvider.notifier).getPreferedLanguage();
   final auth = ref.watch(authNotifier.notifier);
   auth.checkAuthStatus();
@@ -87,8 +87,9 @@ class AppWidget extends ConsumerWidget {
         );
       },
     );
-    final appTheme = ref.watch(appThemeProvider);
+    final themeMode = ref.watch(themeProvider);
     final locale = ref.watch(languageNotifierProvider);
+
     return MaterialApp.router(
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
@@ -111,9 +112,9 @@ class AppWidget extends ConsumerWidget {
       ],
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context).appTitle,
-      theme: appTheme,
-      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
+      themeMode: themeMode,
       builder: EasyLoading.init(),
     );
   }

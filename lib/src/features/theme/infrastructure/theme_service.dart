@@ -7,21 +7,27 @@ class ThemeService {
 
   ThemeService(this._sharedPreferences);
 
-  static const _isDarkMode = 'isDarkMode';
+  static const _isDarkModeKey = 'isDarkMode';
 
   late ThemeMode _themeMode;
 
   ThemeMode get themeMode => _themeMode;
+  bool get isDarkMode =>
+      _sharedPreferences.get(_isDarkModeKey) as bool? ?? false;
 
-  ThemePreferences getThemeMode() {
-    final prefsMode = _sharedPreferences.get(_isDarkMode) as bool?;
+  void toggleTheme(bool newValue) {
+    _sharedPreferences.setBool(_isDarkModeKey, newValue);
+  }
+
+  Stream<ThemePreferences> getThemeMode() async* {
+    final prefsMode = _sharedPreferences.get(_isDarkModeKey) as bool?;
 
     if (prefsMode == null) {
-      return ThemePreferences.system;
+      yield ThemePreferences.system;
     } else if (prefsMode == true) {
-      return ThemePreferences.dark;
+      yield ThemePreferences.dark;
     } else {
-      return ThemePreferences.light;
+      yield ThemePreferences.light;
     }
   }
 }
