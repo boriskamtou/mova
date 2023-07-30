@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mova/src/features/theme/presentation/app_themes.dart';
 
 import 'features/auth/application/auth_notifier.dart';
 import 'features/auth/shared/providers.dart';
@@ -111,6 +112,8 @@ class AppWidget extends ConsumerWidget {
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context).appTitle,
       theme: appTheme,
+      themeMode: ThemeMode.system,
+      darkTheme: AppTheme.darkTheme(),
       builder: EasyLoading.init(),
     );
   }

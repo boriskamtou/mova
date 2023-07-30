@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/core/application/user_preference_notifier.dart';
-import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
-import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
-import 'package:mova/src/features/movies/core/infrastructure/local/total_results_cache.dart';
-import 'package:mova/src/features/movies/core/infrastructure/url_builder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../application/user_preference_notifier.dart';
+import '../infrastructure/local/user_preferences_local_service.dart';
+import '../infrastructure/sembast_database.dart';
+import '../../movies/core/infrastructure/local/total_results_cache.dart';
+import '../../movies/core/infrastructure/url_builder.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   return Dio();
@@ -40,4 +41,8 @@ final userPreferenceLocalServiceProvider =
 final userPreferenceNotifierProvider =
     StateNotifierProvider<UserPreferenceNotifier, AsyncValue<void>>((ref) {
   return UserPreferenceNotifier(ref.watch(userPreferenceLocalServiceProvider));
+});
+
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError();
 });

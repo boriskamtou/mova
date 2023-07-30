@@ -57,6 +57,7 @@ dependencies:
   animations: ^2.0.7
   flutter_facebook_auth: ^5.0.11
   upgrader: ^6.5.0
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

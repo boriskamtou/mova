@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 import 'src/app_widget.dart';
+import 'src/features/core/shared/providers.dart';
 
 class LoggerProvider extends ProviderObserver {
   var log = Logger();
@@ -27,6 +29,7 @@ class LoggerProvider extends ProviderObserver {
 Future<void> main() async {
   // Setup firebase initialization
   WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -39,6 +42,9 @@ Future<void> main() async {
 
   runApp(
     ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
       observers: [
         LoggerProvider(),
       ],

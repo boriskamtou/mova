@@ -4,16 +4,16 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:upgrader/upgrader.dart';
-import '../../../core/shared/providers.dart';
-import 'profile_tab.dart';
 
 import '../../../../utils/common_import.dart';
+import '../../../core/shared/providers.dart';
 import '../../../set_language/shared/providers.dart';
 import '../../bookmark/shared/providers.dart';
 import '../shared/providers.dart';
+import 'bookmark_tab.dart';
 import 'discovery_tab.dart';
 import 'home_tab.dart';
-import 'bookmark_tab.dart';
+import 'profile_tab.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulHookConsumerWidget {

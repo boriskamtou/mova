@@ -1,11 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:mova/src/features/auth/shared/providers.dart';
-import 'package:mova/src/features/set_language/shared/providers.dart';
-import 'package:mova/src/l10n/app_localizations.dart';
-import 'package:mova/src/routing/app_router.dart';
-import 'package:mova/src/utils/common_import.dart';
+import '../../../auth/shared/providers.dart';
+import '../../../set_language/shared/providers.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../routing/app_router.dart';
+import '../../../../utils/common_import.dart';
 
 import '../../../core/shared/providers.dart';
 import '../../../theme/application/app_theme_notifier.dart';
@@ -163,9 +163,10 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
               ),
               title: Text(
                 l10n.profileTabLanguageLabel,
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontSize: 16,
-                    ),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 16),
               ),
               trailing: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -176,10 +177,7 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   gapW10,
-                  const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 18,
-                  ),
+                  const Icon(Icons.arrow_forward_ios_rounded, size: 18),
                 ],
               ),
             ),
@@ -190,9 +188,10 @@ class _ProfileTabState extends ConsumerState<ProfileTab> {
               ),
               title: Text(
                 l10n.profileTabThemeModeLabel,
-                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontSize: 16,
-                    ),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontSize: 16),
               ),
               trailing: Switch.adaptive(
                 value: _isDarkMode!,
