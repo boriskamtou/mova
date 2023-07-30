@@ -11,29 +11,34 @@ class OnboardingTextDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.urbanist(
-            color: AppColors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.w700,
-          ),
-        ).animate(delay: const Duration(milliseconds: 100)).fade().scale(),
-        gapH16,
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.urbanist(
-            color: AppColors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-          ),
-        ).animate(delay: const Duration(milliseconds: 100)).fade().scale(),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.urbanist(
+              color: AppColors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.w700,
+            ),
+          ).animate(delay: const Duration(milliseconds: 100)).fade().scale(),
+          gapH16,
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.urbanist(
+              color: AppColors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+          ).animate(delay: const Duration(milliseconds: 100)).fade().scale(),
+        ],
+      ),
     );
   }
 }

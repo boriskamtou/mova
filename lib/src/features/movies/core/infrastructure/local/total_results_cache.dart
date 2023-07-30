@@ -1,5 +1,6 @@
-import 'package:mova/src/features/core/infrastructure/sembast_database.dart';
 import 'package:sembast/sembast.dart';
+
+import '../../../../core/infrastructure/sembast_database.dart';
 
 class TotalResultsCache {
   final SembastDatabase _database;

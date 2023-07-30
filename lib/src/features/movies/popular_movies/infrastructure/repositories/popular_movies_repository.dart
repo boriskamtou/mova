@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:mova/src/features/core/infrastructure/exceptions/movie_exception.dart';
-import 'package:mova/src/features/core/infrastructure/extension/movie_extension.dart';
-import 'package:mova/src/features/movies/core/domain/entities/fresh.dart';
-import 'package:mova/src/features/movies/core/domain/entities/movie.dart';
-import 'package:mova/src/features/movies/core/domain/failures/movie_failure.dart';
-import 'package:mova/src/features/movies/popular_movies/infrastructure/local/popular_movies_local_service.dart';
-import 'package:mova/src/features/movies/popular_movies/infrastructure/remote/popular_movie_remote_service.dart';
+import '../../../../core/infrastructure/exceptions/movie_exception.dart';
+import '../../../../core/infrastructure/extension/movie_extension.dart';
+import '../../../core/domain/entities/fresh.dart';
+import '../../../core/domain/entities/movie.dart';
+import '../../../core/domain/failures/movie_failure.dart';
+import '../local/popular_movies_local_service.dart';
+import '../remote/popular_movie_remote_service.dart';
 
 class PopularMoviesRepository {
   final PopularMovieRemoteService _popularMovieRemoteService;

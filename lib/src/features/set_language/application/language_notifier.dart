@@ -1,5 +1,5 @@
-import 'package:mova/src/features/set_language/infrastructure/language_repository.dart';
-import 'package:mova/src/utils/common_import.dart';
+import '../../../utils/common_import.dart';
+import '../infrastructure/language_repository.dart';
 
 class LanguageNotifier extends StateNotifier<AsyncValue<Locale>> {
   final LanguageRepository _repository;
@@ -13,7 +13,6 @@ class LanguageNotifier extends StateNotifier<AsyncValue<Locale>> {
       await _repository.savePreferedLanguage(locale);
 
   Future<void> toggleLanguage(String locale) async {
-    debugPrint('Selectable Lang: $locale');
     await savePreferedLanguage(locale);
     final currentPreferedLanguage = await getPreferedLanguage();
 

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:mova/src/constants/local_storage_constants.dart';
-import 'package:mova/src/features/core/infrastructure/remote_response.dart';
-import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_response_dto.dart';
-import 'package:mova/src/features/movies/core/infrastructure/local/total_results_cache.dart';
-import 'package:mova/src/features/movies/core/infrastructure/remote/movie_remote_service.dart';
-import 'package:mova/src/features/movies/core/infrastructure/url_builder.dart';
+import '../../../../../constants/local_storage_constants.dart';
+import '../../../../core/infrastructure/remote_response.dart';
+import '../../../core/infrastructure/dtos/movie_response_dto.dart';
+import '../../../core/infrastructure/local/total_results_cache.dart';
+import '../../../core/infrastructure/remote/movie_remote_service.dart';
+import '../../../core/infrastructure/url_builder.dart';
 
 class PopularMovieRemoteService extends MovieRemoteService {
   PopularMovieRemoteService(

@@ -22,7 +22,7 @@ class FirebaseAuthenticatorRepository {
     this._userPreferencesLocalService,
   );
 
-  Future<FailureOrCredential> signInWithEmailAndPassword(
+  Future<Either<AuthFailure, UserCredential>> signInWithEmailAndPassword(
       String email, String password) async {
     UserCredential userCredentials;
     try {

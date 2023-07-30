@@ -22,6 +22,8 @@ class _MyListTabState extends ConsumerState<MyListTab> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(() =>
+        ref.read(bookmarkNotifierProvider.notifier).getAllBookmarkMovies());
   }
 
   @override

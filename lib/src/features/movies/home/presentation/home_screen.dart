@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:mova/src/features/core/shared/providers.dart';
-import 'package:mova/src/features/movies/home/presentation/profile_tab.dart';
 import 'package:upgrader/upgrader.dart';
+import '../../../core/shared/providers.dart';
+import 'profile_tab.dart';
 
 import '../../../../utils/common_import.dart';
 import '../../../set_language/shared/providers.dart';
@@ -104,12 +104,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           blurEffect: true,
           backgroundGradient: LinearGradient(
             colors: [
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(.2),
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(.3),
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(.1),
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(.1),
             ],
             stops: const [
               .1,
-              .3,
+              .9,
             ],
           ),
           splashSpeedInMilliseconds: 0,
@@ -150,14 +150,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           rightCornerRadius: 14,
           notchSmoothness: NotchSmoothness.verySmoothEdge,
           onTap: (index) => bottomNavigationRouter.changeTab(index),
-          shadow: const BoxShadow(
-            offset: Offset(0, 1),
-            blurRadius: 1.5,
-            spreadRadius: 0,
-          ),
           elevation: 2,
         ),
         body: IndexedStack(
+          key: ValueKey<int>(state),
           index: state,
           children: _widgetOptions,
         ),

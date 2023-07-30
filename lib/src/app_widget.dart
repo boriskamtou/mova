@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mova/src/features/auth/application/auth_notifier.dart';
-import 'package:mova/src/features/set_language/shared/providers.dart';
-import 'package:mova/src/routing/app_router.dart';
 
+import 'features/auth/application/auth_notifier.dart';
 import 'features/auth/shared/providers.dart';
 import 'features/core/shared/providers.dart';
+import 'features/set_language/shared/providers.dart';
 import 'features/theme/application/app_theme_notifier.dart';
 import 'l10n/app_localizations.dart';
+import 'routing/app_router.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).database;
@@ -21,6 +21,7 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
       // sendTimeout: const Duration(seconds: 30),
       );
   await ref.read(appThemeProvider.notifier).toggleTheme();
+  await ref.read(languageNotifierProvider.notifier).getPreferedLanguage();
   final auth = ref.watch(authNotifier.notifier);
   auth.checkAuthStatus();
   return unit;
