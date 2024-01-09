@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
-import 'package:mova/src/features/core/infrastructure/api_response.dart';
-import 'package:mova/src/features/movies/core/infrastructure/dtos/movie_video_response_dto.dart';
-import 'package:mova/src/features/movies/core/infrastructure/url_builder.dart';
+import '../../../../core/infrastructure/api_response.dart';
+import '../dtos/movie_video_response_dto.dart';
+import '../url_builder.dart';
 
 import '../../../../core/infrastructure/dio_exception.dart';
 

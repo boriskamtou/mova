@@ -153,7 +153,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           elevation: 2,
         ),
         body: IndexedStack(
-          key: ValueKey<int>(state),
           index: state,
           children: _widgetOptions,
         ),

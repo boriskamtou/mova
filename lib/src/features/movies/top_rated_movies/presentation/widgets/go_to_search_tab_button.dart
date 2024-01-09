@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../routing/app_router.dart';
 import '../../../../../utils/common_import.dart';
