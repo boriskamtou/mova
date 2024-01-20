@@ -4,7 +4,7 @@ description: A streaming mobile app
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
 
-version: 1.0.8+5
+version: 1.0.9+6
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

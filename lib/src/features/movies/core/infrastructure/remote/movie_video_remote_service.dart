@@ -26,7 +26,8 @@ class MovieVideoRemoteService {
         return ApiResponse.failure(exception: Exception(response.statusCode));
       }
     } on DioError catch (e) {
-      return ApiResponse.failure(exception: DioException.fromDioError(e));
+      return ApiResponse.failure(
+          exception: DioExceptionHandler.fromDioError(e));
     }
   }
 }

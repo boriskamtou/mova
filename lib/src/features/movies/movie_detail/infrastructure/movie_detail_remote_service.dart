@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:mova/src/features/core/infrastructure/exceptions/movie_exception.dart';
-import 'package:mova/src/features/core/infrastructure/extension/dio_extension.dart';
-import 'package:mova/src/features/core/infrastructure/remote_response.dart';
-import 'package:mova/src/features/movies/core/infrastructure/url_builder.dart';
-import 'package:mova/src/features/movies/movie_detail/infrastructure/movie_detail_local_service.dart';
 
 import '../../../core/infrastructure/dio_exception.dart';
+import '../../../core/infrastructure/exceptions/movie_exception.dart';
+import '../../../core/infrastructure/extension/dio_extension.dart';
+import '../../../core/infrastructure/remote_response.dart';
 import '../../core/infrastructure/dtos/movie_detail_dto.dart';
+import '../../core/infrastructure/url_builder.dart';
+import 'movie_detail_local_service.dart';
 
 class MovieDetailRemoteService {
   final Dio _dio;
@@ -35,8 +35,8 @@ class MovieDetailRemoteService {
         return const RemoteResponse.noConnexion();
       }
       throw MovieException(
-        errorMessage: DioException.fromDioError(e).message,
-        exception: DioException.fromDioError(e),
+        errorMessage: DioExceptionHandler.fromDioError(e).message,
+        exception: DioExceptionHandler.fromDioError(e),
       );
     }
   }

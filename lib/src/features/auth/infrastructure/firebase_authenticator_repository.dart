@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mova/src/features/core/infrastructure/local/user_preferences_local_service.dart';
 
+import '../../core/infrastructure/local/user_preferences_local_service.dart';
 import '../domain/failures/auth_failure.dart';
 import 'user_credentials_storage/user_credentials_storage.dart';
 
